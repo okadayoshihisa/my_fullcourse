@@ -4,17 +4,13 @@ class FullcourseMenusController < ApplicationController
   end
 
   def new
-    byebug
     @form = Form::FullcourseMenuCollection.new
   end
 
   def create
     byebug
     @form = Form::FullcourseMenuCollection.new(fullcourse_menu_collection_params)
-    @form.fullcourse_menus.map do |x|
-      x.user_id = current_user.id
-      x.genre = 'n'
-    end
+    @form.add_user_id_genre(current_user)
     if @form.save
       redirect_to fullcourse_menus_path
     else
