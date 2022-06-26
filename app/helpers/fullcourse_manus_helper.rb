@@ -1,0 +1,2 @@
+module FullcourseManusHelper
+end
