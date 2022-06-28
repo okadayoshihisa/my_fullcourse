@@ -1,0 +1,8 @@
+= form_with model: form, url: fullcourse_menus_path, local: true do |f|
+  h3 hoge
+  = f.fields_for :fullcourse_menus do |i|
+    .form_group
+      = i.label :name
+      = i.text_field :name, class: 'form_control'
+
+  = f.submit '登録', class: 'btn btn-lg btn-primary btn-block'
