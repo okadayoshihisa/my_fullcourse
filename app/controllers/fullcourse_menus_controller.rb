@@ -8,7 +8,6 @@ class FullcourseMenusController < ApplicationController
   end
 
   def create
-    byebug
     @form = Form::FullcourseMenuCollection.new(fullcourse_menu_collection_params)
     @form.add_user_id_genre(current_user)
     if @form.save
@@ -18,17 +17,13 @@ class FullcourseMenusController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
-  def update
-  end
+  def update; end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
