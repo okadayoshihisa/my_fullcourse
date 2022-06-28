@@ -1,0 +1,28 @@
+header
+  nav.navbar.navbar-expand-lg.navigation.navbar-light.bg-light
+    = link_to '俺のフルコース', root_path, class: 'navbar-brand'
+    button.navbar-toggler[data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+      span.navbar-toggler-icon
+
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto.main-nav.align-items-center
+        li.nav-item.dropdown.dropdown-slide
+          a.nav-link.dropdown-toggle[href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+          |  掲示板 
+          .dropdown-menu.dropdown-menu-right
+            = link_to '掲示板一覧', '#', class: 'dropdown-item'
+            = link_to '掲示板作成', '#', class: 'dropdown-item'
+
+        li.nav-item
+          = link_to 'ブックマーク一覧', '#', class: 'nav-link'
+
+        li.nav-item.dropdown.dropdown-slide
+          a#header-profile.nav-link[href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+            = image_tag 'sample', size: '40x40', class: 'rounded-circle mr15'
+          
+          .dropdown-menu.dropdown-menu-right
+            .dropdown-item
+              | らんてっく たろう
+            .dropdown-divider
+            = link_to 'プロフィール', '#', class: 'dropdown-item'
+            = link_to 'ログアウト', logout_path, class: 'dropdown-item'
