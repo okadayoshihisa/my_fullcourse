@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      | MyFullcourse
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  body
+    #nav
+      - if current_user
+        = render 'share/header'
+      - else
+        = link_to "Register", new_user_path
+        |  | 
+        = link_to "Login", :login
+      = yield
+      = render 'share/footer'
