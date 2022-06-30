@@ -4,25 +4,31 @@ header
     button.navbar-toggler[data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
 
-    #navbarSupportedContent.collapse.navbar-collapse
+    #navbarSupportedContent.collapse.navbar-collapse.justify-content-end
       ul.navbar-nav.ml-auto.main-nav.align-items-center
-        li.nav-item.dropdown.dropdown-slide
-          a.nav-link.dropdown-toggle[href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
-          |  掲示板 
-          .dropdown-menu.dropdown-menu-right
-            = link_to '掲示板一覧', '#', class: 'dropdown-item'
-            = link_to '掲示板作成', '#', class: 'dropdown-item'
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle[href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"]
+            |  フルコース
+          ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
+            li
+              = link_to 'フルコース一覧', '#', class: 'dropdown-item'
+            li
+              = link_to 'フルコース作成', '#', class: 'dropdown-item'
 
         li.nav-item
           = link_to 'ブックマーク一覧', '#', class: 'nav-link'
 
         li.nav-item.dropdown.dropdown-slide
-          a#header-profile.nav-link[href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+          a#dropdownUser1.d-block.link-dark.text-decoration-none.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#"
             = image_tag 'sample', size: '40x40', class: 'rounded-circle mr15'
           
-          .dropdown-menu.dropdown-menu-right
-            .dropdown-item
-              | らんてっく たろう
-            .dropdown-divider
-            = link_to 'プロフィール', '#', class: 'dropdown-item'
-            = link_to 'ログアウト', logout_path, class: 'dropdown-item'
+          ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
+            li
+              .dropdown-item
+                | らんてっく たろう
+            li    
+              .dropdown-divider
+            li
+              = link_to 'プロフィール', '#', class: 'dropdown-item'
+            li
+              = link_to 'ログアウト', logout_path, class: 'dropdown-item'

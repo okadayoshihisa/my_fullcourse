@@ -8,13 +8,13 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
+    = stylesheet_pack_tag 'application', media: 'all'
   body
-    #nav
-      - if current_user
-        = render 'share/header'
-      - else
-        = link_to "Register", new_user_path
-        |  | 
-        = link_to "Login", :login
-      = yield
-      = render 'share/footer'
+    - if current_user
+      = render 'share/header'
+    - else
+      = link_to "Register", new_user_path
+      |  | 
+      = link_to "Login", :login
+    = yield
+    = render 'share/footer'
