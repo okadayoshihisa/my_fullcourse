@@ -10,11 +10,9 @@ html
     = javascript_pack_tag 'application'
     = stylesheet_pack_tag 'application', media: 'all'
   body
-    - if current_user
-      = render 'share/header'
+    - if logged_in?
+      = render 'shared/header'
     - else
-      = link_to "Register", new_user_path
-      |  | 
-      = link_to "Login", :login
+      = render 'shared/before_login_header'
     = yield
-    = render 'share/footer'
+    = render 'shared/footer'
