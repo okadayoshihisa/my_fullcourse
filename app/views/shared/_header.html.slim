@@ -1,6 +1,6 @@
 header
   nav.navbar.navbar-expand-lg.navigation.navbar-light.bg-light
-    = link_to '俺のフルコース', root_path, class: 'navbar-brand'
+    = link_to t('defaults.my_fullcourse'), root_path, class: 'navbar-brand'
     button.navbar-toggler[data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
 
@@ -8,15 +8,12 @@ header
       ul.navbar-nav.ml-auto.main-nav.align-items-center
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle[href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"]
-            |  フルコース
+            = t('activerecord.models.fullcourse_menu')
           ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
             li
-              = link_to 'フルコース一覧', '#', class: 'dropdown-item'
+              = link_to t('fullcourse_menus.index.title'), fullcourse_menus_path, class: 'dropdown-item'
             li
-              = link_to 'フルコース作成', '#', class: 'dropdown-item'
-
-        li.nav-item
-          = link_to 'ブックマーク一覧', '#', class: 'nav-link'
+              = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'dropdown-item'
 
         li.nav-item.dropdown.dropdown-slide
           a#dropdownUser1.d-block.link-dark.text-decoration-none.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#"
@@ -29,6 +26,6 @@ header
             li    
               .dropdown-divider
             li
-              = link_to 'プロフィール', '#', class: 'dropdown-item'
+              = link_to t('users.show.title'), '#', class: 'dropdown-item'
             li
-              = link_to 'ログアウト', logout_path, class: 'dropdown-item', method: :delete
+              = link_to t('defaults.logout'), logout_path, class: 'dropdown-item', method: :delete

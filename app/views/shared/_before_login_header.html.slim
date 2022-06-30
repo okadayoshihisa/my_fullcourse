@@ -1,12 +1,14 @@
 header.p-3.bg-dark
   .container-fruid
     .d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
-      = link_to '俺のフルコース', root_path, class: ' navbar-brand'
+      = link_to t('defaults.my_fullcourse'), root_path, class: ' navbar-brand'
       ul.nav.col-12.col-lg-auto.me-lg-auto.mb-2.justify-content-center.mb-md-0
         li
-          = link_to 'フルコース一覧', '#', class: 'nav-link.px-2.link-white'
+          = link_to t('fullcourse_menus.index.title'), fullcourse_menus_path, class: 'nav-link.px-2.link-white'
       .text-end
         = link_to login_path
-          button.btn.btn-outline-light.me-2 type="button"  ログイン
+          button.btn.btn-outline-light.me-2 type="button"
+            = t('defaults.login')
         = link_to new_user_path
-          button.btn.btn-warning type="button"  サインアップ
+          button.btn.btn-warning type="button"
+            = t('users.new.title')
