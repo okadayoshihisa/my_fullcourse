@@ -1,0 +1,22 @@
+ja:
+  defaults:
+    my_fullcourse: '俺のフルコース'
+    login: 'ログイン'
+    register: '登録'
+    logout: 'ログアウト'
+  users:
+    new:
+      title: '新規登録'
+      to_login_page: 'ログインページへ'
+    show:
+      title: 'プロフィール'
+  user_sessions:
+    new:
+      title: 'ログイン'
+      to_register_page: '登録ページへ'
+      password_forget: 'パスワードをお忘れの方はこちら'
+  fullcourse_menus:
+    new:
+      title: 'フルコース作成'
+    index:
+      title: 'フルコース一覧'
