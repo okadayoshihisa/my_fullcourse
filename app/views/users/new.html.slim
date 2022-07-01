@@ -1,15 +1,17 @@
-= form_with model: @user, local: true do |f|
-  .form-group
-    = f.label :name, class: 'sr-only'
-    = f.text_field :name, class: 'form-control', placeholder: 'name'
-  .form-group
-    = f.label :email, class: 'sr-only'
-    = f.text_field :email, class: 'form-control', placeholder: 'Email address'
-  .form-group
-    = f.label :password, class: 'sr-only'
-    = f.password_field :password, class: 'form-control', placeholder: 'Password'
-  .form-group
-    = f.label :password_confirmation , class: 'sr-only'
-    = f.password_field :password_confirmation, class: 'form-control', placeholder: 'password_confirmation'
+.container
+  h1 = t('.title') 
+  = form_with model: @user, local: true do |f|
+    .form-group
+      = f.label :name, class: 'sr-only'
+      = f.text_field :name, class: 'form-control', placeholder: 'name'
+    .form-group
+      = f.label :email, class: 'sr-only'
+      = f.text_field :email, class: 'form-control', placeholder: 'Email address'
+    .form-group
+      = f.label :password, class: 'sr-only'
+      = f.password_field :password, class: 'form-control', placeholder: 'Password'
+    .form-group
+      = f.label :password_confirmation , class: 'sr-only'
+      = f.password_field :password_confirmation, class: 'form-control', placeholder: 'password_confirmation'
 
-  = f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'
+    = f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'
