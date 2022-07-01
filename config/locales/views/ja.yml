@@ -8,6 +8,9 @@ ja:
     new:
       title: '新規登録'
       to_login_page: 'ログインページへ'
+    create:
+      success: 'ユーザーを登録しました'
+      fail: 'ユーザー登録に失敗しました'
     show:
       title: 'プロフィール'
   user_sessions:
@@ -15,6 +18,11 @@ ja:
       title: 'ログイン'
       to_register_page: '登録ページへ'
       password_forget: 'パスワードをお忘れの方はこちら'
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+    destroy:
+      success: 'ログアウトしました'
   fullcourse_menus:
     new:
       title: 'フルコース作成'

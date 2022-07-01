@@ -1,9 +1,10 @@
-h1 = t('defaults.login')
-= form_with url: login_path, method: :post do |f|
-  .form-group
-    = f.label :email, class: 'sr-only'
-    = f.text_field :email, class: 'form-control', placeholder: 'Email address'
-  .form-group
-    = f.label :password, class: 'sr-only'
-    = f.password_field :password, class: 'form-control', placeholder: 'Password'
-  = f.submit 'Login', class: 'btn btn-lg btn-primary btn-block'
+.container
+  h1 = t('defaults.login')
+  = form_with url: login_path, method: :post do |f|
+    .form-group
+      = f.label :email, class: 'sr-only'
+      = f.text_field :email, class: 'form-control', placeholder: 'Email address'
+    .form-group
+      = f.label :password, class: 'sr-only'
+      = f.password_field :password, class: 'form-control', placeholder: 'Password'
+    = f.submit 'Login', class: 'btn btn-lg btn-primary btn-block'
