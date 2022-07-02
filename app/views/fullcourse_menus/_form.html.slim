@@ -4,5 +4,8 @@
     .form_group
       = i.label :name
       = i.text_field :name, class: 'form_control'
+    .form_group
+      = i.file_field :fullcourse_menu_image, class: 'form-control mb-3', accept: 'image/*'
+      = i.hidden_field :fullcourse_menu_image_cache
 
   = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary btn-block'
