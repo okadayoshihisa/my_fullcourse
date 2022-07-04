@@ -1,4 +1,4 @@
-class FullcourseMenuImageUploader < CarrierWave::Uploader::Base
+class MenuImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -14,6 +14,10 @@ class FullcourseMenuImageUploader < CarrierWave::Uploader::Base
   end
 
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
+  end
+
+  def default_url
+    'sample.jpg'
   end
 end

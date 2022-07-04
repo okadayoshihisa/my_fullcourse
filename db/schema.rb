@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2022_07_01_065046) do
     t.string "genre", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "fullcourse_menu_image"
+    t.string "menu_image"
     t.index ["user_id"], name: "index_fullcourse_menus_on_user_id"
   end
 

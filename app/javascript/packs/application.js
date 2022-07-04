@@ -9,6 +9,8 @@ import "channels"
 import "bootstrap";
 import "../stylesheets/application.scss";
 import '@fortawesome/fontawesome-free/js/all';
+import 'jquery';
+import "./preview_image";
 
 Rails.start()
 ActiveStorage.start()
