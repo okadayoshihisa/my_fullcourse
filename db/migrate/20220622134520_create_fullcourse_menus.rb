@@ -3,7 +3,7 @@ class CreateFullcourseMenus < ActiveRecord::Migration[6.1]
     create_table :fullcourse_menus do |t|
       t.references :user, null: false, foreign_key: true
       t.string :name
-      t.string :genre
+      t.string :genre, null: false
 
       t.timestamps
     end

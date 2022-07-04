@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_22_134520) do
+ActiveRecord::Schema.define(version: 2022_07_01_065046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 2022_06_22_134520) do
   create_table "fullcourse_menus", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
-    t.string "genre"
+    t.string "genre", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "menu_image"
     t.index ["user_id"], name: "index_fullcourse_menus_on_user_id"
   end
 

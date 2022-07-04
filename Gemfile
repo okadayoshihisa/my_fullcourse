@@ -50,9 +50,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'carrierwave', '~> 2.0'
 gem 'enum_help'
 gem 'html2slim'
+gem 'mini_magick'
 gem 'net-smtp'
+gem 'rails-i18n'
 gem 'slim'
 gem 'sorcery'
-gem 'rails-i18n'

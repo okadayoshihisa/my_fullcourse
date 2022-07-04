@@ -28,6 +28,7 @@ class FullcourseMenusController < ApplicationController
   private
 
   def fullcourse_menu_collection_params
-    params.require(:form_fullcourse_menu_collection).permit(fullcourse_menus_attributes: :name)
+    params.require(:form_fullcourse_menu_collection).permit(fullcourse_menus_attributes: %i[name menu_image
+                                                                                            menu_image_cache])
   end
 end
