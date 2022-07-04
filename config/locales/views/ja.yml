@@ -28,3 +28,15 @@ ja:
       title: 'フルコース作成'
     index:
       title: 'フルコース一覧'
+
+  enums:
+    fullcourse_menu:
+      genre:
+        hors_d'oeuvre: 'オードブル'
+        soup: 'スープ' 
+        seafood_dish: '魚料理'
+        meat_dish: '肉料理'
+        main_dish: 'メインディッシュ'
+        salad: 'サラダ'
+        dessert: 'デザート'
+        drink: 'ドリンク'
