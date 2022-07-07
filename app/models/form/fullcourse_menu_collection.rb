@@ -32,4 +32,30 @@ class Form::FullcourseMenuCollection < Form::Base
       x.genre = enum += 1
     end
   end
+
+  def write_menu(user)
+    image = MiniMagick::Image.open('./app/assets/images/fullcourse.jpeg')
+    pos = '10, 75'    # 基準点からの変位'横,縦'
+    fullcourse_menus.map do |x|
+      text = "#{x.name}"       # 入れる文字列
+      image.combine_options do |config|
+        config.font './app/assets/fonts/genshingothic-20150607/GenShinGothic-Heavy.ttf'   # フォント指定
+        config.fill '#FFFFFF'    # 色指定
+        config.gravity 'NorthWest'  # 基準点指定
+        config.pointsize 30      # フォントのサイズ
+        config.draw "text #{pos} '#{text}'"
+      end
+      image.combine_options do |config|
+        config.font './app/assets/fonts/genshingothic-20150607/GenShinGothic-Regular.ttf'   # フォント指定
+        config.fill '#000000'    # 色指定
+        config.gravity 'NorthWest'  # 基準点指定
+        config.pointsize 30      # フォントのサイズ
+        config.draw "text #{pos} '#{text}'"
+      end
+      image.format 'jpg'       # 拡張子を指定
+      image.write "./public/uploads/fullcourse#{x.user_id}.jpg" # 指定したファイル名で出力  
+      user.fullcourse_image = image.path #画像のパスをUserのfullcourse_imageカラムへ保存
+      user.save
+    end
+  end
 end
