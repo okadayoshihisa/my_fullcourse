@@ -14,7 +14,7 @@ class FullcourseMenusController < ApplicationController
     @form.add_user_id(current_user)
     if @form.save
       @form.create_fullcourse_image(@user)
-      redirect_to fullcourse_menus_path
+      redirect_to fullcourses_path
     else
       render :new
     end
