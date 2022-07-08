@@ -51,8 +51,8 @@ class Form::FullcourseMenuCollection < Form::Base
         config.draw "text #{pos} '#{text}'"
       end
       image.format 'jpg'       # 拡張子を指定
-      image.write "./public/uploads/fullcourse#{x.user_id}.jpg" # 指定したファイル名で出力  
-      user.fullcourse_image = image.path #画像のパスをUserのfullcourse_imageカラムへ保存
+      # image.write "./public/uploads/fullcourse#{x.user_id}.jpg" # 指定したファイル名で出力  
+      user.fullcourse_image = image
       user.save
     end
   end
