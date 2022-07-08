@@ -25,15 +25,13 @@ class Form::FullcourseMenuCollection < Form::Base
     false
   end
 
-  def add_user_id_genre(current_user)
-    enum = -1
+  def add_user_id(current_user)
     fullcourse_menus.map do |x|
       x.user_id = current_user.id
-      x.genre = enum += 1
     end
   end
 
-  def write_menu(user)
+  def create_fullcourse_image(user)
     image = MiniMagick::Image.open('./app/assets/images/fullcourse.jpeg')
     pos = '10, 75'    # 基準点からの変位'横,縦'
     fullcourse_menus.map do |x|

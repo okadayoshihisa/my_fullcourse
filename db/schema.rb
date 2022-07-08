@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_07_08_060014) do
   create_table "fullcourse_menus", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
-    t.string "genre", null: false
+    t.integer "genre", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "menu_image"

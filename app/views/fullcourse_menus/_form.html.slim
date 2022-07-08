@@ -3,6 +3,7 @@
     .form_group
       = i.label :name, "#{FullcourseMenu.genres_i18n.values[i.index]}"
       = i.text_field :name, class: 'form_control'
+      = i.hidden_field :genre, value: FullcourseMenu.genres.keys[i.index]
     .form_group
       = i.file_field :menu_image, class: 'form-control mb-3', accept: 'image/*', id: "file_btn_#{i.index}"
       = i.hidden_field :menu_image_cache
