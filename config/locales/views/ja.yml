@@ -26,6 +26,7 @@ ja:
   fullcourse_menus:
     new:
       title: 'フルコース作成'
+  fullcourses:
     index:
       title: 'フルコース一覧'
 
