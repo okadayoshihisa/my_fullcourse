@@ -1,9 +1,9 @@
 = form_with model: form, url: fullcourse_menus_path, local: true do |f|
-  h1#hello
   = f.fields_for :fullcourse_menus do |i|
     .form_group
-      = i.label :name
+      = i.label :name, "#{FullcourseMenu.genres_i18n.values[i.index]}"
       = i.text_field :name, class: 'form_control'
+      = i.hidden_field :genre, value: FullcourseMenu.genres.keys[i.index]
     .form_group
       = i.file_field :menu_image, class: 'form-control mb-3', accept: 'image/*', id: "file_btn_#{i.index}"
       = i.hidden_field :menu_image_cache
