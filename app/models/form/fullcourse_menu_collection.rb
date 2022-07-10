@@ -20,9 +20,9 @@ class Form::FullcourseMenuCollection < Form::Base
     FullcourseMenu.transaction do
       fullcourse_menus.map(&:save!)
     end
-    true
-  rescue StandardError => e
-    false
+      true
+    rescue StandardError => e
+      false
   end
 
   def add_user_id(current_user)
