@@ -1,5 +1,6 @@
 class FullcourseMenusController < ApplicationController
   before_action :set_user, only: %i[create]
+  before_action :check_have_menu, only: :new
 
   def index
     @fullcourse_menus = FullcourseMenu.all
@@ -49,5 +50,9 @@ class FullcourseMenusController < ApplicationController
 
   def edit_fullcourse_menu_params
     params.require(:user).permit(fullcourse_menus: %i[name genre menu_image menu_image_cache])[:fullcourse_menus]
+  end
+
+  def check_have_menu
+    redirect_to edit_fullcourse_menu_path(current_user.id) if current_user.fullcourse_menus.present?
   end
 end
