@@ -1,6 +1,5 @@
 class FullcourseMenusController < ApplicationController
   before_action :set_user, only: %i[create]
-  before_action :check_have_menu, only: :new
 
   def index
     @fullcourse_menus = FullcourseMenu.all

@@ -1,5 +1,5 @@
 class Form::FullcourseMenuCollection < Form::Base
-  FORM_COUNT = 2
+  FORM_COUNT = 8
   attr_accessor :fullcourse_menus
 
   def initialize(attributes = {})

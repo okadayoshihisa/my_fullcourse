@@ -2,6 +2,7 @@ class FullcourseMenu < ApplicationRecord
   belongs_to :user
 
   validates :genre, presence: true
+  validate :menu_limit
 
   mount_uploader :menu_image, MenuImageUploader
 
@@ -20,4 +21,9 @@ class FullcourseMenu < ApplicationRecord
       false
   end
 
+  def menu_limit
+    if user.fullcourse_menus.count > 8
+      errors.add(:fullcourse_menu, "登録できるのは8つまでです")
+    end
+  end
 end

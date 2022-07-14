@@ -9,4 +9,4 @@
           li.list-inline-item
             h4
               = user.name
-          = render 'crud_menus', user: user if user.id == current_user.id
+          = render 'crud_menus', user: user if user == current_user
