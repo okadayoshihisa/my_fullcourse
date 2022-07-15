@@ -24,6 +24,7 @@ class FullcourseMenusController < ApplicationController
 
   def edit
     @user = User .includes(:fullcourse_menus).find(params[:id])
+    redirect_to fullcourses_path unless @user == current_user
   end
 
   def update
