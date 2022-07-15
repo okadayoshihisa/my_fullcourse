@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
     if @user
-      redirect_back_or_to fullcourse_menus_path, success: t('.success')
+      redirect_back_or_to fullcourses_path, success: t('.success')
     else
       flash.now[:danger] = t('.fail')
       render :new

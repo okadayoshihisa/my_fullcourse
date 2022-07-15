@@ -1,4 +1,5 @@
 = form_with model: form, url: fullcourse_menus_path, local: true do |f|
+  = render 'shared/error_messages', model: form.fullcourse_menus[0]
   = f.fields_for :fullcourse_menus do |i|
     .form_group
       = i.label :name, "#{FullcourseMenu.genres_i18n.values[i.index]}"

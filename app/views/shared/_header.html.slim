@@ -11,9 +11,12 @@ header
             = t('activerecord.models.fullcourse_menu')
           ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
             li
-              = link_to t('fullcourse_menus.index.title'), fullcourses_path, class: 'dropdown-item'
+              = link_to t('fullcourses.index.title'), fullcourses_path, class: 'dropdown-item'
             li
-              = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'dropdown-item'
+              - if current_user.fullcourse_menus.present?
+                = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(current_user.id), class: 'dropdown-item'
+              - else  
+                = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'dropdown-item'
 
         li.nav-item.dropdown.dropdown-slide
           a#dropdownUser1.d-block.link-dark.text-decoration-none.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#"

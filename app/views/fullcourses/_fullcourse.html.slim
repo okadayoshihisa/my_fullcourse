@@ -7,5 +7,6 @@
           li.list-inline-item
             i.fa-solid.fa-user
           li.list-inline-item
-            h3 
+            h4
               = user.name
+          = render 'crud_menus', user: user if user == current_user

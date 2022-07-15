@@ -1,5 +1,5 @@
 class Form::FullcourseMenuCollection < Form::Base
-  FORM_COUNT = 2
+  FORM_COUNT = 8
   attr_accessor :fullcourse_menus
 
   def initialize(attributes = {})
@@ -20,9 +20,9 @@ class Form::FullcourseMenuCollection < Form::Base
     FullcourseMenu.transaction do
       fullcourse_menus.map(&:save!)
     end
-    true
-  rescue StandardError => e
-    false
+      true
+    rescue StandardError => e
+      false
   end
 
   def add_user_id(current_user)
