@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_17_145654) do
+ActiveRecord::Schema.define(version: 2022_07_17_154010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2022_07_17_145654) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "menu_image"
+    t.bigint "store_id", null: false
+    t.index ["store_id"], name: "index_fullcourse_menus_on_store_id"
     t.index ["user_id"], name: "index_fullcourse_menus_on_user_id"
   end
 
@@ -44,5 +46,6 @@ ActiveRecord::Schema.define(version: 2022_07_17_145654) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "fullcourse_menus", "stores"
   add_foreign_key "fullcourse_menus", "users"
 end
