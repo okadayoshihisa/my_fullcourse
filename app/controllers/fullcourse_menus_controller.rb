@@ -12,7 +12,7 @@ class FullcourseMenusController < ApplicationController
 
   def create
     @form = Form::FullcourseMenuCollection.new(fullcourse_menu_collection_params)
-    @form.add_user_id(current_user)
+    @form.fullcourse_menus.map{|x| x.user_id = current_user.id}
     if @form.save
       @form.create_fullcourse_image(@user)
       redirect_to fullcourses_path
@@ -45,8 +45,8 @@ class FullcourseMenusController < ApplicationController
   end
 
   def fullcourse_menu_collection_params
-    params.require(:form_fullcourse_menu_collection).permit(fullcourse_menus_attributes: %i[name genre menu_image
-                                                                                            menu_image_cache])
+    params.require(:form_fullcourse_menu_collection).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
+                                                            stores_attributes: %i[name])
   end
 
   def edit_fullcourse_menu_params
