@@ -1,7 +1,12 @@
 = form_with model: form, url: fullcourse_menus_path, local: true do |f|
   = render 'shared/error_messages', model: form.fullcourse_menus[0]
   - form.fullcourse_menus.each.with_index do |fullcourse_menu, index|
-    = f.fields_for :fullcourse_menus,fullcourse_menu do |i|
+    = f.fields_for :stores, fullcourse_menu.store do |i|
+      .form_group
+        = i.label :name
+        = i.text_field :name, class: 'form_control'
+
+    = f.fields_for :fullcourse_menus, fullcourse_menu do |i|
       .form_group
         = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}"
         = i.text_field :name, class: 'form_control'
@@ -10,9 +15,5 @@
         = i.file_field :menu_image, class: 'form-control mb-3', accept: 'image/*', id: "file_btn_#{index}"
         = i.hidden_field :menu_image_cache
         = image_tag fullcourse_menu.menu_image.url, id: "preview_#{index}"
-    = f.fields_for :stores, fullcourse_menu.store do |i|
-      .form_group
-        = i.label :name
-        = i.text_field :name, class: 'form_control'
 
   = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary btn-block'
