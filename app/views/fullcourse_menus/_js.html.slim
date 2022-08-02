@@ -1,0 +1,199 @@
+javascript:
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map_0 = new google.maps.Map(document.getElementById('map_0'), {
+        center: {lat: 40.7828, lng:-73.9653},
+        zoom: 12 
+    });
+    input = document.getElementById("name_0");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map_0);
+
+    map_1 = new google.maps.Map(document.getElementById('map_1'), {
+        center: {lat: 40.7828, lng:-73.9653},
+        zoom: 12
+    });
+    input = document.getElementById("name_1");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map_1);
+
+    map_2 = new google.maps.Map(document.getElementById('map_2'), {
+        center: {lat: 40.7828, lng:-73.9653},
+        zoom: 12
+    });
+    input = document.getElementById("name_2");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map_2);
+
+    map_3 = new google.maps.Map(document.getElementById('map_3'), {
+        center: {lat: 40.7828, lng:-73.9653},
+        zoom: 12
+    });
+    input = document.getElementById("name_3");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map_3);
+
+    map_4 = new google.maps.Map(document.getElementById('map_4'), {
+        center: {lat: 40.7828, lng:-73.9653},
+        zoom: 12
+    });
+    input = document.getElementById("name_4");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map_4);
+
+    map_5 = new google.maps.Map(document.getElementById('map_5'), {
+        center: {lat: 40.7828, lng:-73.9653},
+        zoom: 12
+    });
+    input = document.getElementById("name_5");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map_5);
+
+    map_6 = new google.maps.Map(document.getElementById('map_6'), {
+        center: {lat: 40.7828, lng:-73.9653},
+        zoom: 12
+    });
+    input = document.getElementById("name_6");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map_6);
+
+    map_7 = new google.maps.Map(document.getElementById('map_7'), {
+        center: {lat: 40.7828, lng:-73.9653},
+        zoom: 12
+    });
+    input = document.getElementById("name_7");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map_7);
+  }
+
+  function codeAddress_0(){
+    let inputName = document.getElementById('name_0').value;
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map_0.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map_0,
+          position: results[0].geometry.location
+        });
+        address_0 = document.getElementById("address_0");
+        address_0.value = results[0].formatted_address;
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+  function codeAddress_1(){
+    inputName = document.getElementById('name_1').value;
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map_1.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map_1,
+          position: results[0].geometry.location
+        });
+        address_0 = document.getElementById("address_1");
+        address_0.value = results[0].formatted_address;
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+  function codeAddress_2(){
+    inputName = document.getElementById('name_2').value;
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map_2.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map_2,
+          position: results[0].geometry.location
+        });
+        address_0 = document.getElementById("address_2");
+        address_0.value = results[0].formatted_address;
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+  function codeAddress_3(){
+    inputName = document.getElementById('name_3').value;
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map_3.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map_3,
+          position: results[0].geometry.location
+        });
+        address_0 = document.getElementById("address_3");
+        address_0.value = results[0].formatted_address;
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+  function codeAddress_4(){
+    inputName = document.getElementById('name_4').value;
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map_4.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map_4,
+          position: results[0].geometry.location
+        });
+        address_0 = document.getElementById("address_4");
+        address_0.value = results[0].formatted_address;
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+  function codeAddress_5(){
+    inputName = document.getElementById('name_5').value;
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map_5.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map_5,
+          position: results[0].geometry.location
+        });
+        address_0 = document.getElementById("address_5");
+        address_0.value = results[0].formatted_address;
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+  function codeAddress_6(){
+    inputName = document.getElementById('name_6').value;
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map_6.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map_6,
+          position: results[0].geometry.location
+        });
+        address_0 = document.getElementById("address_6");
+        address_0.value = results[0].formatted_address;
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+  function codeAddress_7(){
+    inputName = document.getElementById('name_7').value;
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map_7.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map_7,
+          position: results[0].geometry.location
+        });
+        address_0 = document.getElementById("address_7");
+        address_0.value = results[0].formatted_address;
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+
+script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap&libraries=places&v=weekly"

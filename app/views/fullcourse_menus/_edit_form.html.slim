@@ -1,10 +1,5 @@
 = form_with model: user, url: fullcourse_menu_path, local: true do |f|
-  - user.fullcourse_menus.each.with_index do |fullcourse_menu, index|
-    = f.fields_for "stores[]", fullcourse_menu.store do |i|
-      .form_group
-        = i.label :name
-        = i.text_field :name, class: 'form_control'
-
+  - user.fullcourse_menus.order(id: :asc).each.with_index do |fullcourse_menu, index|
     = f.fields_for "fullcourse_menus[]", fullcourse_menu do |i|
       .form_group
         = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}"
@@ -14,4 +9,15 @@
         = i.file_field :menu_image, class: 'form-control mb-3', accept: 'image/*', id: "file_btn_#{index}"
         = i.hidden_field :menu_image_cache
         = image_tag fullcourse_menu.menu_image.url, id: "preview_#{index}"
+
+    = f.fields_for "stores[]", fullcourse_menu.store do |i|
+      .form_group
+        = i.label :name
+        = i.text_field :name, class: 'form_control', onchange: "codeAddress_#{index}()", id: "name_#{index}"
+        = i.label :address
+        = i.text_field :address, class: 'form_control', id: "address_#{index}"
+        div id="map_#{index}"
+
   = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary btn-block'
+
+= render 'js'
