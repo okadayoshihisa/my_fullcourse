@@ -5,7 +5,7 @@ javascript:
     marker = []
     window.onload = ()=> {
       let path = location.pathname
-      for (var i = 0; i < 8; i++) {
+      for (let i = 0; i < 8; i++) {
         if (path == '/fullcourse_menus/new') {
           map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
             center: {lat: 35.676192, lng: 139.650311},
@@ -20,9 +20,27 @@ javascript:
             map: map[i],
             position: {lat: gon.lat[i], lng: gon.lng[i]}
           });
+          map[i].addListener('click', function(e) {
+            getClickLatLng(e.latLng, i);
+          });
         }
       }    
     }
+  }
+
+  function getClickLatLng(lat_lng, i) {
+    marker[i].setMap(null);
+    marker[i] = new google.maps.Marker({
+      position: lat_lng,
+      map: map[i]
+    });
+    map[i].panTo(lat_lng);
+    geocoder.geocode( { latLng: lat_lng}, function(results, status) {
+      if (status == 'OK') {
+        address = document.getElementById(`address_${i}`);
+        address.value = results[0].formatted_address;
+      }
+    });
   }
 
   function codeAddress_0(){
