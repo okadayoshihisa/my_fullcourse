@@ -2,6 +2,7 @@ javascript:
   function initMap(){
     geocoder = new google.maps.Geocoder()
     map = []
+    marker = []
     window.onload = ()=> {
       let path = location.pathname
       for (var i = 0; i < 8; i++) {
@@ -15,7 +16,7 @@ javascript:
             center: {lat: gon.lat[i], lng: gon.lng[i]},
             zoom: 12 
           });
-          marker = new google.maps.Marker({
+          marker[i] = new google.maps.Marker({
             map: map[i],
             position: {lat: gon.lat[i], lng: gon.lng[i]}
           });
@@ -29,7 +30,8 @@ javascript:
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[0].setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        marker[0].setMap(null);
+        marker[0] = new google.maps.Marker({
           map: map[0],
           position: results[0].geometry.location
         });
@@ -46,7 +48,8 @@ javascript:
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[1].setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        marker[1].setMap(null);
+        marker[1] = new google.maps.Marker({
           map: map[1],
           position: results[0].geometry.location
         });
@@ -63,7 +66,8 @@ javascript:
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[2].setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        marker[2].setMap(null);
+        marker[2] = new google.maps.Marker({
           map: map[2],
           position: results[0].geometry.location
         });
@@ -79,7 +83,8 @@ javascript:
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[3].setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        marker[3].setMap(null);
+        marker[3] = new google.maps.Marker({
           map: map[3],
           position: results[0].geometry.location
         });
@@ -94,8 +99,9 @@ javascript:
     inputName = document.getElementById('name_4').value;
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
-        map[4].setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        map[4].setCenter(results[0].geometry.location);        
+        marker[4].setMap(null);
+        marker[4] = new google.maps.Marker({
           map: map[4],
           position: results[0].geometry.location
         });
@@ -111,7 +117,8 @@ javascript:
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[5].setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        marker[5].setMap(null);
+        marker[5] = new google.maps.Marker({
           map: map[5],
           position: results[0].geometry.location
         });
@@ -127,7 +134,8 @@ javascript:
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[6].setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        marker[6].setMap(null);
+        marker[6] = new google.maps.Marker({
           map: map[6],
           position: results[0].geometry.location
         });
@@ -143,7 +151,8 @@ javascript:
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[7].setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        marker[7].setMap(null);
+        marker[7] = new google.maps.Marker({
           map: map[7],
           position: results[0].geometry.location
         });
