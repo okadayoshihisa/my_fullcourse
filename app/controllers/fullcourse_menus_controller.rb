@@ -26,6 +26,9 @@ class FullcourseMenusController < ApplicationController
 
   def edit
     redirect_to fullcourses_path unless @user == current_user
+    gon.lat = @user.fullcourse_menus.map{|menu| menu.store.latitude}
+    gon.lng = @user.fullcourse_menus.map{|menu| menu.store.longitude}
+    gon.user = @user
   end
 
   def update

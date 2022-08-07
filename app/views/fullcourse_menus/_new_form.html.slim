@@ -17,7 +17,7 @@
         = i.text_field :name, class: 'form_control', onchange: "codeAddress_#{index}()", id: "name_#{index}"
         = i.label :address
         = i.text_field :address, class: 'form_control', id: "address_#{index}"
-        div id="map_#{index}"
+        div id="map#{index}"
 
   = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary btn-block'
 
