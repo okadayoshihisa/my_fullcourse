@@ -4,7 +4,7 @@
       .form_group
         = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}"
         = i.text_field :name, class: 'form_control'
-        = i.hidden_field :genre, value: FullcourseMenu.genres.keys[index]
+        = i.hidden_field :genre
       .form_group
         = i.file_field :menu_image, class: 'form-control mb-3', accept: 'image/*', id: "file_btn_#{index}"
         = i.hidden_field :menu_image_cache
@@ -16,6 +16,8 @@
         = i.text_field :name, class: 'form_control', onchange: "codeAddress_#{index}()", id: "name_#{index}"
         = i.label :address
         = i.text_field :address, class: 'form_control', id: "address_#{index}"
+        = i.hidden_field :latitude, id: "latitude_#{index}"
+        = i.hidden_field :longitude, id: "longitude_#{index}"
         div id="map#{index}"
 
   = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary btn-block'

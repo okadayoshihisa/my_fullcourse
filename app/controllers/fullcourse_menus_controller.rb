@@ -45,11 +45,11 @@ class FullcourseMenusController < ApplicationController
 
   def fullcourse_menu_collection_params
     params.require(:form_fullcourse_menu_collection).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
-                                                            stores_attributes: %i[name address])
+                                                            stores_attributes: %i[name address latitude longitude])
   end
 
   def edit_fullcourse_menu_params
-    params.require(:user).permit(fullcourse_menus: %i[name genre menu_image menu_image_cache], stores: %i[name address])
+    params.require(:user).permit(fullcourse_menus: %i[name genre menu_image menu_image_cache], stores: %i[name address latitude longitude])
   end
 
   def set_user

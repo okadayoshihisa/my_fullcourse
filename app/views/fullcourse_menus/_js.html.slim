@@ -12,24 +12,33 @@ javascript:
             zoom: 12 
           });
         } else if (path == `/fullcourse_menus/${gon.user.id}/edit`) {
-          map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
-            center: {lat: gon.lat[i], lng: gon.lng[i]},
-            zoom: 12 
-          });
-          marker[i] = new google.maps.Marker({
-            map: map[i],
-            position: {lat: gon.lat[i], lng: gon.lng[i]}
-          });
-          map[i].addListener('click', function(e) {
-            getClickLatLng(e.latLng, i);
-          });
+          if (gon.lat[i] && gon.lng[i]) {
+            map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+              center: {lat: gon.lat[i], lng: gon.lng[i]},
+              zoom: 12 
+            });
+            marker[i] = new google.maps.Marker({
+              map: map[i],
+              position: {lat: gon.lat[i], lng: gon.lng[i]}
+            });
+          } else {
+            map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+              center: {lat: 35.676192, lng: 139.650311},
+              zoom: 12 
+            });
+          }
         }
+        map[i].addListener('click', function(e) {
+          getClickLatLng(e.latLng, i);
+        });
       }    
     }
   }
 
   function getClickLatLng(lat_lng, i) {
+    if (marker[i]) {
     marker[i].setMap(null);
+    }
     marker[i] = new google.maps.Marker({
       position: lat_lng,
       map: map[i]
@@ -39,23 +48,38 @@ javascript:
       if (status == 'OK') {
         address = document.getElementById(`address_${i}`);
         address.value = results[0].formatted_address;
+        latitude = document.getElementById(`latitude_${i}`);
+        latitude.value = results[0].geometry.location.lat();
+        longitude = document.getElementById(`longitude_${i}`);
+        longitude.value = results[0].geometry.location.lng();
       }
     });
   }
 
   function codeAddress_0(){
     inputName = document.getElementById('name_0').value;
+    address = document.getElementById("address_0");
+    latitude = document.getElementById("latitude_0");
+    longitude = document.getElementById("longitude_0");
+
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[0].setCenter(results[0].geometry.location);
-        marker[0].setMap(null);
+        if (marker[0]) {
+          marker[0].setMap(null);
+        }
         marker[0] = new google.maps.Marker({
           map: map[0],
           position: results[0].geometry.location
         });
-        address = document.getElementById("address_0");
         address.value = results[0].formatted_address;
-      } else {
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
+      }else {
         alert('該当する結果がありませんでした：' + status);
       }
     });
@@ -63,16 +87,27 @@ javascript:
 
   function codeAddress_1(){
     inputName = document.getElementById('name_1').value;
+    address = document.getElementById("address_1");
+    latitude = document.getElementById("latitude_1");
+    longitude = document.getElementById("longitude_1");
+
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[1].setCenter(results[0].geometry.location);
-        marker[1].setMap(null);
+        if (marker[1]) {
+          marker[1].setMap(null);
+        }
         marker[1] = new google.maps.Marker({
           map: map[1],
           position: results[0].geometry.location
         });
-        address = document.getElementById("address_1");
         address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
@@ -81,16 +116,27 @@ javascript:
 
   function codeAddress_2(){
     inputName = document.getElementById('name_2').value;
+    address = document.getElementById("address_2");
+    latitude = document.getElementById("latitude_2");
+    longitude = document.getElementById("longitude_2");
+
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[2].setCenter(results[0].geometry.location);
-        marker[2].setMap(null);
+        if (marker[2]) {
+          marker[2].setMap(null);
+        }
         marker[2] = new google.maps.Marker({
           map: map[2],
           position: results[0].geometry.location
         });
-        address = document.getElementById("address_2");
         address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
@@ -98,16 +144,27 @@ javascript:
   }
   function codeAddress_3(){
     inputName = document.getElementById('name_3').value;
+    address = document.getElementById("address_3");
+    latitude = document.getElementById("latitude_3");
+    longitude = document.getElementById("longitude_3");
+
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[3].setCenter(results[0].geometry.location);
-        marker[3].setMap(null);
+        if (marker[3]) {
+          marker[3].setMap(null);
+        }
         marker[3] = new google.maps.Marker({
           map: map[3],
           position: results[0].geometry.location
         });
-        address = document.getElementById("address_3");
         address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
@@ -115,16 +172,27 @@ javascript:
   }
   function codeAddress_4(){
     inputName = document.getElementById('name_4').value;
+    address = document.getElementById("address_4");
+    latitude = document.getElementById("latitude_4");
+    longitude = document.getElementById("longitude_4");
+
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[4].setCenter(results[0].geometry.location);        
-        marker[4].setMap(null);
+        if (marker[4]) {
+          marker[4].setMap(null);
+        }
         marker[4] = new google.maps.Marker({
           map: map[4],
           position: results[0].geometry.location
         });
-        address = document.getElementById("address_4");
         address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
@@ -132,16 +200,27 @@ javascript:
   }
   function codeAddress_5(){
     inputName = document.getElementById('name_5').value;
+    address = document.getElementById("address_5");
+    latitude = document.getElementById("latitude_5");
+    longitude = document.getElementById("longitude_5");
+
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[5].setCenter(results[0].geometry.location);
-        marker[5].setMap(null);
+        if (marker[5]) {
+          marker[5].setMap(null);
+        }
         marker[5] = new google.maps.Marker({
           map: map[5],
           position: results[0].geometry.location
         });
-        address = document.getElementById("address_5");
         address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
@@ -149,16 +228,27 @@ javascript:
   }
   function codeAddress_6(){
     inputName = document.getElementById('name_6').value;
+    address = document.getElementById("address_6");
+    latitude = document.getElementById("latitude_6");
+    longitude = document.getElementById("longitude_6");
+
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[6].setCenter(results[0].geometry.location);
-        marker[6].setMap(null);
+        if (marker[6]) {
+          marker[6].setMap(null);
+        }
         marker[6] = new google.maps.Marker({
           map: map[6],
           position: results[0].geometry.location
         });
-        address = document.getElementById("address_6");
         address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
@@ -166,16 +256,27 @@ javascript:
   }
   function codeAddress_7(){
     inputName = document.getElementById('name_7').value;
+    address = document.getElementById("address_7");
+    latitude = document.getElementById("latitude_7");
+    longitude = document.getElementById("longitude_7");
+
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
         map[7].setCenter(results[0].geometry.location);
-        marker[7].setMap(null);
+        if (marker[7]) {
+          marker[7].setMap(null);
+        }
         marker[7] = new google.maps.Marker({
           map: map[7],
           position: results[0].geometry.location
         });
-        address = document.getElementById("address_7");
         address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
