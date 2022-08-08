@@ -1,19 +1,21 @@
 class FullcourseMenusController < ApplicationController
-  before_action :set_user, only: %i[create]
+  skip_before_action :require_login, only: %i[index]
+  before_action :set_user, only: %i[edit update]
 
   def index
     @fullcourse_menus = FullcourseMenu.all
   end
 
   def new
+    redirect_to edit_fullcourse_menu_path(current_user.id) if current_user.fullcourse_menus.present?
     @form = Form::FullcourseMenuCollection.new
   end
 
   def create
     @form = Form::FullcourseMenuCollection.new(fullcourse_menu_collection_params)
-    @form.add_user_id(current_user)
+    @form.fullcourse_menus.map { |x| x.user_id = current_user.id }
     if @form.save
-      @form.create_fullcourse_image(@user)
+      @form.create_fullcourse_image(current_user)
       redirect_to fullcourses_path
     else
       render :new
@@ -23,12 +25,14 @@ class FullcourseMenusController < ApplicationController
   def show; end
 
   def edit
-    @user = User .includes(:fullcourse_menus).find(params[:id])
     redirect_to fullcourses_path unless @user == current_user
+    gon.lat = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.latitude }
+    gon.lng = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.longitude }
+    gon.user = @user
   end
 
   def update
-    if FullcourseMenu.multi_update(edit_fullcourse_menu_params)
+    if @user.multi_update(edit_fullcourse_menu_params)
       redirect_to fullcourses_path
     else
       render :edit
@@ -39,20 +43,17 @@ class FullcourseMenusController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(current_user.id)
-  end
-
   def fullcourse_menu_collection_params
-    params.require(:form_fullcourse_menu_collection).permit(fullcourse_menus_attributes: %i[name genre menu_image
-                                                                                            menu_image_cache])
+    params.require(:form_fullcourse_menu_collection).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
+                                                            stores_attributes: %i[name address latitude longitude])
   end
 
   def edit_fullcourse_menu_params
-    params.require(:user).permit(fullcourse_menus: %i[name genre menu_image menu_image_cache])[:fullcourse_menus]
+    params.require(:user).permit(fullcourse_menus: %i[name genre menu_image menu_image_cache],
+                                 stores: %i[name address latitude longitude])
   end
 
-  def check_have_menu
-    redirect_to edit_fullcourse_menu_path(current_user.id) if current_user.fullcourse_menus.present?
+  def set_user
+    @user = User.includes(fullcourse_menus: :store).find(params[:id])
   end
 end

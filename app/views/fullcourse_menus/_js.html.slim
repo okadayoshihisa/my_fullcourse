@@ -1,0 +1,118 @@
+javascript:
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+    map = []
+    marker = []
+    window.onload = ()=> {
+      let path = location.pathname
+      for (let i = 0; i < 8; i++) {
+        if (path == '/fullcourse_menus/new') {
+          map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+            center: {lat: 35.676192, lng: 139.650311},
+            zoom: 12 
+          });
+        } else if (path == `/fullcourse_menus/${gon.user.id}/edit`) {
+          if (gon.lat[i] && gon.lng[i]) {
+            map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+              center: {lat: gon.lat[i], lng: gon.lng[i]},
+              zoom: 12 
+            });
+            marker[i] = new google.maps.Marker({
+              map: map[i],
+              position: {lat: gon.lat[i], lng: gon.lng[i]}
+            });
+          } else {
+            map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+              center: {lat: 35.676192, lng: 139.650311},
+              zoom: 12 
+            });
+          }
+        }
+        map[i].addListener('click', function(e) {
+          getClickLatLng(e.latLng, i);
+        });
+      }    
+    }
+  }
+
+  function getClickLatLng(lat_lng, i) {
+    if (marker[i]) {
+    marker[i].setMap(null);
+    }
+    marker[i] = new google.maps.Marker({
+      position: lat_lng,
+      map: map[i]
+    });
+    map[i].panTo(lat_lng);
+    geocoder.geocode( { latLng: lat_lng}, function(results, status) {
+      if (status == 'OK') {
+        address = document.getElementById(`address_${i}`);
+        address.value = results[0].formatted_address;
+        latitude = document.getElementById(`latitude_${i}`);
+        latitude.value = results[0].geometry.location.lat();
+        longitude = document.getElementById(`longitude_${i}`);
+        longitude.value = results[0].geometry.location.lng();
+      }
+    });
+  }
+
+  function getLatLng(i){
+    address = document.getElementById(`address_${i}`);
+    latitude = document.getElementById(`latitude_${i}`);
+    longitude = document.getElementById(`longitude_${i}`);
+    geocoder.geocode( { 'address': address.value }, function(results, status) {
+      if (status == 'OK') {
+        map[i].setCenter(results[0].geometry.location);
+        if (marker[i]) {
+          marker[i].setMap(null);
+        }
+        marker[i] = new google.maps.Marker({
+          map: map[i],
+          position: results[0].geometry.location
+        });
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      }else if (!address.value){
+        if (marker[i]) {
+          marker[i].setMap(null);
+        }
+        latitude.value = null;
+        longitude.value = null;
+      }else {
+        alert('該当する結果がありませんでした：' + status); 
+      }
+    });
+  }
+
+  function codeAddress(i){
+    inputName = document.getElementById(`name_${i}`).value;
+    address = document.getElementById(`address_${i}`);
+    latitude = document.getElementById(`latitude_${i}`);
+    longitude = document.getElementById(`longitude_${i}`);
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map[i].setCenter(results[0].geometry.location);
+        if (marker[i]) {
+          marker[i].setMap(null);
+        }
+        marker[i] = new google.maps.Marker({
+          map: map[i],
+          position: results[0].geometry.location
+        });
+        address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        if (marker[i]) {
+          marker[i].setMap(null);
+        }
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
+      }else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+
+script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap&libraries=places&v=weekly"
