@@ -13,9 +13,9 @@
     = f.fields_for "stores[]", fullcourse_menu.store do |i|
       .form_group
         = i.label :name
-        = i.text_field :name, class: 'form_control', onchange: "codeAddress_#{index}()", id: "name_#{index}"
+        = i.text_field :name, class: 'form_control', onchange: "codeAddress(#{index})", id: "name_#{index}"
         = i.label :address
-        = i.text_field :address, class: 'form_control', id: "address_#{index}"
+        = i.text_field :address, class: 'form_control', onchange: "getLatLng(#{index})", id: "address_#{index}"
         = i.hidden_field :latitude, id: "latitude_#{index}"
         = i.hidden_field :longitude, id: "longitude_#{index}"
         div id="map#{index}"
