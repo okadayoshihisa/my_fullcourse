@@ -13,7 +13,7 @@ class FullcourseMenusController < ApplicationController
 
   def create
     @form = Form::FullcourseMenuCollection.new(fullcourse_menu_collection_params)
-    @form.fullcourse_menus.map{|x| x.user_id = current_user.id}
+    @form.fullcourse_menus.map { |x| x.user_id = current_user.id }
     if @form.save
       @form.create_fullcourse_image(current_user)
       redirect_to fullcourses_path
@@ -26,8 +26,8 @@ class FullcourseMenusController < ApplicationController
 
   def edit
     redirect_to fullcourses_path unless @user == current_user
-    gon.lat = @user.fullcourse_menus.order(id: :asc).map{|menu| menu.store.latitude}
-    gon.lng = @user.fullcourse_menus.order(id: :asc).map{|menu| menu.store.longitude}
+    gon.lat = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.latitude }
+    gon.lng = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.longitude }
     gon.user = @user
   end
 
@@ -49,7 +49,8 @@ class FullcourseMenusController < ApplicationController
   end
 
   def edit_fullcourse_menu_params
-    params.require(:user).permit(fullcourse_menus: %i[name genre menu_image menu_image_cache], stores: %i[name address latitude longitude])
+    params.require(:user).permit(fullcourse_menus: %i[name genre menu_image menu_image_cache],
+                                 stores: %i[name address latitude longitude])
   end
 
   def set_user

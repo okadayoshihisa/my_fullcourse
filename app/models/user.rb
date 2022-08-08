@@ -19,8 +19,8 @@ class User < ApplicationRecord
         fullcourse_menus.order(id: :asc)[index].store.update(edit_fullcourse_menu_param[1])
       end
     end
-      true
-    rescue StandardError => e
-      false
+    true
+  rescue StandardError => e
+    false
   end
 end

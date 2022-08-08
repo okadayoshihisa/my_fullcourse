@@ -11,8 +11,6 @@ class FullcourseMenu < ApplicationRecord
                 main_dish: 4, salad: 5, dessert: 6, drink: 7 }
 
   def menu_limit
-    if user.fullcourse_menus.count > 8
-      errors.add(:fullcourse_menu, "登録できるのは8つまでです")
-    end
+    errors.add(:fullcourse_menu, '登録できるのは8つまでです') if user.fullcourse_menus.count > 8
   end
 end

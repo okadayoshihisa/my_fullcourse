@@ -29,8 +29,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'debug', '>= 1.0.0'
   gem 'faker'
-  gem "debug", ">= 1.0.0"
 end
 
 group :development do
@@ -53,14 +53,14 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'carrierwave', '~> 2.0'
+gem 'dotenv-rails'
 gem 'enum_help'
+gem 'geocoder'
+gem 'gon'
+gem 'google_places'
 gem 'html2slim'
 gem 'mini_magick'
 gem 'net-smtp'
 gem 'rails-i18n'
 gem 'slim'
 gem 'sorcery'
-gem 'dotenv-rails'
-gem 'geocoder'
-gem 'google_places'
-gem 'gon'
