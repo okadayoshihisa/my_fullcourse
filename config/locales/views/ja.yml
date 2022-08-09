@@ -39,7 +39,7 @@ ja:
         soup: 'スープ' 
         seafood_dish: '魚料理'
         meat_dish: '肉料理'
-        main_dish: 'メインディッシュ'
+        main_dish: '主菜(メイン)'
         salad: 'サラダ'
         dessert: 'デザート'
         drink: 'ドリンク'
