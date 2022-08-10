@@ -1,7 +1,8 @@
 - if  user.fullcourse_image.present?
   .col
-    .card.shadow-sm
-      = image_tag user.fullcourse_image.url, class: 'card-img-top', size: '300x300'
+    .card.shadow-lg.rounded
+      = link_to fullcourse_path(user.id)
+        = image_tag user.fullcourse_image.url, class: 'card-img-top', size: '300x300'
       .card-body
         ul.list-inline
           li.list-inline-item
