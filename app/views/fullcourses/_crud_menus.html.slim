@@ -1,7 +1,8 @@
-ul.crud-menu-btn.list-inline.float-end
-  li.list-inline-item
-    = link_to edit_fullcourse_menu_path(user.id), id: "button-edit-#{user.id}" do
-      i.fa-solid.fa-pen
-  /li.list-inline-item
-    /= link_to board_path(board), id: "button-delete-#{board.id}", method: :delete, data: { confirm: t('defaults.message.delete_confirm') } do
-      = icon 'fas', 'trash'
+ul.crud-menu-btn.list-inline
+  .float-end
+    li.list-inline-item
+      = link_to edit_fullcourse_menu_path(user.id), id: "button-edit-#{user.id}" do
+        i.fa-solid.fa-pen
+    /li.list-inline-item
+      /= link_to board_path(board), id: "button-delete-#{board.id}", method: :delete, data: { confirm: t('defaults.message.delete_confirm') } do
+        = icon 'fas', 'trash'

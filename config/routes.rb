@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create edit]
   resources :fullcourse_menus
   resources :fullcourses, only: %i[index show]
+  resources :stars, only: %i[create destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
