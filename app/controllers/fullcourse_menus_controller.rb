@@ -15,7 +15,8 @@ class FullcourseMenusController < ApplicationController
     @form = Form::FullcourseMenuCollection.new(fullcourse_menu_collection_params)
     @form.fullcourse_menus.map { |x| x.user_id = current_user.id }
     if @form.save
-      @user.create_fullcourse_image
+      fullcourse = current_user.build_fullcourse
+      fullcourse.create_fullcourse_image(current_user)
       redirect_to fullcourses_path
     else
       render :new
@@ -33,7 +34,8 @@ class FullcourseMenusController < ApplicationController
 
   def update
     if @user.multi_update(edit_fullcourse_menu_params)
-      @user.create_fullcourse_image
+      fullcourse = @user.build_fullcourse
+      fullcourse.create_fullcourse_image(@user)
       redirect_to fullcourses_path
     else
       render :edit

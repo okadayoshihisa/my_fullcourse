@@ -1,13 +1,12 @@
-- if  user.fullcourse_image.present?
   .col
     .card.shadow-lg.rounded
-      = link_to fullcourse_path(user.id)
-        = image_tag user.fullcourse_image.url, class: 'card-img-top', size: '300x300'
+      = link_to fullcourse_path(fullcourse.user_id)
+        = image_tag fullcourse.fullcourse_image.url, class: 'card-img-top', size: '300x300'
       .card-body
         ul.list-inline
           li.list-inline-item
             i.fa-solid.fa-user
           li.list-inline-item
             h4
-              = user.name
-          = render 'crud_menus', user: user if user == current_user
+              = fullcourse.user.name
+          = render 'crud_menus', user: fullcourse.user if fullcourse.user == current_user
