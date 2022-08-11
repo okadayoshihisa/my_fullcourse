@@ -1,2 +1,8 @@
-= link_to star_path(fullcourse.stars.find { |s| s.user_id == current_user.id }), class:"float-end", id: "js-delete-star-for-#{fullcourse.id}-button", method: :delete, remote: true
-  i.fa-solid.fa-star
+.float-end
+  div id="js-delete-star-for-#{fullcourse.id}-button"
+    li.list-inline-item
+      = link_to star_path(fullcourse.stars.find { |s| s.user_id == current_user.id }), method: :delete, remote: true
+        i.fa-solid.fa-star
+    li.list-inline-item
+      p.mb-1
+        | #{fullcourse.stars.length}つ星

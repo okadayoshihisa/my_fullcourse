@@ -1,2 +1,8 @@
-= link_to stars_path(fullcourse_id: fullcourse.id), id: "js-star-for-#{fullcourse.id}-button", class:"float-end", method: :post, remote: true
-  i.fa-regular.fa-star
+.float-end
+  div id="js-star-for-#{fullcourse.id}-button"
+      li.list-inline-item
+        = link_to stars_path(fullcourse_id: fullcourse.id), method: :post, remote: true
+          i.fa-regular.fa-star
+      li.list-inline-item
+        p.mb-1
+          | #{fullcourse.stars.length}つ星

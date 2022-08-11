@@ -3,13 +3,12 @@
       = link_to fullcourse_path(fullcourse.user_id)
         = image_tag fullcourse.fullcourse_image.url, class: 'card-img-top', size: '300x300'
       .card-body
-        ul.list-inline
+        ul.list-inline.mb-1
           li.list-inline-item
             i.fa-solid.fa-user
           li.list-inline-item
             h4
               = fullcourse.user.name
-          - if fullcourse.user == current_user
-            = render 'crud_menus', user: fullcourse.user
-          - else
-            = render 'star_button', fullcourse: fullcourse
+          = render 'star_button', fullcourse: fullcourse
+        - if fullcourse.user == current_user
+          = render 'crud_menus', user: fullcourse.user
