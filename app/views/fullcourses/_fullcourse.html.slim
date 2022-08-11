@@ -9,4 +9,7 @@
           li.list-inline-item
             h4
               = fullcourse.user.name
-          = render 'crud_menus', user: fullcourse.user if fullcourse.user == current_user
+          - if fullcourse.user == current_user
+            = render 'crud_menus', user: fullcourse.user
+          - else
+            = render 'star_button', fullcourse: fullcourse

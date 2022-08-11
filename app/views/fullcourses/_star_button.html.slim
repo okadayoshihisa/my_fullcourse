@@ -1,0 +1,4 @@
+- if current_user.star?(fullcourse)
+  = render 'delete_star', fullcourse: fullcourse
+- else
+  = render 'star', fullcourse: fullcourse

@@ -24,4 +24,16 @@ class User < ApplicationRecord
   rescue StandardError => e
     false
   end
+
+  def star(fullcourse)
+    star_fullcourses << fullcourse
+  end
+
+  def delete_star(fullcourse)
+    star_fullcourses.destroy(fullcourse)
+  end
+
+  def star?(fullcourse)
+    star_fullcourses.include?(fullcourse)
+  end
 end
