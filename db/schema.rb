@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_11_041942) do
+ActiveRecord::Schema.define(version: 2022_08_11_061740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2022_08_11_041942) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_fullcourses_on_user_id", unique: true
+  end
+
+  create_table "stars", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "fullcourse_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fullcourse_id"], name: "index_stars_on_fullcourse_id"
+    t.index ["user_id", "fullcourse_id"], name: "index_stars_on_user_id_and_fullcourse_id", unique: true
+    t.index ["user_id"], name: "index_stars_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -58,4 +68,6 @@ ActiveRecord::Schema.define(version: 2022_08_11_041942) do
   add_foreign_key "fullcourse_menus", "stores"
   add_foreign_key "fullcourse_menus", "users"
   add_foreign_key "fullcourses", "users"
+  add_foreign_key "stars", "fullcourses"
+  add_foreign_key "stars", "users"
 end

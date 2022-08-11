@@ -1,5 +1,6 @@
 class Fullcourse < ApplicationRecord
   belongs_to :user
+  has_many :stars, dependent: :destroy
 
   mount_uploader :fullcourse_image, FullcourseImageUploader
 
