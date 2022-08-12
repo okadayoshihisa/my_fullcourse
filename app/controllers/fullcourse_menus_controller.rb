@@ -42,6 +42,12 @@ class FullcourseMenusController < ApplicationController
     end
   end
 
+  def map
+    gon.menus = FullcourseMenu.all
+    gon.lat = gon.menus.map { |menu| menu.store.latitude }
+    gon.lng = gon.menus.map { |menu| menu.store.longitude }
+  end
+
   def destroy; end
 
   private
