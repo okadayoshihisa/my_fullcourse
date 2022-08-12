@@ -1,0 +1,37 @@
+#map
+
+javascript:
+  let map
+  let marker = []
+  let infoWindow = []
+  const menus = gon.menus
+  const lat = gon.lat
+  const lng = gon.lng
+
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: {lat: 35.676192, lng: 139.650311},
+    });
+
+    for (let i = 0; i < menus.length; i++) {
+      if (menus[i].name && lat[i] && lng[i]) {
+        marker[i] = new google.maps.Marker({
+            position: {lat: lat[i], lng: lng[i]},
+            map: map,
+        });
+        if (menus[i].menu_image.url == 'sample.jpg') {
+          infoWindow = new google.maps.InfoWindow({
+            content: `${menus[i].name}`,
+          });
+        } else {
+          infoWindow = new google.maps.InfoWindow({
+            content: `<img src=${menus[i].menu_image.url} width="150" heght="50" /><br><p>${menus[i].name}</p>`,
+          });
+        }
+        infoWindow.open(map, marker[i]);
+      }
+    }
+  }
+
+script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap&libraries=places&v=weekly"

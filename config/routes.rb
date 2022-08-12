@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
 
   resources :users, only: %i[new create edit]
-  resources :fullcourse_menus
+  resources :fullcourse_menus do
+    get 'map', on: :collection
+  end
   resources :fullcourses, only: %i[index show]
   resources :stars, only: %i[create destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
