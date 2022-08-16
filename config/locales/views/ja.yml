@@ -4,6 +4,10 @@ ja:
     login: 'ログイン'
     register: '登録'
     logout: 'ログアウト'
+    message:
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      
   users:
     new:
       title: '新規登録'
@@ -31,6 +35,11 @@ ja:
   fullcourses:
     index:
       title: 'フルコース一覧'
+  profiles:
+    show:
+      title: 'プロフィール'
+    edit:
+      title: 'プロフィール編集'
 
   enums:
     fullcourse_menu:

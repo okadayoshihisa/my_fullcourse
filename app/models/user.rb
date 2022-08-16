@@ -11,7 +11,9 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :name, presence: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, presence: true
+
+  mount_uploader :avatar, AvatarUploader
 
   def multi_update(edit_fullcourse_menu_params)
     FullcourseMenu.transaction do

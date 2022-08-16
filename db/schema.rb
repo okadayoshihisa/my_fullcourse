@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2022_08_13_164957) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
