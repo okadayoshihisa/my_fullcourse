@@ -16,3 +16,4 @@
       = f.password_field :password_confirmation, class: 'form-control', placeholder: 'password_confirmation'
 
     = f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'
+  = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
