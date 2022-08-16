@@ -1,5 +1,6 @@
+- content_for(:title, t('.title'))
 .container
-  h1 = t('defaults.login')
+  h1 = t('.title')
   = form_with url: login_path, method: :post do |f|
     .form-group
       = f.label :email, class: 'sr-only'

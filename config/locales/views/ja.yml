@@ -33,9 +33,13 @@ ja:
       title: 'フルコース作成'
     edit:
       title: 'フルコース編集'
+    map:
+      title: 'マップ'
   fullcourses:
     index:
       title: 'フルコース一覧'
+    show:
+      title: "%{item}のフルコース"
   profiles:
     show:
       title: 'プロフィール'

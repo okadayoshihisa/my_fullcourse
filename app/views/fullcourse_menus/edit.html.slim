@@ -1,4 +1,3 @@
-h1
-  = t('fullcourse_menus.edit.title')
-
+- content_for(:title, t('.title'))
+h1 = t('.title')
 = render 'edit_form', user: @user
