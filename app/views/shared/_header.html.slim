@@ -20,15 +20,15 @@ header
 
         li.nav-item.dropdown.dropdown-slide
           a#dropdownUser1.d-block.link-dark.text-decoration-none.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#"
-            = image_tag 'sample', size: '40x40', class: 'rounded-circle mr15'
+            = image_tag current_user.avatar.url, size: '40x40', class: 'rounded-circle mr15'
           
           ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
             li
               .dropdown-item
-                | らんてっく たろう
+                = current_user.name
             li    
               .dropdown-divider
             li
-              = link_to t('users.show.title'), '#', class: 'dropdown-item'
+              = link_to t('profiles.show.title'), profile_path, class: 'dropdown-item'
             li
               = link_to t('defaults.logout'), logout_path, class: 'dropdown-item', method: :delete
