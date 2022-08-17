@@ -40,4 +40,9 @@ class User < ApplicationRecord
   def star?(fullcourse)
     star_fullcourses.include?(fullcourse)
   end
+
+  def remaining_number
+    menus = fullcourse_menus.map(&:name)
+    menus.count("")
+  end
 end

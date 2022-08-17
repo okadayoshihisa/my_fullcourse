@@ -8,7 +8,6 @@ class OauthsController < ApplicationController
       
   def callback
     provider = params[:provider]
-    debugger
     if auth_params[:denied].present?
       redirect_to login_path, danger: t('defaults.message.cancel', item: t('defaults.login'))
       return
