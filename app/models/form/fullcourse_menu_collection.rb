@@ -5,7 +5,7 @@ class Form::FullcourseMenuCollection < Form::Base
   def initialize(attributes = {})
     super attributes
     self.stores = FORM_COUNT.times.map { Store.new } unless stores.present?
-    self.fullcourse_menus = stores.map { |store| store.fullcourse_menus.build } unless fullcourse_menus.present?
+    self.fullcourse_menus = FORM_COUNT.times.map { FullcourseMenu.new } unless fullcourse_menus.present?
   end
 
   # 上でsuper attributesとしているので必要
@@ -18,19 +18,21 @@ class Form::FullcourseMenuCollection < Form::Base
   end
 
   def save
-    # 実際にやりたいことはこれだけ
-    # self.memos.map(&:save!)
-
     # 複数件全て保存できた場合のみ実行したいので、transactionを使用する
-    FullcourseMenu.transaction do
-      stores.map(&:save!)
-      fullcourse_menus.map.with_index do |menu, index|
-        menu.store_id = stores[index].id
-        menu.save!
+    ActiveRecord::Base.transaction do
+      store_errors = stores.map do |store|
+        store.save
+        store.errors.any?
       end
+      menu_errors = fullcourse_menus.map.with_index do |menu, index|
+        menu.store_id = stores[index].id
+        menu.save
+        menu.errors.any?
+      end
+      raise ActiveRecord::RecordInvalid if store_errors.include?(true) || menu_errors.include?(true)
     end
     true
-  rescue StandardError => e
+  rescue => e
     false
   end
 
