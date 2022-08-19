@@ -1,6 +1,7 @@
 = form_with model: user, url: fullcourse_menu_path, local: true do |f|
   - user.fullcourse_menus.order(id: :asc).each.with_index do |fullcourse_menu, index|
     = f.fields_for "fullcourse_menus[]", fullcourse_menu do |i|
+      = render 'shared/error_messages', model: fullcourse_menu
       .form_group
         = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}"
         = i.text_field :name, class: 'form_control'
