@@ -2,6 +2,7 @@ class FullcourseMenu < ApplicationRecord
   belongs_to :user
   belongs_to :store
 
+  validates :name, presence: true
   validates :genre, presence: true
   validate :menu_limit
 

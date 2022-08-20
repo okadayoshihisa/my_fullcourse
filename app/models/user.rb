@@ -15,20 +15,6 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  def multi_update(edit_fullcourse_menu_params)
-    FullcourseMenu.transaction do
-      edit_fullcourse_menu_params[:fullcourse_menus].to_h.map.with_index do |edit_fullcourse_menu_param, index|
-        fullcourse_menus.order(id: :asc)[index].update!(edit_fullcourse_menu_param[1])
-      end
-      edit_fullcourse_menu_params[:stores].to_h.map.with_index do |edit_fullcourse_menu_param, index|
-        fullcourse_menus.order(id: :asc)[index].store.update!(edit_fullcourse_menu_param[1])
-      end
-    end
-    true
-  rescue StandardError => e
-    false
-  end
-
   def star(fullcourse)
     star_fullcourses << fullcourse
   end

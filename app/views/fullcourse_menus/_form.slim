@@ -1,4 +1,4 @@
-= form_with model: form, url: fullcourse_menus_path, local: true do |f|
+= form_with model: form, url: url, method: method, local: true do |f|
   - form.fullcourse_menus.each.with_index do |fullcourse_menu, index|
     = render 'shared/error_messages', model: fullcourse_menu
     = f.fields_for :fullcourse_menus, fullcourse_menu do |i|
@@ -10,7 +10,7 @@
         = i.file_field :menu_image, class: 'form-control mb-3', accept: 'image/*', id: "file_btn_#{index}"
         = i.hidden_field :menu_image_cache
         = image_tag fullcourse_menu.menu_image.url, id: "preview_#{index}"
-    
+
     = render 'shared/error_messages', model: form.stores[index]
     = f.fields_for :stores, form.stores[index] do |i|
       .form_group
