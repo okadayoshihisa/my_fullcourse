@@ -3,10 +3,10 @@ class Form::MenuStoreForm
   FORM_COUNT = 8
   attr_accessor :fullcourse_menus, :stores
 
-  def initialize(attributes = {}, user_id: nil)
-    if user_id.present?
-      self.fullcourse_menus = FullcourseMenu.where(user_id: user_id)
-      self.stores = fullcourse_menus.map(&:store)
+  def initialize(attributes = {}, user: nil)
+    if user.present?
+      self.fullcourse_menus = FullcourseMenu.where(user_id: user)
+      self.stores = self.fullcourse_menus.map(&:store)
     else
       super attributes
       self.stores = FORM_COUNT.times.map { Store.new } unless stores.present?
@@ -58,11 +58,5 @@ class Form::MenuStoreForm
     true
   rescue => e
     false
-  end
-
-  def add_user_id(current_user)
-    fullcourse_menus.map do |x|
-      x.user_id = current_user.id
-    end
   end
 end
