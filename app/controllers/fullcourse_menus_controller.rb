@@ -12,6 +12,7 @@ class FullcourseMenusController < ApplicationController
   end
 
   def create
+    debugger
     @form = Form::MenuStoreForm.new(user_id_merge_form_params)
     if @form.save
       fullcourse = current_user.build_fullcourse
@@ -33,6 +34,7 @@ class FullcourseMenusController < ApplicationController
   end
 
   def update
+    debugger
     @form = Form::MenuStoreForm.new(user: @user)
     if @form.update(menu_store_form_params)
       fullcourse = @user.build_fullcourse

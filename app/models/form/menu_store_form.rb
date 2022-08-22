@@ -5,7 +5,7 @@ class Form::MenuStoreForm
 
   def initialize(attributes = {}, user: nil)
     if user.present?
-      self.fullcourse_menus = FullcourseMenu.where(user_id: user)
+      self.fullcourse_menus = FullcourseMenu.where(user_id: user).order(id: :asc)
       self.stores = self.fullcourse_menus.map(&:store)
     else
       super attributes
