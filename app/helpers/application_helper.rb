@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def default_meta_tags
     {
       site: '俺のフルコース',
@@ -15,7 +14,7 @@ module ApplicationHelper
   def defalut_og
     {
       title: :full_title,          # :full_title とすると、サイトに表示される <title> と全く同じものを表示できる
-      description: '俺のフルコースは自分だけのフルコースを作成するサービスです',   # 上に同じ
+      description: '俺のフルコースは自分だけのフルコースを作成するサービスです', # 上に同じ
       url: request.url,
       image: 'https://example.com/hoge.png'
     }
@@ -23,7 +22,7 @@ module ApplicationHelper
 
   def default_twitter_card
     {
-      card: 'summary_large_image', # または summary
+      card: 'summary_large_image' # または summary
     }
   end
 end

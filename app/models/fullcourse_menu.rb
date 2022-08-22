@@ -2,8 +2,10 @@ class FullcourseMenu < ApplicationRecord
   belongs_to :user
   belongs_to :store
 
-  validates :genre, presence: true
   validate :menu_limit
+  validates :name, presence: true, if: proc { |f| f.store.name.present? }
+  validates :genre, presence: true
+  validate :store_name_present
 
   mount_uploader :menu_image, MenuImageUploader
 
@@ -12,5 +14,9 @@ class FullcourseMenu < ApplicationRecord
 
   def menu_limit
     errors.add(:fullcourse_menu, '登録できるのは8つまでです') if user.fullcourse_menus.count > 8
+  end
+
+  def store_name_present
+    errors.add(:base, '店名を入力してください') if name.present? && store.name.blank?
   end
 end

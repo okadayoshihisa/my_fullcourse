@@ -2,7 +2,7 @@ class FullcoursesController < ApplicationController
   skip_before_action :require_login
 
   def index
-    @fullcourses = Fullcourse.all
+    @fullcourses = Fullcourse.all.order(created_at: :desc)
   end
 
   def show

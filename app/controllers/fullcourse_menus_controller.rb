@@ -8,12 +8,11 @@ class FullcourseMenusController < ApplicationController
 
   def new
     redirect_to edit_fullcourse_menu_path(current_user.id) if current_user.fullcourse_menus.present?
-    @form = Form::FullcourseMenuCollection.new
+    @form = Form::MenuStoreForm.new
   end
 
   def create
-    @form = Form::FullcourseMenuCollection.new(fullcourse_menu_collection_params)
-    @form.fullcourse_menus.map { |x| x.user_id = current_user.id }
+    @form = Form::MenuStoreForm.new(user_id_merge_form_params)
     if @form.save
       fullcourse = current_user.build_fullcourse
       fullcourse.create_fullcourse_image(current_user)
@@ -27,13 +26,15 @@ class FullcourseMenusController < ApplicationController
 
   def edit
     redirect_to fullcourses_path unless @user == current_user
+    @form = Form::MenuStoreForm.new(user: @user)
     gon.lat = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.latitude }
     gon.lng = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.longitude }
     gon.user = @user
   end
 
   def update
-    if @user.multi_update(edit_fullcourse_menu_params)
+    @form = Form::MenuStoreForm.new(user: @user)
+    if @form.update(menu_store_form_params)
       fullcourse = @user.build_fullcourse
       fullcourse.create_fullcourse_image(@user)
       redirect_to fullcourses_path
@@ -52,17 +53,25 @@ class FullcourseMenusController < ApplicationController
 
   private
 
-  def fullcourse_menu_collection_params
-    params.require(:form_fullcourse_menu_collection).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
-                                                            stores_attributes: %i[name address latitude longitude])
-  end
-
-  def edit_fullcourse_menu_params
-    params.require(:user).permit(fullcourse_menus: %i[name genre menu_image menu_image_cache],
-                                 stores: %i[name address latitude longitude])
+  def menu_store_form_params
+    params.require(:form_menu_store_form).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
+                                                 stores_attributes: %i[name address latitude longitude])
   end
 
   def set_user
     @user = User.includes(fullcourse_menus: :store).find(params[:id])
+  end
+
+  def user_id_hash
+    menus_user_id = menu_store_form_params[:fullcourse_menus_attributes].to_h.map.with_index do |menu, index|
+      ["#{index}", menu[1].merge(user_id: current_user.id)]
+    end
+    menus_user_id.to_h
+  end
+
+  def user_id_merge_form_params
+    user_id_merge_form_params = menu_store_form_params
+    user_id_merge_form_params[:fullcourse_menus_attributes].merge!(user_id_hash)
+    user_id_merge_form_params
   end
 end
