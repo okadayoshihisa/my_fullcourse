@@ -5,7 +5,7 @@ class OauthsController < ApplicationController
   def oauth
     login_at(params[:provider])
   end
-      
+
   def callback
     provider = params[:provider]
     if auth_params[:denied].present?

@@ -6,7 +6,7 @@ class Form::MenuStoreForm
   def initialize(attributes = {}, user: nil)
     if user.present?
       self.fullcourse_menus = FullcourseMenu.where(user_id: user).order(id: :asc)
-      self.stores = self.fullcourse_menus.map(&:store)
+      self.stores = fullcourse_menus.map(&:store)
     else
       super attributes
       self.stores = FORM_COUNT.times.map { Store.new } unless stores.present?
@@ -35,11 +35,11 @@ class Form::MenuStoreForm
         menu.save
         menu.errors.any?
       end
-      #エラーを全て出すためsave!は使わずここでエラーを出す
+      # エラーを全て出すためsave!は使わずここでエラーを出す
       raise ActiveRecord::RecordInvalid if store_errors.include?(true) || menu_errors.include?(true)
     end
     true
-  rescue => e
+  rescue StandardError => e
     false
   end
 
@@ -56,7 +56,7 @@ class Form::MenuStoreForm
       raise ActiveRecord::RecordInvalid if store_errors.include?(true) || menu_errors.include?(true)
     end
     true
-  rescue => e
+  rescue StandardError => e
     false
   end
 end

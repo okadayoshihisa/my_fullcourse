@@ -12,7 +12,6 @@ class FullcourseMenusController < ApplicationController
   end
 
   def create
-    debugger
     @form = Form::MenuStoreForm.new(user_id_merge_form_params)
     if @form.save
       fullcourse = current_user.build_fullcourse
@@ -34,7 +33,6 @@ class FullcourseMenusController < ApplicationController
   end
 
   def update
-    debugger
     @form = Form::MenuStoreForm.new(user: @user)
     if @form.update(menu_store_form_params)
       fullcourse = @user.build_fullcourse
@@ -56,8 +54,8 @@ class FullcourseMenusController < ApplicationController
   private
 
   def menu_store_form_params
-    params.require(:form_menu_store_form).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache user_id],
-                                                            stores_attributes: %i[name address latitude longitude])
+    params.require(:form_menu_store_form).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
+                                                 stores_attributes: %i[name address latitude longitude])
   end
 
   def set_user
@@ -65,12 +63,12 @@ class FullcourseMenusController < ApplicationController
   end
 
   def user_id_hash
-    menus_user_id = menu_store_form_params[:fullcourse_menus_attributes].to_h.map.with_index do |menu,index|
+    menus_user_id = menu_store_form_params[:fullcourse_menus_attributes].to_h.map.with_index do |menu, index|
       ["#{index}", menu[1].merge(user_id: current_user.id)]
     end
     menus_user_id.to_h
   end
-  
+
   def user_id_merge_form_params
     user_id_merge_form_params = menu_store_form_params
     user_id_merge_form_params[:fullcourse_menus_attributes].merge!(user_id_hash)

@@ -29,6 +29,6 @@ class User < ApplicationRecord
 
   def remaining_number
     menus = fullcourse_menus.map(&:name)
-    menus.count("")
+    menus.count('')
   end
 end
