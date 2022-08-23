@@ -18,9 +18,9 @@ class FullcourseMenusController < ApplicationController
       fullcourse.create_fullcourse_image(current_user)
       redirect_to fullcourses_path
     else
-      gon.lat = menu_store_form_params[:stores_attributes].to_h.map{|store| store[1][:latitude].to_f}
-      gon.lng = menu_store_form_params[:stores_attributes].to_h.map{|store| store[1][:longitude].to_f}
-      gon.user = @user  
+      gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
+      gon.lng = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:longitude].to_f }
+      gon.user = @user
       render :new
     end
   end
@@ -42,9 +42,9 @@ class FullcourseMenusController < ApplicationController
       fullcourse.create_fullcourse_image(@user)
       redirect_to fullcourses_path
     else
-      gon.lat = menu_store_form_params[:stores_attributes].to_h.map{|store| store[1][:latitude].to_f}
-      gon.lng = menu_store_form_params[:stores_attributes].to_h.map{|store| store[1][:longitude].to_f}
-      gon.user = @user  
+      gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
+      gon.lng = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:longitude].to_f }
+      gon.user = @user
       render :edit
     end
   end

@@ -2,7 +2,7 @@
 #map
 
 javascript:
-  let map
+  let activeWindow
   let marker = []
   let infoWindow = []
   const menus = gon.menus
@@ -10,11 +10,10 @@ javascript:
   const lng = gon.lng
 
   function initMap() {
-    const map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
         center: {lat: 35.676192, lng: 139.650311},
     });
-
     for (let i = 0; i < menus.length; i++) {
       if (menus[i].name && lat[i] && lng[i]) {
         marker[i] = new google.maps.Marker({
@@ -22,15 +21,24 @@ javascript:
             map: map,
         });
         if (menus[i].menu_image.url == 'sample.jpg') {
-          infoWindow = new google.maps.InfoWindow({
+          infoWindow[i] = new google.maps.InfoWindow({
             content: `${menus[i].name}`,
           });
         } else {
-          infoWindow = new google.maps.InfoWindow({
+          infoWindow[i] = new google.maps.InfoWindow({
             content: `<img src=${menus[i].menu_image.url} width="150" heght="50" /><br><p>${menus[i].name}</p>`,
           });
         }
-        infoWindow.open(map, marker[i]);
+        markerEvent(i);
       }
     }
+  }
+  function markerEvent(i) {
+    marker[i].addListener('click', function() {
+      if (activeWindow !== undefined) {
+        activeWindow.close();
+      }
+      infoWindow[i].open(map, marker[i]);
+      activeWindow = infoWindow[i];
+    });  
   }
