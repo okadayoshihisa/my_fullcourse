@@ -66,5 +66,6 @@ gem 'slim'
 gem 'config'
 gem 'sorcery'
 gem 'net-imap'
-gem 'meta-tags'gem 'net-pop'
+gem 'meta-tags'
+gem 'net-pop'
 
