@@ -4,7 +4,7 @@ class Fullcourse < ApplicationRecord
 
   mount_uploader :fullcourse_image, FullcourseImageUploader
 
-  def create_fullcourse_image(user)
+  def create_fullcourse_image
     image = MiniMagick::Image.open('./app/assets/images/fullcourse.jpeg')
     pos = '10, 5' # 基準点からの変位'横,縦'
     menus = user.fullcourse_menus.order(id: :asc)

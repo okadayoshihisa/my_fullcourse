@@ -11,7 +11,7 @@ javascript:
             center: {lat: 35.676192, lng: 139.650311},
             zoom: 12 
           });
-        } else if (path == `/fullcourse_menus/${gon.user.id}/edit`) {
+        } else if (path == '/fullcourse_menus' || path.includes(`/fullcourse_menus/${gon.user.id}`)) {
           if (gon.lat[i] && gon.lng[i]) {
             map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
               center: {lat: gon.lat[i], lng: gon.lng[i]},
@@ -114,5 +114,3 @@ javascript:
       }
     });
   }
-
-script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap&libraries=places&v=weekly"

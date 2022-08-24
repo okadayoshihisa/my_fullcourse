@@ -53,18 +53,18 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'carrierwave', '~> 2.0'
+gem 'config'
 gem 'dotenv-rails'
 gem 'enum_help'
 gem 'geocoder'
 gem 'gon'
 gem 'google_places'
 gem 'html2slim'
+gem 'meta-tags'
 gem 'mini_magick'
+gem 'net-imap'
+gem 'net-pop'
 gem 'net-smtp'
 gem 'rails-i18n'
 gem 'slim'
-gem 'config'
 gem 'sorcery'
-gem 'net-imap'
-gem 'meta-tags'gem 'net-pop'
-
