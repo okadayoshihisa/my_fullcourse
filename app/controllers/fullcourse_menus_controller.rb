@@ -70,7 +70,7 @@ class FullcourseMenusController < ApplicationController
 
   def user_id_hash
     menus_user_id = menu_store_form_params[:fullcourse_menus_attributes].to_h.map.with_index do |menu, index|
-      ["#{index}", menu[1].merge(user_id: current_user.id)]
+      [index.to_s, menu[1].merge(user_id: current_user.id)]
     end
     menus_user_id.to_h
   end

@@ -9,8 +9,8 @@ class Form::MenuStoreForm
       self.stores = fullcourse_menus.map(&:store)
     else
       super attributes
-      self.stores = FORM_COUNT.times.map { Store.new } unless stores.present?
-      self.fullcourse_menus = FORM_COUNT.times.map { FullcourseMenu.new } unless fullcourse_menus.present?
+      self.stores = FORM_COUNT.times.map { Store.new } if stores.blank?
+      self.fullcourse_menus = FORM_COUNT.times.map { FullcourseMenu.new } if fullcourse_menus.blank?
     end
   end
 
@@ -32,6 +32,8 @@ class Form::MenuStoreForm
       end
       menu_errors = fullcourse_menus.map.with_index do |menu, index|
         menu.store_id = stores[index].id
+        # 捕獲レベル算出
+        menu.level = menu.calculate_level if menu.name.present?
         menu.save
         menu.errors.any?
       end
@@ -50,6 +52,7 @@ class Form::MenuStoreForm
         store.errors.any?
       end
       menu_errors = fullcourse_menus.map.with_index do |menu, index|
+        menu.level = menu.calculate_level if menu.name.present?
         menu.update(params[:fullcourse_menus_attributes][:"#{index}"])
         menu.errors.any?
       end

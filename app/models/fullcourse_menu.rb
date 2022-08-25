@@ -19,4 +19,16 @@ class FullcourseMenu < ApplicationRecord
   def store_name_present
     errors.add(:base, '店名を入力してください') if name.present? && store.name.blank?
   end
+
+  def calculate_level
+    size_score = name.size
+    word_score = Word.all.filter_map do |word|
+      if word.menu?
+        word.score if name.include?(word.name)
+      elsif store.address.include?(word.name)
+        word.score
+      end
+    end
+    size_score + word_score.sum
+  end
 end
