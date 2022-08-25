@@ -58,3 +58,7 @@ ja:
         salad: 'サラダ'
         dessert: 'デザート'
         drink: 'ドリンク'
+    word:
+      category:
+        menu: 'メニュー'
+        place: '地名'
