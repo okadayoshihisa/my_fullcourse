@@ -12,10 +12,11 @@ h1
             = fullcourse_menu.name
         .card-text
           p.mb-1
-            i.fa-solid.fa-house-chimney
-            |  
+            = FullcourseMenu.human_attribute_name(:level)
+            = fullcourse_menu.level
+          p.mb-1
+            i.fa.fa-store
             = fullcourse_menu.store.name
           p.mb-1
-            i.fa-solid.fa-map-location-dot
-            |  
+            i.fas.fa-map-marked-alt
             = fullcourse_menu.store.address

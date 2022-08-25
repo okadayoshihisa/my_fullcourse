@@ -2,8 +2,10 @@ ja:
   activerecord:
     models:
       user: 'ユーザー'
-      fullcourse_menu: 'フルコース'
+      fullcourse_menu: 'フルコースメニュー'
       store: '店舗'
+      fullcourse: 'フルコース'
+      words: 'ワード'
     attributes:
       user:
         name: '名前'
@@ -13,7 +15,15 @@ ja:
       fullcourse_menu:
         name: 'メニュー名'
         genre: 'ジャンル'
+        menu_image: 'メニュー画像'
+        level: '捕獲レベル'
       store:
         name: '店名'
         address: '住所'
         phone_number: 'TEL'
+      fullcourse:
+        fullcourse_image: 'フルコース画像'
+      word:
+        name: 'ワード'
+        score: 'スコア'
+        category: 'カテゴリー'
