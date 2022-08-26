@@ -12,6 +12,7 @@ ja:
         email: 'メールアドレス'
         password: 'パスワード'
         avatar: 'アバター'
+        role: '権限'
       fullcourse_menu:
         name: 'メニュー名'
         genre: 'ジャンル'
