@@ -11,6 +11,7 @@ import "../stylesheets/application.scss";
 import '@fortawesome/fontawesome-free/js/all';
 import 'jquery';
 import "./preview_image";
+import "google_map.js";
 
 Rails.start()
 ActiveStorage.start()

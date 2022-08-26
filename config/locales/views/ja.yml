@@ -31,9 +31,9 @@ ja:
       success: 'ログアウトしました'
   fullcourse_menus:
     new:
-      title: 'フルコース作成'
+      title: 'フルコースメニュー作成'
     edit:
-      title: 'フルコース編集'
+      title: 'フルコースメニュー編集'
     map:
       title: 'マップ'
   fullcourses:
