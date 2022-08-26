@@ -38,3 +38,8 @@ Style/FrozenStringLiteralComment:
 #許可する警告
 Metrics/MethodLength:
   Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+

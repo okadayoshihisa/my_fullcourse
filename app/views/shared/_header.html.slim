@@ -13,6 +13,8 @@ header
             li
               = link_to t('fullcourses.index.title'), fullcourses_path, class: 'dropdown-item'
             li
+              = link_to t('fullcourse_menus.map.title'), map_fullcourse_menus_path, class: 'dropdown-item'
+            li
               - if current_user.fullcourse_menus.present?
                 = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(current_user.id), class: 'dropdown-item'
               - else  

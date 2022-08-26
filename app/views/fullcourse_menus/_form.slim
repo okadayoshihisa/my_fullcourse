@@ -23,5 +23,64 @@
         div id="map#{index}"
 
   = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary btn-block'
-= render 'js'
+javascript:
+  //住所を入力すると緯度経度を取得しフォームに入れる
+  function getLatLng(i){
+    address = document.getElementById(`address_${i}`);
+    latitude = document.getElementById(`latitude_${i}`);
+    longitude = document.getElementById(`longitude_${i}`);
+    geocoder.geocode( { 'address': address.value }, function(results, status) {
+      if (status == 'OK') {
+        map[i].setCenter(results[0].geometry.location);
+        if (marker[i]) {
+          marker[i].setMap(null);
+        }
+        marker[i] = new google.maps.Marker({
+          map: map[i],
+          position: results[0].geometry.location
+        });
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      }else if (!address.value){
+        if (marker[i]) {
+          marker[i].setMap(null);
+        }
+        latitude.value = null;
+        longitude.value = null;
+      }else {
+        alert('該当する結果がありませんでした：' + status); 
+      }
+    });
+  }
+  //店名入力で住所と緯度経度を取得し、フォームに入力
+  function codeAddress(i){
+    inputName = document.getElementById(`name_${i}`).value;
+    address = document.getElementById(`address_${i}`);
+    latitude = document.getElementById(`latitude_${i}`);
+    longitude = document.getElementById(`longitude_${i}`);
+    geocoder.geocode( { 'address': inputName}, function(results, status) {
+      if (status == 'OK') {
+        map[i].setCenter(results[0].geometry.location);
+        if (marker[i]) {
+          marker[i].setMap(null);
+        }
+        marker[i] = new google.maps.Marker({
+          map: map[i],
+          position: results[0].geometry.location
+        });
+        address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+      } else if (!inputName) {
+        if (marker[i]) {
+          marker[i].setMap(null);
+        }
+        address.value = null;
+        latitude.value = null;
+        longitude.value = null;
+      }else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
 script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap&libraries=places&v=weekly"

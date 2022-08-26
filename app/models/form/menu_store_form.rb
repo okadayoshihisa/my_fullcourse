@@ -41,7 +41,7 @@ class Form::MenuStoreForm
       raise ActiveRecord::RecordInvalid if store_errors.include?(true) || menu_errors.include?(true)
     end
     true
-  rescue StandardError => e
+  rescue StandardError
     false
   end
 
@@ -59,7 +59,7 @@ class Form::MenuStoreForm
       raise ActiveRecord::RecordInvalid if store_errors.include?(true) || menu_errors.include?(true)
     end
     true
-  rescue StandardError => e
+  rescue StandardError
     false
   end
 end
