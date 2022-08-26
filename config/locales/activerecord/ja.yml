@@ -5,7 +5,8 @@ ja:
       fullcourse_menu: 'フルコースメニュー'
       store: '店舗'
       fullcourse: 'フルコース'
-      words: 'ワード'
+      star: '星'
+      word: 'ワード'
     attributes:
       user:
         name: '名前'
