@@ -62,3 +62,7 @@ ja:
       category:
         menu: 'メニュー'
         place: '地名'
+    user:
+      role:
+        genreral: '一般'
+        admmin: '管理者'
