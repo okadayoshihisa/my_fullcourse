@@ -9,7 +9,10 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       cancel: "%{item}をキャンセルしました"
       require_login: "ログインしてください"
-      
+    password_reset: 'パスワードリセット'
+    password_forget: 'パスワードをお忘れの方はこちら'
+    twitter_login: 'Twitterアカウントでログイン'
+
   users:
     new:
       title: '新規登録'
@@ -46,6 +49,17 @@ ja:
       title: 'プロフィール'
     edit:
       title: 'プロフィール編集'
+  password_resets:
+    new:
+      title: 'パスワードリセット申請'
+      submit: '送信'
+    edit:
+      title: 'パスワードリセット'
+    create:
+      success: 'パスワードリセット手順を送信しました'
+    update:
+      success: 'パスワードを変更しました'
+      fail: 'パスワードの変更に失敗しました'
 
   enums:
     fullcourse_menu:

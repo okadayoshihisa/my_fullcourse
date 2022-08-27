@@ -9,4 +9,6 @@
       = f.label :password, class: 'sr-only'
       = f.password_field :password, class: 'form-control', placeholder: 'Password'
     = f.submit 'Login', class: 'btn btn-lg btn-primary btn-block'
-  = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
+  = link_to t('defaults.twitter_login'), auth_at_provider_path(provider: :twitter)
+  br
+  = link_to t('defaults.password_forget'), new_password_reset_path

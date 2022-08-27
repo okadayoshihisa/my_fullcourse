@@ -31,6 +31,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'debug', '>= 1.0.0'
   gem 'faker'
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :development do
@@ -70,3 +71,4 @@ gem 'slim'
 gem 'sorcery'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
+
