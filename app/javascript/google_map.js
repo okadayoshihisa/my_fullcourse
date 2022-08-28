@@ -3,7 +3,6 @@ function initMap(){
   map = []
   marker = []
   infoWindow = []
-
   window.onload = ()=> {
     let path = location.pathname
     //マップページ
@@ -31,37 +30,50 @@ function initMap(){
           markerEvent(i);
         }
       }
-    } else {     
+      //フルコースメニュー新規作成時
+    } else if (path == '/fullcourse_menus/new') {
       for (let i = 0; i < 8; i++) {
-        //フルコースメニュー新規作成時
-        if (path == '/fullcourse_menus/new') {
+        map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+          center: {lat: 35.676192, lng: 139.650311},
+          zoom: 12 
+        });
+        map[i].addListener('click', function(e) {
+          getClickLatLng(e.latLng, i);
+        });
+      }
+      //フルコースメニュー編集ページ、更新失敗時      
+    } else if (path == '/fullcourse_menus' || path.includes(`/fullcourse_menus/${gon.user_id}`)) {
+      for (let i = 0; i < 8; i++) {
+        if (gon.lat[i] && gon.lng[i]) {
+          map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+            center: {lat: gon.lat[i], lng: gon.lng[i]},
+            zoom: 12 
+          });
+          marker[i] = new google.maps.Marker({
+            map: map[i],
+            position: {lat: gon.lat[i], lng: gon.lng[i]}
+          });
+        } else {
           map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
             center: {lat: 35.676192, lng: 139.650311},
             zoom: 12 
           });
-        //フルコースメニュー更新、更新失敗時
-        } else if (path == '/fullcourse_menus' || path.includes(`/fullcourse_menus/${gon.user.id}`)) {
-          if (gon.lat[i] && gon.lng[i]) {
-            map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
-              center: {lat: gon.lat[i], lng: gon.lng[i]},
-              zoom: 12 
-            });
-            marker[i] = new google.maps.Marker({
-              map: map[i],
-              position: {lat: gon.lat[i], lng: gon.lng[i]}
-            });
-          } else {
-            map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
-              center: {lat: 35.676192, lng: 139.650311},
-              zoom: 12 
-            });
-          }
         }
         map[i].addListener('click', function(e) {
           getClickLatLng(e.latLng, i);
         });
       }
-    }   
+      //メニュー詳細ページ
+    } else {
+      map = new google.maps.Map(document.getElementById('show_map'), {
+        center: gon.latlng,
+        zoom: 12
+      });
+      marker = new google.maps.Marker({
+        map: map,
+        position: gon.latlng
+      });
+    }
   }
 }
 window.initMap = initMap;
