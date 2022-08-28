@@ -29,7 +29,7 @@ class FullcourseMenusController < ApplicationController
     @fullcourse_menu = FullcourseMenu.find(params[:id])
     gon.menu = @fullcourse_menu
     gon.id = gon.menu.id
-    gon.latlng = {lat: gon.menu.store.latitude, lng: gon.menu.store.longitude}
+    gon.latlng = { lat: gon.menu.store.latitude, lng: gon.menu.store.longitude }
   end
 
   def edit
