@@ -25,14 +25,19 @@ class FullcourseMenusController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @fullcourse_menu = FullcourseMenu.find(params[:id])
+    gon.menu = @fullcourse_menu
+    gon.id = gon.menu.id
+    gon.latlng = { lat: gon.menu.store.latitude, lng: gon.menu.store.longitude }
+  end
 
   def edit
     redirect_to fullcourses_path unless @user == current_user
     @form = Form::MenuStoreForm.new(user: @user)
     gon.lat = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.latitude }
     gon.lng = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.longitude }
-    gon.user = @user
+    gon.user_id = @user.id
   end
 
   def update
