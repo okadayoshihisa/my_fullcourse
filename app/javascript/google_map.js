@@ -12,12 +12,14 @@ function initMap(){
           center: {lat: 35.676192, lng: 139.650311},
       });
       for (let i = 0; i < gon.menus.length; i++) {
-        //メニュー名、緯度経度がある時だけピン立て
+        //メニュー名、緯度経度がある時だけマーカー設置
         if (gon.menus[i].name && gon.lat[i] && gon.lng[i]) {
           marker[i] = new google.maps.Marker({
-              position: {lat: gon.lat[i], lng: gon.lng[i]},
+              //同じ座標でも＋(Math.random() / 25000)で若干ずらして表示
+              position: {lat: gon.lat[i], lng: gon.lng[i] + (Math.random() / 25000)},
               map: map,
           });
+          //画像が登録されていない時ウィンドウにはメニュー名のみ表示
           if (gon.menus[i].menu_image.url == 'sample.jpg') {
             infoWindow[i] = new google.maps.InfoWindow({
               content: `${gon.menus[i].name}`,
@@ -27,6 +29,7 @@ function initMap(){
               content: `<img src=${gon.menus[i].menu_image.url} width="150" heght="50" /><br><p>${menus[i].name}</p>`,
             });
           }
+          //マーカークリックイベント
           markerEvent(i);
         }
       }
