@@ -82,14 +82,22 @@ function initMap(){
 window.initMap = initMap;
 
 let activeWindow
+let frontMaker
 //マップページ マーカークリックイベント
 function markerEvent(i) {
   marker[i].addListener('click', function() {
+    //ウィンドウを表示
     if (activeWindow !== undefined) {
       activeWindow.close();
     }
     infoWindow[i].open(map, marker[i]);
     activeWindow = infoWindow[i];
+    //マーカーを前面に表示
+    if (frontMaker !== undefined) {
+      frontMaker.setZIndex(0);
+    }
+    marker[i].setZIndex(90);
+    frontMaker = marker[i];
   });  
 }
 
