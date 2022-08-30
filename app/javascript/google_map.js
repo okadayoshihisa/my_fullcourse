@@ -1,7 +1,7 @@
 function initMap(){
   geocoder = new google.maps.Geocoder()
-  map = []
-  marker = []
+  maps = []
+  markers = []
   infoWindow = []
   window.onload = ()=> {
     let path = location.pathname
@@ -14,33 +14,39 @@ function initMap(){
       for (let i = 0; i < gon.menus.length; i++) {
         //メニュー名、緯度経度がある時だけマーカー設置
         if (gon.menus[i].name && gon.lat[i] && gon.lng[i]) {
-          marker[i] = new google.maps.Marker({
+          markers[i] = new google.maps.Marker({
               //同じ座標でも＋(Math.random() / 25000)で若干ずらして表示
-              position: {lat: gon.lat[i], lng: gon.lng[i] + (Math.random() / 25000)},
+              position: {lat: gon.lat[i], lng: gon.lng[i] + (Math.random() / 10000)},
               map: map,
           });
           //画像が登録されていない時ウィンドウにはメニュー名のみ表示
           if (gon.menus[i].menu_image.url == 'sample.jpg') {
             infoWindow[i] = new google.maps.InfoWindow({
-              content: `${gon.menus[i].name}`,
+              content: `<a href='/fullcourse_menus/${gon.menus[i].id}', class='link'>
+                        ${gon.menus[i].name}<br>
+                        ${gon.menus[i].store.name}</a>`,
             });
           } else {
             infoWindow[i] = new google.maps.InfoWindow({
-              content: `<img src=${gon.menus[i].menu_image.url} width="150" heght="50" /><br><p>${menus[i].name}</p>`,
+              content: `<a href='/fullcourse_menus/${gon.menus[i].id}', class='link'>
+                        <img src=${gon.menus[i].menu_image.url} width="150" heght="50" /><br>
+                        ${gon.menus[i].name}<br>
+                        ${gon.menus[i].store.name}</a>`,
             });
           }
           //マーカークリックイベント
           markerEvent(i);
+          infoWindow[i].open(map, markers[i]);
         }
       }
       //フルコースメニュー新規作成時
     } else if (path == '/fullcourse_menus/new') {
       for (let i = 0; i < 8; i++) {
-        map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+        maps[i] = new google.maps.Map(document.getElementById(`map${i}`), {
           center: {lat: 35.676192, lng: 139.650311},
           zoom: 12 
         });
-        map[i].addListener('click', function(e) {
+        maps[i].addListener('click', function(e) {
           getClickLatLng(e.latLng, i);
         });
       }
@@ -48,21 +54,21 @@ function initMap(){
     } else if (path == '/fullcourse_menus' || path.includes(`/fullcourse_menus/${gon.user_id}`)) {
       for (let i = 0; i < 8; i++) {
         if (gon.lat[i] && gon.lng[i]) {
-          map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+          maps[i] = new google.maps.Map(document.getElementById(`map${i}`), {
             center: {lat: gon.lat[i], lng: gon.lng[i]},
             zoom: 12 
           });
-          marker[i] = new google.maps.Marker({
-            map: map[i],
+          markers[i] = new google.maps.Marker({
+            map: maps[i],
             position: {lat: gon.lat[i], lng: gon.lng[i]}
           });
         } else {
-          map[i] = new google.maps.Map(document.getElementById(`map${i}`), {
+          maps[i] = new google.maps.Map(document.getElementById(`map${i}`), {
             center: {lat: 35.676192, lng: 139.650311},
             zoom: 12 
           });
         }
-        map[i].addListener('click', function(e) {
+        maps[i].addListener('click', function(e) {
           getClickLatLng(e.latLng, i);
         });
       }
@@ -81,35 +87,35 @@ function initMap(){
 }
 window.initMap = initMap;
 
-let activeWindow
+let frontWindow
 let frontMaker
 //マップページ マーカークリックイベント
 function markerEvent(i) {
-  marker[i].addListener('click', function() {
-    //ウィンドウを表示
-    if (activeWindow !== undefined) {
-      activeWindow.close();
+  markers[i].addListener('click', function() {
+    //ウィンドウを前面に表示
+    if (frontWindow !== undefined) {
+      frontWindow.setZIndex(0);
     }
-    infoWindow[i].open(map, marker[i]);
-    activeWindow = infoWindow[i];
+    infoWindow[i].setZIndex(90);
+    frontWindow = infoWindow[i];
     //マーカーを前面に表示
     if (frontMaker !== undefined) {
       frontMaker.setZIndex(0);
     }
-    marker[i].setZIndex(90);
-    frontMaker = marker[i];
+    markers[i].setZIndex(90);
+    frontMaker = markers[i];
   });  
 }
 
 function getClickLatLng(lat_lng, i) {
-  if (marker[i]) {
-  marker[i].setMap(null);
+  if (markers[i]) {
+  markers[i].setMap(null);
   }
-  marker[i] = new google.maps.Marker({
+  markers[i] = new google.maps.Marker({
     position: lat_lng,
-    map: map[i]
+    map: maps[i]
   });
-  map[i].panTo(lat_lng);
+  maps[i].panTo(lat_lng);
   //マップのクリックした地点の住所、緯度経度をフォームに入れる
   geocoder.geocode( { latLng: lat_lng}, function(results, status) {
     if (status == 'OK') {
@@ -122,64 +128,3 @@ function getClickLatLng(lat_lng, i) {
     }
   });
 }
-
-// //住所を入力すると緯度経度を取得しフォームに入れる
-// function getLatLng(i){
-//   address = document.getElementById(`address_${i}`);
-//   latitude = document.getElementById(`latitude_${i}`);
-//   longitude = document.getElementById(`longitude_${i}`);
-//   geocoder.geocode( { 'address': address.value }, function(results, status) {
-//     if (status == 'OK') {
-//       map[i].setCenter(results[0].geometry.location);
-//       if (marker[i]) {
-//         marker[i].setMap(null);
-//       }
-//       marker[i] = new google.maps.Marker({
-//         map: map[i],
-//         position: results[0].geometry.location
-//       });
-//       latitude.value = results[0].geometry.location.lat();
-//       longitude.value = results[0].geometry.location.lng();
-//     }else if (!address.value){
-//       if (marker[i]) {
-//         marker[i].setMap(null);
-//       }
-//       latitude.value = null;
-//       longitude.value = null;
-//     }else {
-//       alert('該当する結果がありませんでした：' + status); 
-//     }
-//   });
-// }
-
-// //店名入力で住所と緯度経度を取得し、フォームに入力
-// function codeAddress(i){
-//   inputName = document.getElementById(`name_${i}`).value;
-//   address = document.getElementById(`address_${i}`);
-//   latitude = document.getElementById(`latitude_${i}`);
-//   longitude = document.getElementById(`longitude_${i}`);
-//   geocoder.geocode( { 'address': inputName}, function(results, status) {
-//     if (status == 'OK') {
-//       map[i].setCenter(results[0].geometry.location);
-//       if (marker[i]) {
-//         marker[i].setMap(null);
-//       }
-//       marker[i] = new google.maps.Marker({
-//         map: map[i],
-//         position: results[0].geometry.location
-//       });
-//       address.value = results[0].formatted_address;
-//       latitude.value = results[0].geometry.location.lat();
-//       longitude.value = results[0].geometry.location.lng();
-//     } else if (!inputName) {
-//       if (marker[i]) {
-//         marker[i].setMap(null);
-//       }
-//       address.value = null;
-//       latitude.value = null;
-//       longitude.value = null;
-//     }else {
-//       alert('該当する結果がありませんでした：' + status);
-//     }
-//   });
-// }
