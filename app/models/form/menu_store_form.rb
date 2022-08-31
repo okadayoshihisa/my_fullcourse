@@ -20,7 +20,7 @@ class Form::MenuStoreForm
   end
 
   def stores_attributes=(attributes)
-    self.stores = attributes.map { |_, v| Store.new(v) }
+    self.stores = attributes.map { |_, v| Store.find_or_initialize_by(name: v[:name], address: v[:address]) }
   end
 
   def save
@@ -47,16 +47,15 @@ class Form::MenuStoreForm
 
   def update(params)
     ActiveRecord::Base.transaction do
-      store_errors = stores.map.with_index do |store, index|
-        store.update(params[:stores_attributes][:"#{index}"])
-        store.errors.any?
-      end
-      menu_errors = fullcourse_menus.map.with_index do |menu, index|
+      errors = fullcourse_menus.map.with_index do |menu, index|
+        # storeはupdateではないので、更新失敗時に入力値を返すために＠form.storesに入れる
+        stores[i] = Store.find_or_create_by(name: params[:stores_attributes][:"#{index}"][:name], address: params[:stores_attributes][:"#{index}"][:address])
+        menu.store_id = store.id
         menu.level = menu.calculate_level if menu.name.present?
         menu.update(params[:fullcourse_menus_attributes][:"#{index}"])
-        menu.errors.any?
+        menu.errors.any? || stores[i].errors.any?
       end
-      raise ActiveRecord::RecordInvalid if store_errors.include?(true) || menu_errors.include?(true)
+      raise ActiveRecord::RecordInvalid if errors.include?(true)
     end
     true
   rescue StandardError
