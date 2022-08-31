@@ -32,7 +32,7 @@ end
 User.create(
   name: 'admin',
   email: 'admin@admin.com',
-  password: '1234',
-  password_confirmation: '1234',
+  password: 'admin',
+  password_confirmation: 'admin',
   role: 1
 )  

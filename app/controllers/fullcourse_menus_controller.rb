@@ -13,6 +13,7 @@ class FullcourseMenusController < ApplicationController
 
   def create
     @form = Form::MenuStoreForm.new(user_id_merge_form_params)
+    debugger
     if @form.save
       fullcourse = current_user.build_fullcourse
       fullcourse.create_fullcourse_image

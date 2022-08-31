@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2022_08_27_024932) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
+    t.index ["name", "address"], name: "index_stores_on_name_and_address", unique: true
   end
 
   create_table "users", force: :cascade do |t|

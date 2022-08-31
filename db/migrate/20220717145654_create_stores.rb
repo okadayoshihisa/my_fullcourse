@@ -6,6 +6,7 @@ class CreateStores < ActiveRecord::Migration[6.1]
       t.string :phone_number
 
       t.timestamps
+      t.index [:name, :address], unique: true
     end
   end
 end
