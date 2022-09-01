@@ -56,7 +56,7 @@ function initMap(){
         if (gon.lat[i] && gon.lng[i]) {
           maps[i] = new google.maps.Map(document.getElementById(`map${i}`), {
             center: {lat: gon.lat[i], lng: gon.lng[i]},
-            zoom: 12 
+            zoom: 12
           });
           markers[i] = new google.maps.Marker({
             map: maps[i],
@@ -65,7 +65,7 @@ function initMap(){
         } else {
           maps[i] = new google.maps.Map(document.getElementById(`map${i}`), {
             center: {lat: 35.676192, lng: 139.650311},
-            zoom: 12 
+            zoom: 12
           });
         }
         maps[i].addListener('click', function(e) {

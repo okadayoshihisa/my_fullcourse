@@ -13,7 +13,6 @@ class FullcourseMenusController < ApplicationController
 
   def create
     @form = Form::MenuStoreForm.new(user_id_merge_form_params)
-    debugger
     if @form.save
       fullcourse = current_user.build_fullcourse
       fullcourse.create_fullcourse_image
@@ -21,7 +20,6 @@ class FullcourseMenusController < ApplicationController
     else
       gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
       gon.lng = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:longitude].to_f }
-      gon.user = @user
       render :new
     end
   end
@@ -50,7 +48,7 @@ class FullcourseMenusController < ApplicationController
     else
       gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
       gon.lng = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:longitude].to_f }
-      gon.user = @user
+      gon.user_id = @user.id
       render :edit
     end
   end
