@@ -59,10 +59,11 @@ ActiveRecord::Schema.define(version: 2022_08_27_024932) do
     t.string "name"
     t.string "address"
     t.string "phone_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "address", "latitude", "longitude"], name: "index_stores_on_name_and_address_and_latitude_and_longitude", unique: true
   end
 
   create_table "users", force: :cascade do |t|

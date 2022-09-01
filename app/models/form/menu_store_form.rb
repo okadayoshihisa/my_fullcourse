@@ -26,19 +26,18 @@ class Form::MenuStoreForm
   def save
     # 複数件全て保存できた場合のみ実行したいので、transactionを使用する
     ActiveRecord::Base.transaction do
-      store_errors = stores.map do |store|
-        store.save
-        store.errors.any?
-      end
-      menu_errors = fullcourse_menus.map.with_index do |menu, index|
+      errors = fullcourse_menus.map.with_index do |menu, index|
+        # store.saveしてないので、作成失敗時に入力値を返すために＠form.storesに入れる
+        stores[index] = Store.find_or_create_by(name: stores[index].name, address: stores[index].address,
+                                                latitude: stores[index].latitude, longitude: stores[index].longitude)
         menu.store_id = stores[index].id
         # 捕獲レベル算出
         menu.level = menu.calculate_level if menu.name.present?
         menu.save
-        menu.errors.any?
+        menu.errors.any? || stores[index].errors.any?
       end
       # エラーを全て出すためsave!は使わずここでエラーを出す
-      raise ActiveRecord::RecordInvalid if store_errors.include?(true) || menu_errors.include?(true)
+      raise ActiveRecord::RecordInvalid if errors.include?(true)
     end
     true
   rescue StandardError
@@ -47,16 +46,20 @@ class Form::MenuStoreForm
 
   def update(params)
     ActiveRecord::Base.transaction do
-      store_errors = stores.map.with_index do |store, index|
-        store.update(params[:stores_attributes][:"#{index}"])
-        store.errors.any?
-      end
-      menu_errors = fullcourse_menus.map.with_index do |menu, index|
+      errors = fullcourse_menus.map.with_index do |menu, index|
+        store = params[:stores_attributes][:"#{index}"]
+        #緯度経度はfloat型なのでfind_byするために""の時にnilにする
+        store[:latitude] = nil if store[:latitude].blank?
+        store[:longitude] = nil if store[:longitude].blank?
+        # storeはupdateしてないので、更新失敗時に入力値を返すために＠form.storesに入れる
+        stores[index] = Store.find_or_create_by(name: store[:name], address: store[:address],
+                                                latitude: store[:latitude], longitude: store[:longitude])
+        menu.store_id = stores[index].id
         menu.level = menu.calculate_level if menu.name.present?
         menu.update(params[:fullcourse_menus_attributes][:"#{index}"])
-        menu.errors.any?
+        menu.errors.any? || stores[index].errors.any?
       end
-      raise ActiveRecord::RecordInvalid if store_errors.include?(true) || menu_errors.include?(true)
+      raise ActiveRecord::RecordInvalid if errors.include?(true)
     end
     true
   rescue StandardError

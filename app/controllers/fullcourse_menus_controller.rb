@@ -20,7 +20,6 @@ class FullcourseMenusController < ApplicationController
     else
       gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
       gon.lng = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:longitude].to_f }
-      gon.user = @user
       render :new
     end
   end
@@ -49,15 +48,16 @@ class FullcourseMenusController < ApplicationController
     else
       gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
       gon.lng = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:longitude].to_f }
-      gon.user = @user
+      gon.user_id = @user.id
       render :edit
     end
   end
 
   def map
-    gon.menus = FullcourseMenu.all
-    gon.lat = gon.menus.map { |menu| menu.store.latitude }
-    gon.lng = gon.menus.map { |menu| menu.store.longitude }
+    menus = FullcourseMenu.all
+    gon.lat = menus.map { |menu| menu.store.latitude }
+    gon.lng = menus.map { |menu| menu.store.longitude }
+    gon.menus = menus.as_json(include: { store: { only: [:name] } })
   end
 
   def destroy; end

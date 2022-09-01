@@ -31,19 +31,19 @@ javascript:
     longitude = document.getElementById(`longitude_${i}`);
     geocoder.geocode( { 'address': address.value }, function(results, status) {
       if (status == 'OK') {
-        map[i].setCenter(results[0].geometry.location);
-        if (marker[i]) {
-          marker[i].setMap(null);
+        maps[i].setCenter(results[0].geometry.location);
+        if (markers[i]) {
+          markers[i].setMap(null);
         }
-        marker[i] = new google.maps.Marker({
-          map: map[i],
+        markers[i] = new google.maps.Marker({
+          map: maps[i],
           position: results[0].geometry.location
         });
         latitude.value = results[0].geometry.location.lat();
         longitude.value = results[0].geometry.location.lng();
       }else if (!address.value){
-        if (marker[i]) {
-          marker[i].setMap(null);
+        if (markers[i]) {
+          markers[i].setMap(null);
         }
         latitude.value = null;
         longitude.value = null;
@@ -60,20 +60,20 @@ javascript:
     longitude = document.getElementById(`longitude_${i}`);
     geocoder.geocode( { 'address': inputName}, function(results, status) {
       if (status == 'OK') {
-        map[i].setCenter(results[0].geometry.location);
-        if (marker[i]) {
-          marker[i].setMap(null);
+        maps[i].setCenter(results[0].geometry.location);
+        if (markers[i]) {
+          markers[i].setMap(null);
         }
-        marker[i] = new google.maps.Marker({
-          map: map[i],
+        markers[i] = new google.maps.Marker({
+          map: maps[i],
           position: results[0].geometry.location
         });
         address.value = results[0].formatted_address;
         latitude.value = results[0].geometry.location.lat();
         longitude.value = results[0].geometry.location.lng();
       } else if (!inputName) {
-        if (marker[i]) {
-          marker[i].setMap(null);
+        if (markers[i]) {
+          markers[i].setMap(null);
         }
         address.value = null;
         latitude.value = null;
