@@ -48,7 +48,7 @@ class Form::MenuStoreForm
     ActiveRecord::Base.transaction do
       errors = fullcourse_menus.map.with_index do |menu, index|
         store = params[:stores_attributes][:"#{index}"]
-        #緯度経度はfloat型なのでfind_byするために""の時にnilにする
+        # 緯度経度はfloat型なのでfind_byするために""の時にnilにする
         store[:latitude] = nil if store[:latitude].blank?
         store[:longitude] = nil if store[:longitude].blank?
         # storeはupdateしてないので、更新失敗時に入力値を返すために＠form.storesに入れる
