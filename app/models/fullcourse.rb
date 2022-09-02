@@ -46,9 +46,32 @@ class Fullcourse < ApplicationRecord
           config.fill '#000000'
         end
       end
+
+      write_lines(config, menus)
     end
     image.format 'jpg' # 拡張子を指定
     self.fullcourse_image = image
     save
+  end
+
+  # セリフ
+  def write_lines(config, menus)
+    config.font './app/assets/fonts/GenEiAntiqueNv5-M.ttf'
+    word_1 = "あと#{menus.map(&:name).count("")}つかな"
+    word_2 = "お前は？"
+    config.gravity 'NorthEast'
+    config.strokewidth 0
+    config.pointsize 35
+    word_1.chars.each.with_index do |c, i|
+      # 数字の時はx方向の数値を変える
+      i == 2 ? x = 27 : x = 20
+      y = 50+(35*i)
+      config.draw "text #{x}, #{y} '#{c}'"
+    end
+    config.pointsize 30
+    word_2.chars.each.with_index do |c, i|
+      pos = "20, #{500+(30*i)}"
+      config.draw "text #{pos} '#{c}'"
+    end
   end
 end
