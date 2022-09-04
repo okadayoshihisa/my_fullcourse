@@ -16,7 +16,7 @@ module ApplicationHelper
       title: :full_title,          # :full_title とすると、サイトに表示される <title> と全く同じものを表示できる
       description: '俺のフルコースは自分だけのフルコースを作成するサービスです', # 上に同じ
       url: request.url,
-      image: 'https://example.com/hoge.png'
+      image: asset_url('fullcourse.jpeg')
     }
   end
 
