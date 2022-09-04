@@ -1,28 +1,34 @@
 = form_with model: form, url: url, method: method, local: true do |f|
   - form.fullcourse_menus.each.with_index do |fullcourse_menu, index|
-    = render 'shared/error_messages', model: fullcourse_menu
-    = f.fields_for :fullcourse_menus, fullcourse_menu do |i|
-      .form_group
-        = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}"
-        = i.text_field :name, class: 'form_control'
-        = i.hidden_field :genre, value: FullcourseMenu.genres.keys[index]
-      .form_group
-        = i.file_field :menu_image, class: 'form-control mb-3', accept: 'image/*', id: "file_btn_#{index}"
-        = i.hidden_field :menu_image_cache
-        = image_tag fullcourse_menu.menu_image.url, id: "preview_#{index}"
+    .card.shadow-lg.p-2.my-3.rounded
+      = render 'shared/error_messages', model: fullcourse_menu
+      = f.fields_for :fullcourse_menus, fullcourse_menu do |i|
+        .form-group
+          h2
+            = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}"
+          = i.text_field :name, class: 'form-control', placeholder: FullcourseMenu.human_attribute_name(:name)
+          = i.hidden_field :genre, value: FullcourseMenu.genres.keys[index]
+        .form-group
+          = i.file_field :menu_image, class: 'form-control', accept: 'image/*', id: "file_btn_#{index}"
+          = i.hidden_field :menu_image_cache
+          = image_tag fullcourse_menu.menu_image.url, id: "preview_#{index}", size: '460x345', class: 'img-fluid mb-3'
 
-    = render 'shared/error_messages', model: form.stores[index]
-    = f.fields_for :stores, form.stores[index] do |i|
-      .form_group
-        = i.label :name
-        = i.text_field :name, class: 'form_control', onchange: "codeAddress(#{index})", id: "name_#{index}"
-        = i.label :address
-        = i.text_field :address, class: 'form_control', onchange: "getLatLng(#{index})", id: "address_#{index}"
-        = i.hidden_field :latitude, id: "latitude_#{index}"
-        = i.hidden_field :longitude, id: "longitude_#{index}"
-        div id="map#{index}"
+      = render 'shared/error_messages', model: form.stores[index]
+      = f.fields_for :stores, form.stores[index] do |i|
+        .form-group
+          = i.label :name
+          br/
+          = i.text_field :name, class: 'form-control', onchange: "codeAddress(#{index})", id: "name_#{index}"
+        .form-group
+          = i.label :address
+          br/
+          = i.text_field :address, class: 'form-control', onchange: "getLatLng(#{index})", id: "address_#{index}"
+          = i.hidden_field :latitude, id: "latitude_#{index}"
+          = i.hidden_field :longitude, id: "longitude_#{index}"
+          div id="map#{index}"
 
   = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary btn-block'
+
 javascript:
   //住所を入力すると緯度経度を取得しフォームに入れる
   function getLatLng(i){
