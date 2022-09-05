@@ -39,6 +39,8 @@ ja:
       title: 'フルコースメニュー編集'
     map:
       title: 'マップ'
+    show:
+      title: 'メニュー詳細'
   fullcourses:
     index:
       title: 'フルコース一覧'

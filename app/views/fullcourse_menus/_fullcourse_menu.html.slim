@@ -1,9 +1,9 @@
 .card.shadow-lg.mb-3.bg-body.rounded
   .row.m-2.flex
-    .col-3.p-0
-      = link_to fullcourse_menu_path(fullcourse_menu.id), class: 'link'
-        = image_tag fullcourse_menu.menu_image.url, size: '300x200', class: 'img-fluid'
-    .col-9
+    .col-md-3.p-0
+      = link_to fullcourse_menu_path(fullcourse_menu.id)
+        = image_tag fullcourse_menu.menu_image.url, size: '300x200', class: 'img-fluid w-100 h-100'
+    .col-md-9
       .card-body.p-2
         .card-title
           h4
