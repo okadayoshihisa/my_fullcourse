@@ -1,14 +1,27 @@
 - set_meta_tags title: t('.title')
+
 .container
-  h1 = t('.title')
-  = form_with url: login_path, method: :post do |f|
-    .form-group
-      = f.label :email, class: 'sr-only'
-      = f.text_field :email, class: 'form-control', placeholder: 'Email address'
-    .form-group
-      = f.label :password, class: 'sr-only'
-      = f.password_field :password, class: 'form-control', placeholder: 'Password'
-    = f.submit 'Login', class: 'btn btn-lg btn-primary btn-block'
-  = link_to t('defaults.twitter_login'), auth_at_provider_path(provider: :twitter)
-  br
-  = link_to t('defaults.password_forget'), new_password_reset_path
+  h1.m-4.text-center
+    = t('.title')
+  .row
+    .col-lg-5.mx-auto
+      .card.shadow-lg.rounded
+        .card-body.text-center
+          = link_to auth_at_provider_path(provider: :twitter), class: 'btn btn-primary w-100'
+            ion-icon name='logo-twitter'
+            = t('defaults.twitter_login')
+          = form_with url: login_path, method: :post do |f|
+            .divider-form
+            .form-group
+              = f.label :email, class: 'sr-only'
+              = f.text_field :email, class: 'form-control', placeholder: 'Email address'
+            .divider-form
+            .form-group
+              = f.label :password, class: 'sr-only'
+              = f.password_field :password, class: 'form-control', placeholder: 'Password'
+            .divider-form
+            = f.submit t('.title'), class: 'btn btn-lg btn-primary btn-block'
+            .mt-3
+              = link_to t('.password_forget'), new_password_reset_path, class: 'link-secondary'
+            .mt-2
+              = link_to t('.user_new'), new_user_path, class: 'link-secondary'

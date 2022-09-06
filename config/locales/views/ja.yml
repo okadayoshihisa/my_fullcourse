@@ -10,7 +10,6 @@ ja:
       cancel: "%{item}をキャンセルしました"
       require_login: "ログインしてください"
     password_reset: 'パスワードリセット'
-    password_forget: 'パスワードをお忘れの方はこちら'
     twitter_login: 'Twitterアカウントでログイン'
 
   users:
@@ -27,6 +26,7 @@ ja:
       title: 'ログイン'
       to_register_page: '登録ページへ'
       password_forget: 'パスワードをお忘れの方はこちら'
+      user_new: '新規登録はこちら'
     create:
       success: 'ログインしました'
       fail: 'ログインに失敗しました'
