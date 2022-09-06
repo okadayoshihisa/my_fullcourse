@@ -16,6 +16,8 @@ ja:
     new:
       title: '新規登録'
       to_login_page: 'ログインページへ'
+      password_confirmation: 'パスワード確認'
+      have_account: 'アカウントをお持ちの方はこちら'
     create:
       success: 'ユーザーを登録しました'
       fail: 'ユーザー登録に失敗しました'

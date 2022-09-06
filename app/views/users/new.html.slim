@@ -1,20 +1,35 @@
 - set_meta_tags title: t('.title')
 .container
-  h1 = t('.title') 
-  = form_with model: @user, local: true do |f|
-    = render 'shared/error_messages', model: @user
-    .form-group
-      = f.label :name, class: 'sr-only'
-      = f.text_field :name, class: 'form-control', placeholder: 'name'
-    .form-group
-      = f.label :email, class: 'sr-only'
-      = f.text_field :email, class: 'form-control', placeholder: 'Email address'
-    .form-group
-      = f.label :password, class: 'sr-only'
-      = f.password_field :password, class: 'form-control', placeholder: 'Password'
-    .form-group
-      = f.label :password_confirmation , class: 'sr-only'
-      = f.password_field :password_confirmation, class: 'form-control', placeholder: 'password_confirmation'
+  .row
+    .col-lg-5.mx-auto
+      .card.shadow-lg.my-5.rounded
+        h1.card-title.my-3.text-center
+          = t('.title')
+        .card-body
+          = link_to auth_at_provider_path(provider: :twitter), class: 'btn btn-primary w-100'
+            ion-icon name='logo-twitter'
+            = t('defaults.twitter_login')
 
-    = f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'
-  = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
+          = form_with model: @user, local: true do |f|
+            .divider-form
+            = render 'shared/error_messages', model: @user
+            .form-group
+              = f.label :name, class: 'sr-only'
+              = f.text_field :name, class: 'form-control', placeholder: User.human_attribute_name(:name)
+            .divider-form
+            .form-group
+              = f.label :email, class: 'sr-only'
+              = f.text_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email)
+            .divider-form
+            .form-group
+              = f.label :password, class: 'sr-only'
+              = f.password_field :password, class: 'form-control', placeholder: User.human_attribute_name(:password)
+            .divider-form
+            .form-group
+              = f.label :password_confirmation , class: 'sr-only'
+              = f.password_field :password_confirmation, class: 'form-control', placeholder: t('.password_confirmation')
+            .divider-form
+            .text-center
+              = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary w-100'
+              .mt-3  
+                = link_to t('.have_account'), login_path, class: 'link-secondary'
