@@ -50,7 +50,7 @@ ja:
       title: "%{item}のフルコース"
   profiles:
     show:
-      title: 'プロフィール'
+      title: 'マイページ'
     edit:
       title: 'プロフィール編集'
   password_resets:
