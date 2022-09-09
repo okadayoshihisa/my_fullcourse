@@ -1,144 +1,108 @@
-
-/*------------------------------------
-- COLOR primary
-------------------------------------*/
-
-.alert-primary hr {
-    border-top-color: #e4f2fc;
-}
-
-.alert-primary .alert-link {
-    color: #0d5387;
-}
-
-.badge-primary {
-    color: #212529;
-    background-color: #55acee;
-}
-
-.badge-primary[href]:hover, .badge-primary[href]:focus {
-    color: #212529;
-    background-color: #2695e9;
-}
-
-.bg-primary {
-    background-color: #55acee !important;
-}
-
-a.bg-primary:hover, a.bg-primary:focus,
-button.bg-primary:hover,
-button.bg-primary:focus {
-    background-color: #2695e9 !important;
-}
-
-.border-primary {
-    border-color: #55acee !important;
-}
-
 .btn.btn-primary {
-    color: #fff;
-    background-color: #55acee;
-    border-color: #55acee;
+  color: white;
+  background-color: #1189cc;
+  border-color: #1189cc;
 }
 
 .btn.btn-primary:hover {
-    color: #fff;
-    background-color: #349cea;
-    border-color: #2695e9;
+  color: white;
+  background-color: #0e72ab;
+  border-color: #0d699c;
 }
 
 .btn.btn-primary:focus, .btn.btn-primary.focus {
-    box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(17, 137, 204, 0.5);
 }
 
 .btn.btn-primary.disabled, .btn.btn-primary:disabled {
-    color:#fff;
-    background-color: #55acee;
-    border-color: #55acee;
+  color: white;
+  background-color: #1189cc;
+  border-color: #1189cc;
 }
 
-.btn.btn-primary:not(:disabled):not(.disabled):active, .btn.btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #2695e9;
-    border-color: #188ee7;
+.btn.btn-primary:not(:disabled):not(.disabled):active, .btn.btn-primary:not(:disabled):not(.disabled).active {
+  color: white;
+  background-color: #0d699c;
+  border-color: #0b5f8e;
 }
 
-.btn.btn-primary:not(:disabled):not(.disabled):active:focus, .btn.btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.5);
+.btn.btn-primary:not(:disabled):not(.disabled):active:focus, .btn.btn-primary:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(17, 137, 204, 0.5);
 }
 
-.btn-outline-primary {
-    color: #55acee;
-    background-color: transparent;
-    border-color: #55acee;
+$warning_shadow: rgba(239, 106, 55, 0.5);
+$warning_text_color_dark_bright: #212529;
+
+.btn.btn-warning {
+  color: white;
+  background-color: #ef6a37;
+  border-color: #ef6a37;
 }
 
-.btn-outline-primary:hover {
-    color: #212529;
-    background-color: #55acee;
-    border-color: #55acee;
+.btn.btn-warning:hover {
+  color: white;
+  background-color: #ec5115;
+  border-color: #e14b11;
 }
 
-.btn-outline-primary:focus, .btn-outline-primary.focus {
-    box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.5);
+.btn.btn-warning:focus, .btn.btn-warning.focus {
+  box-shadow: 0 0 0 0.2rem rgba(239, 106, 55, 0.5);
 }
 
-.btn-outline-primary.disabled, .btn-outline-primary:disabled {
-    color: #55acee;
-    background-color: transparent;
+.btn.btn-warning.disabled, .btn.btn-warning:disabled {
+  color: white;
+  background-color: #ef6a37;
+  border-color: #ef6a37;
 }
 
-.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
-    color: #212529;
-    background-color: #55acee;
-    border-color: #55acee;
+.btn.btn-warning:not(:disabled):not(.disabled):active, .btn.btn-warning:not(:disabled):not(.disabled).active {
+  color: white;
+  background-color: #e14b11;
+  border-color: #d24610;
 }
 
-.btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.5);
+.btn.btn-warning:not(:disabled):not(.disabled):active:focus, .btn.btn-warning:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(239, 106, 55, 0.5);
 }
 
-.list-group-item-primary {
-    color: #126fb6;
-    background-color: #fbfdfe;
+.btn.btn-twitter {
+  color: #fff;
+  background-color: #55acee;
+  border-color: #55acee;
 }
 
-.list-group-item-primary.list-group-item-action:hover, .list-group-item-primary.list-group-item-action:focus {
-    color: #126fb6;
-    background-color: #e4f2fc;
+.btn.btn-twitter:hover {
+  color: #fff;
+  background-color: #349cea;
+  border-color: #2695e9;
 }
 
-.list-group-item-primary.list-group-item-action.active {
-    color: #212529;
-    background-color: #126fb6;
-    border-color: #126fb6;
+.btn.btn-twitter:focus, .btn.btn-twitter.focus {
+  box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.5);
 }
 
-.table-primary,
-.table-primary > th,
-.table-primary > td {
-    background-color: #fbfdfe;
+.btn.btn-twitter.disabled, .btn.btn-twitter:disabled {
+  color:#fff;
+  background-color: #55acee;
+  border-color: #55acee;
 }
 
-.table-hover .table-primary:hover {
-    background-color: #e4f2fc;
+.btn.btn-twitter:not(:disabled):not(.disabled):active, .btn.btn-twitter:not(:disabled):not(.disabled).active {
+  color: #fff;
+  background-color: #2695e9;
+  border-color: #188ee7;
 }
 
-.table-hover .table-primary:hover > td,
-.table-hover .table-primary:hover > th {
-    background-color: #e4f2fc;
-}
-
-.text-primary {
-    color: #55acee !important;
-}
-
-a.text-primary:hover, a.text-primary:focus {
-    color: #2695e9 !important;
+.btn.btn-twitter:not(:disabled):not(.disabled):active:focus, .btn.btn-twitter:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.5);
 }
 
 html body {
-    padding-top: 66px;
-    background-color: #f3f4f6;
-    font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
+  padding-top: 66px;
+  background-color: #f3f4f6;
+  font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
+}
+
+.logo {
+  font-family: '玉ねぎ楷書激無料版v6';
 }
