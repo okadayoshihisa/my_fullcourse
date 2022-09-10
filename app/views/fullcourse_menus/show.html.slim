@@ -1,20 +1,21 @@
-h1 メニュー詳細
+- set_meta_tags title: @fullcourse_menu.name
 .container
+  h1.text-center.my-3
+    = t('.title')
+
   = render 'fullcourse_menu', fullcourse_menu: @fullcourse_menu
 
   .card.shadow-lg.mb-3.bg-body.rounded
     .row.m-2.flex
-      .col-3.p-0#show_map
-      .col-6
+      .col-md-3.p-0
+        #show_map
+      .col-md-9
         .card-body.p-2
           .card-title
             h4
               = @fullcourse_menu.store.name
           .card-text
-            p.mb-1
-                i.fa.fa-store
-                |  #{@fullcourse_menu.store.name}
-            p.mb-1
+            p.my-2
                 i.fas.fa-map-marked-alt
                 |  #{@fullcourse_menu.store.address}
 

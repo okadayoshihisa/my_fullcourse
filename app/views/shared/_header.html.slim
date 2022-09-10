@@ -1,38 +1,33 @@
-header
-  nav.navbar.navbar-expand-lg.navigation.navbar-light.bg-light
-    = link_to t('defaults.my_fullcourse'), root_path, class: 'navbar-brand'
-    button.navbar-toggler[data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
-      span.navbar-toggler-icon
-
-    #navbarSupportedContent.collapse.navbar-collapse.justify-content-end
-      ul.navbar-nav.ml-auto.main-nav.align-items-center
-        li
-          = link_to t('admin.actions.dashboard.title'), '/admin' if current_user.admin?
-        li.nav-item.dropdown
-          a.nav-link.dropdown-toggle[href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"]
-            = t('activerecord.models.fullcourse_menu')
-          ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
-            li
-              = link_to t('fullcourses.index.title'), fullcourses_path, class: 'dropdown-item'
-            li
-              = link_to t('fullcourse_menus.map.title'), map_fullcourse_menus_path, class: 'dropdown-item'
-            li
-              - if current_user.fullcourse_menus.present?
-                = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(current_user.id), class: 'dropdown-item'
-              - else  
-                = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'dropdown-item'
-
-        li.nav-item.dropdown.dropdown-slide
-          a#dropdownUser1.d-block.link-dark.text-decoration-none.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#"
-            = image_tag current_user.avatar.url, size: '40x40', class: 'rounded-circle mr15'
-          
-          ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
-            li
-              .dropdown-item
-                = current_user.name
-            li    
-              .dropdown-divider
-            li
-              = link_to t('profiles.show.title'), profile_path, class: 'dropdown-item'
-            li
-              = link_to t('defaults.logout'), logout_path, class: 'dropdown-item', method: :delete
+header.fixed-top
+  nav.navbar.navbar-expand-lg.navbar-light.bg-white
+    .container-fluid
+      = link_to root_path, class: 'navbar-brand'
+        = image_tag 'logo.jpeg', height: 40
+      button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button" 
+        span.navbar-toggler-icon
+      #navbarNavDropdown.collapse.navbar-collapse.justify-content-end
+        ul.navbar-nav
+          li.nav-item.d-flex.align-items-center
+            = link_to t('admin.actions.dashboard.title'), '/admin', class: 'nav-link' if current_user.admin?
+          li
+            = link_to t('fullcourses.index.title'), fullcourses_path, class: 'nav-link'
+          li
+            = link_to t('fullcourse_menus.map.title'), map_fullcourse_menus_path, class: 'nav-link'
+          li
+            - if current_user.fullcourse_menus.present?
+              = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(current_user.id), class: 'nav-link'
+            - else
+              = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'nav-link'
+          li.nav-item.dropdown.px-1
+            a#dropdownUser1.d-block.link-dark.text-decoration-none.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#"
+              = image_tag current_user.avatar.url, size: '40x40', class: 'rounded-circle'
+            ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown"
+              li
+                .dropdown-item
+                  = current_user.name
+              li
+                .dropdown-divider
+              li
+                = link_to t('profiles.show.title'), profile_path, class: 'dropdown-item'
+              li
+                = link_to t('defaults.logout'), logout_path, class: 'dropdown-item', method: :delete

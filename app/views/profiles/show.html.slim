@@ -1,22 +1,24 @@
-.container.pt-3
+- set_meta_tags title: t('.title'), og: { image: "http://127.0.0.1:3000#{@user.fullcourse.fullcourse_image.url}" }
+.container.my-5
   .row
-    .col-md-10.offset-md-1
-      h1.float-left.mb-5
-        = t('.title')
-      = link_to '編集',  edit_profile_path, class: 'btn btn-success float-right'
-      table.table
-        tr
-          th[scope="row"]
-            = User.human_attribute_name(:email)
-          td
-            = current_user.email
-        tr
-          th[scope="row"]
-            = User.human_attribute_name(:name)
-          td
-            = current_user.name
-        tr
-          th[scope="row"]
-            = User.human_attribute_name(:avatar)
-          td
-            = image_tag current_user.avatar.url, class: 'rounded-circle', size: '50x50'
+    .col
+      = image_tag @user.avatar.url, size: '150x150', class: 'rounded-circle d-block mx-auto'
+  .row.text-center
+    .card-body.p-2
+      h2 = @user.name
+      = link_to t('profiles.edit.title'),  edit_profile_path, class: 'btn btn-success'
+  .row
+    .col-lg-10.offset-lg-1
+      h1.mt-4
+        = FullcourseMenu.model_name.human
+      .img.my-3.text-center
+        = image_tag @user.fullcourse.fullcourse_image.url, class: 'd-block mx-auto img-fluid'
+        - if @user == current_user
+          = link_to "https://twitter.com/intent/tweet?text=#{@user.name}がフルコースを作成しました!%0aフルコース完成まであと#{@user.remaining_number}つです!&hashtags=俺のフルコース&size=large",
+                    class: "twitter-share-button"     
+                      | tweet
+
+      = render partial: 'fullcourse_menus/fullcourse_menu', collection: @fullcourse_menus
+script async="async" charset="utf-8" src="https://platform.twitter.com/widgets.js" 
+
+

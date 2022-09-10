@@ -1,13 +1,28 @@
-header.p-3.bg-dark
-  .container-fruid
-    .d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
-      = link_to t('defaults.my_fullcourse'), root_path, class: ' navbar-brand'
-      ul.nav.col-12.col-lg-auto.me-lg-auto.mb-2.justify-content-center.mb-md-0
+header.fixed-top
+  nav.navbar.navbar-expand-lg.navbar-light.bg-white
+    .container-fluid
+      = link_to root_path, class: 'navbar-brand'
+        = image_tag 'logo.jpeg', height: 40
+      button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button" 
+        span.navbar-toggler-icon
+      #navbarNavDropdown.collapse.navbar-collapse.justify-content-end
+        ul.navbar-nav
+          li
+            = link_to t('fullcourses.index.title'), fullcourses_path, class: 'nav-link'
+          li
+            = link_to t('fullcourse_menus.map.title'), map_fullcourse_menus_path, class: 'nav-link'
+          li
+            = link_to t('users.new.title'), new_user_path, class: 'nav-link'
+          li
+            = link_to t('defaults.login'), login_path, class: 'nav-link'
+
+
+    /ul.nav.col-12.col-lg-auto.me-lg-auto.mb-2.justify-content-center.mb-md-0
         li
           = link_to t('fullcourses.index.title'), fullcourses_path, class: 'nav-link.px-2.link-white'
       .text-end
         = link_to login_path
-          button.btn.btn-outline-light.me-2 type="button"
+          button.btn.btn-outline-primary.me-2 type="button"
             = t('defaults.login')
         = link_to new_user_path
           button.btn.btn-warning type="button"

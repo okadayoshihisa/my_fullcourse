@@ -1,6 +1,8 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: %i[edit update]
-  def show; end
+  before_action :set_user, only: %i[show edit update]
+  def show
+    @fullcourse_menus = @user.fullcourse_menus.order(id: :asc)
+  end
 
   def edit; end
 

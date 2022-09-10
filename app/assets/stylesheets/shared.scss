@@ -1,0 +1,108 @@
+.btn.btn-primary {
+  color: white;
+  background-color: #1189cc;
+  border-color: #1189cc;
+}
+
+.btn.btn-primary:hover {
+  color: white;
+  background-color: #0e72ab;
+  border-color: #0d699c;
+}
+
+.btn.btn-primary:focus, .btn.btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(17, 137, 204, 0.5);
+}
+
+.btn.btn-primary.disabled, .btn.btn-primary:disabled {
+  color: white;
+  background-color: #1189cc;
+  border-color: #1189cc;
+}
+
+.btn.btn-primary:not(:disabled):not(.disabled):active, .btn.btn-primary:not(:disabled):not(.disabled).active {
+  color: white;
+  background-color: #0d699c;
+  border-color: #0b5f8e;
+}
+
+.btn.btn-primary:not(:disabled):not(.disabled):active:focus, .btn.btn-primary:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(17, 137, 204, 0.5);
+}
+
+$warning_shadow: rgba(239, 106, 55, 0.5);
+$warning_text_color_dark_bright: #212529;
+
+.btn.btn-warning {
+  color: white;
+  background-color: #ef6a37;
+  border-color: #ef6a37;
+}
+
+.btn.btn-warning:hover {
+  color: white;
+  background-color: #ec5115;
+  border-color: #e14b11;
+}
+
+.btn.btn-warning:focus, .btn.btn-warning.focus {
+  box-shadow: 0 0 0 0.2rem rgba(239, 106, 55, 0.5);
+}
+
+.btn.btn-warning.disabled, .btn.btn-warning:disabled {
+  color: white;
+  background-color: #ef6a37;
+  border-color: #ef6a37;
+}
+
+.btn.btn-warning:not(:disabled):not(.disabled):active, .btn.btn-warning:not(:disabled):not(.disabled).active {
+  color: white;
+  background-color: #e14b11;
+  border-color: #d24610;
+}
+
+.btn.btn-warning:not(:disabled):not(.disabled):active:focus, .btn.btn-warning:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(239, 106, 55, 0.5);
+}
+
+.btn.btn-twitter {
+  color: #fff;
+  background-color: #55acee;
+  border-color: #55acee;
+}
+
+.btn.btn-twitter:hover {
+  color: #fff;
+  background-color: #349cea;
+  border-color: #2695e9;
+}
+
+.btn.btn-twitter:focus, .btn.btn-twitter.focus {
+  box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.5);
+}
+
+.btn.btn-twitter.disabled, .btn.btn-twitter:disabled {
+  color:#fff;
+  background-color: #55acee;
+  border-color: #55acee;
+}
+
+.btn.btn-twitter:not(:disabled):not(.disabled):active, .btn.btn-twitter:not(:disabled):not(.disabled).active {
+  color: #fff;
+  background-color: #2695e9;
+  border-color: #188ee7;
+}
+
+.btn.btn-twitter:not(:disabled):not(.disabled):active:focus, .btn.btn-twitter:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(85, 172, 238, 0.5);
+}
+
+html body {
+  padding-top: 66px;
+  background-color: #f3f4f6;
+  font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
+}
+
+.logo {
+  font-family: '玉ねぎ楷書激無料版v6';
+}

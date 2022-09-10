@@ -1,38 +1,40 @@
 #map {
-    height: 400px;
-    width: 100%;
-  }
+  height: 600px;
+  width: 100%;
+}
+$h: 300px;
+$w: 460px;
 #map0{
-  height: 300px;
-  width: 400px;
+  height: $h;
+  width: $w;
 }
 #map1{
-    height: 300px;
-    width: 400px;
+  height: $h;
+  width: $w;
 }
 #map2{
-    height: 300px;
-    width: 400px;
+  height: $h;
+  width: $w;
 }
 #map3{
-    height: 300px;
-    width: 400px;
+  height: $h;
+  width: $w;
 }
 #map4{
-    height: 300px;
-    width: 400px;
+  height: $h;
+  width: $w;
 }
 #map5{
-    height: 300px;
-    width: 400px;
+  height: $h;
+  width: $w;
 }
 #map6{
-    height: 300px;
-    width: 400px;
+  height: $h;
+  width: $w;
 }
 #map7{
-    height: 300px;
-    width: 400px;
+  height: $h;
+  width: $w;
 }
 .link {
   text-decoration: none;
@@ -40,5 +42,5 @@
 }
 #show_map{
   height: 200px;
-  width: 300px;
+  width: 100%;
 }

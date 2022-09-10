@@ -10,13 +10,14 @@ ja:
       cancel: "%{item}をキャンセルしました"
       require_login: "ログインしてください"
     password_reset: 'パスワードリセット'
-    password_forget: 'パスワードをお忘れの方はこちら'
     twitter_login: 'Twitterアカウントでログイン'
 
   users:
     new:
       title: '新規登録'
       to_login_page: 'ログインページへ'
+      password_confirmation: 'パスワード確認'
+      have_account: 'アカウントをお持ちの方はこちら'
     create:
       success: 'ユーザーを登録しました'
       fail: 'ユーザー登録に失敗しました'
@@ -27,6 +28,7 @@ ja:
       title: 'ログイン'
       to_register_page: '登録ページへ'
       password_forget: 'パスワードをお忘れの方はこちら'
+      user_new: '新規登録はこちら'
     create:
       success: 'ログインしました'
       fail: 'ログインに失敗しました'
@@ -39,6 +41,8 @@ ja:
       title: 'フルコースメニュー編集'
     map:
       title: 'マップ'
+    show:
+      title: 'メニュー詳細'
   fullcourses:
     index:
       title: 'フルコース一覧'
@@ -46,7 +50,7 @@ ja:
       title: "%{item}のフルコース"
   profiles:
     show:
-      title: 'プロフィール'
+      title: 'マイページ'
     edit:
       title: 'プロフィール編集'
   password_resets:
