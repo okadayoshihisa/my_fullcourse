@@ -1,4 +1,18 @@
-.top-wrapper
-  .top-inner-text
-    h1
-      | #{t('defaults.my_fullcourse')}
+.top-wrapper.d-flex.align-items-center
+  .container
+    .row
+      .col-md-9.mx-auto
+        = image_tag 'logo.jpg', class: 'd-block mx-auto w-100'
+    .row
+      .col.my-3
+        h3.text-center.des
+          | メニューを登録して
+          br
+          | 自分だけのフルコースを作成しよう
+    .row
+      .col-md-9.mx-auto.text-center
+        = link_to t('fullcourses.index.title'), fullcourses_path, class: 'btn btn-primary me-4'
+        - if current_user.fullcourse_menus.present?
+          = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(current_user.id), class: 'btn btn-warning'
+        - else
+          = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'btn btn-warning'
