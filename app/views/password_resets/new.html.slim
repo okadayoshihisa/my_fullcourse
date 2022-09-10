@@ -1,9 +1,14 @@
-h1
-  = t('.title')
-= form_with url: password_resets_path, local: true do |f|
-    .field
-      = f.label :email, User.human_attribute_name(:email)
-      br
-      = f.text_field :email
-      br
-      = f.submit t('.submit')
+- set_meta_tags title: t('.title')
+
+.container
+  .row
+    .col-lg-5.mx-auto
+      .card.shadow-lg.my-5.rounded
+        h2.card-title.my-3.text-center
+          = t('.title')
+        .card-body.text-center
+          = form_with url: password_resets_path, local: true do |f|
+            .form-group
+              = f.label :email, class: 'sr-only'
+              = f.text_field :email, placeholder: User.human_attribute_name(:email), class: 'w-75'
+            = f.submit t('.submit'), class: 'btn btn-warning my-3 w-75'
