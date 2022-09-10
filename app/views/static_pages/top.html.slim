@@ -12,7 +12,7 @@
     .row
       .col-md-9.mx-auto.text-center
         = link_to t('fullcourses.index.title'), fullcourses_path, class: 'btn btn-primary me-4'
-        - if current_user.fullcourse_menus.present?
+        - if current_user
           = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(current_user.id), class: 'btn btn-warning'
         - else
           = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'btn btn-warning'
