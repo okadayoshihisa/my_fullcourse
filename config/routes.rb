@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get "oauth/callback", to: "oauths#callback"
   get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
 
+  get 'privacy', to: 'static_pages#privacy'
+  get 'terms', to: 'static_pages#terms'
+
   resources :users, only: %i[new create edit]
   resources :fullcourse_menus do
     get 'map', on: :collection
