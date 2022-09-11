@@ -11,6 +11,8 @@ ja:
       require_login: "ログインしてください"
     password_reset: 'パスワードリセット'
     twitter_login: 'Twitterアカウントでログイン'
+    developer_twitter: '開発者Twitterアカウント'
+    privacy_policy: 'プライバシーポリシー'
 
   users:
     new:
