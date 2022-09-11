@@ -13,6 +13,8 @@ ja:
     twitter_login: 'Twitterアカウントでログイン'
     developer_twitter: '開発者Twitterアカウント'
     privacy_policy: 'プライバシーポリシー'
+    terms: '利用規約'
+    contact: 'お問い合わせ'
 
   users:
     new:
