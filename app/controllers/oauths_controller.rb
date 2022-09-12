@@ -1,4 +1,3 @@
-# app/controllers/oauths_controller.rb
 class OauthsController < ApplicationController
   skip_before_action :require_login
 
@@ -13,7 +12,7 @@ class OauthsController < ApplicationController
       return
     end
     create_user_from(provider) unless (@user = login_from(provider))
-    redirect_to fullcourses_path, success: t('user_sessions.create.success')
+    redirect_back_or_to fullcourses_path, success: t('user_sessions.create.success')
   end
 
   private
