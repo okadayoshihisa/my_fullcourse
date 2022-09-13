@@ -8,7 +8,7 @@ class CreateStores < ActiveRecord::Migration[6.1]
       t.float :longitude
 
       t.timestamps
-      t.index [:name, :address, :latitude, :longitude], unique: true
+      t.index [:name, :address, :latitude, :longitude, :phone_number], unique: true, name: 'stores_unique_index'
     end
   end
 end
