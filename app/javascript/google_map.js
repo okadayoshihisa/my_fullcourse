@@ -106,25 +106,16 @@ function markerEvent(i) {
     frontMaker = markers[i];
   });  
 }
-
+//クリックした地点の緯度経度から住所をフォームに入れる
 function getClickLatLng(lat_lng, i) {
   if (markers[i]) {
   markers[i].setMap(null);
   }
-  markers[i] = new google.maps.Marker({
-    position: lat_lng,
-    map: maps[i]
-  });
-  maps[i].panTo(lat_lng);
-  //マップのクリックした地点の住所、緯度経度をフォームに入れる
   geocoder.geocode( { latLng: lat_lng}, function(results, status) {
     if (status == 'OK') {
       address = document.getElementById(`address_${i}`);
       address.value = results[0].formatted_address;
-      latitude = document.getElementById(`latitude_${i}`);
-      latitude.value = results[0].geometry.location.lat();
-      longitude = document.getElementById(`longitude_${i}`);
-      longitude.value = results[0].geometry.location.lng();
+      getLatLng(i);
     }
   });
 }

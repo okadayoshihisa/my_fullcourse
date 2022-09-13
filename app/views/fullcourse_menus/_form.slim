@@ -17,54 +17,33 @@
       = f.fields_for :stores, form.stores[index] do |i|
         .form-group
           = i.label :name
-          br/
+          br
           = i.text_field :name, class: 'form-control', onchange: "codeAddress(#{index})", id: "name_#{index}"
         .form-group
           = i.label :address
-          br/
+          br
           = i.text_field :address, class: 'form-control', onchange: "getLatLng(#{index})", id: "address_#{index}"
           = i.hidden_field :latitude, id: "latitude_#{index}"
           = i.hidden_field :longitude, id: "longitude_#{index}"
+          = i.hidden_field :phone_number, id: "phone_number_#{index}"
           div id="map#{index}"
 
   = f.submit t('defaults.register'), class: 'btn btn-lg btn-primary btn-block'
 
 javascript:
-  //住所を入力すると緯度経度を取得しフォームに入れる
+  //住所を入力すると店名と住所から緯度経度、電話番号を取得しフォームに入れる
   function getLatLng(i){
-    address = document.getElementById(`address_${i}`);
-    latitude = document.getElementById(`latitude_${i}`);
-    longitude = document.getElementById(`longitude_${i}`);
-    geocoder.geocode( { 'address': address.value }, function(results, status) {
-      if (status == 'OK') {
-        maps[i].setCenter(results[0].geometry.location);
-        if (markers[i]) {
-          markers[i].setMap(null);
-        }
-        markers[i] = new google.maps.Marker({
-          map: maps[i],
-          position: results[0].geometry.location
-        });
-        latitude.value = results[0].geometry.location.lat();
-        longitude.value = results[0].geometry.location.lng();
-      }else if (!address.value){
-        if (markers[i]) {
-          markers[i].setMap(null);
-        }
-        latitude.value = null;
-        longitude.value = null;
-      }else {
-        alert('該当する結果がありませんでした：' + status); 
-      }
-    });
-  }
-  //店名入力で住所と緯度経度を取得し、フォームに入力
-  function codeAddress(i){
     inputName = document.getElementById(`name_${i}`).value;
     address = document.getElementById(`address_${i}`);
     latitude = document.getElementById(`latitude_${i}`);
     longitude = document.getElementById(`longitude_${i}`);
-    geocoder.geocode( { 'address': inputName}, function(results, status) {
+    phone_number = document.getElementById(`phone_number_${i}`);
+    service = new google.maps.places.PlacesService(maps[i]);
+    var request = {
+      query: `${inputName} ${address.value}`,
+      fields: ['formatted_address', 'geometry', 'place_id']
+    };
+    service.findPlaceFromQuery(request, function(results, status) {
       if (status == 'OK') {
         maps[i].setCenter(results[0].geometry.location);
         if (markers[i]) {
@@ -77,6 +56,66 @@ javascript:
         address.value = results[0].formatted_address;
         latitude.value = results[0].geometry.location.lat();
         longitude.value = results[0].geometry.location.lng();
+        //電話番号取得
+        var detailsRequest = {
+          placeId: results[0].place_id,
+          fields: ['formatted_phone_number']
+        };
+        service = new google.maps.places.PlacesService(maps[i]);
+        service.getDetails(detailsRequest, function(place, status) {
+          if (status == 'OK') {
+            phone_number.value = place.formatted_phone_number;
+          }
+        });
+        //住所が空欄の時、緯度経度、電話番号のフォームの値を消す
+      }else if (!address.value){
+        if (markers[i]) {
+          markers[i].setMap(null);
+        }
+        latitude.value = null;
+        longitude.value = null;
+        phone_number.value = null;
+      }
+    });
+  }
+
+  //店名入力で住所、緯度経度、電話番号を取得し、フォームに入力
+  function codeAddress(i){
+    inputName = document.getElementById(`name_${i}`).value;
+    address = document.getElementById(`address_${i}`);
+    latitude = document.getElementById(`latitude_${i}`);
+    longitude = document.getElementById(`longitude_${i}`);
+    phone_number = document.getElementById(`phone_number_${i}`);
+    service = new google.maps.places.PlacesService(maps[i]);
+    var request = {
+      query: inputName,
+      fields: ['formatted_address', 'geometry', 'place_id']
+    };
+    service.findPlaceFromQuery(request, function(results, status) {
+      if (status == 'OK') {
+        maps[i].setCenter(results[0].geometry.location);
+        if (markers[i]) {
+          markers[i].setMap(null);
+        }
+        markers[i] = new google.maps.Marker({
+          map: maps[i],
+          position: results[0].geometry.location
+        });
+        address.value = results[0].formatted_address;
+        latitude.value = results[0].geometry.location.lat();
+        longitude.value = results[0].geometry.location.lng();
+        //電話番号取得
+        var detailsRequest = {
+          placeId: results[0].place_id,
+          fields: ['formatted_phone_number']
+        };
+        service = new google.maps.places.PlacesService(maps[i]);
+        service.getDetails(detailsRequest, function(place, status) {
+          if (status == 'OK') {
+            phone_number.value = place.formatted_phone_number;
+          }
+        });
+        //店名が空欄の時フォームの全ての値を消す
       } else if (!inputName) {
         if (markers[i]) {
           markers[i].setMap(null);
@@ -84,8 +123,9 @@ javascript:
         address.value = null;
         latitude.value = null;
         longitude.value = null;
+        phone_number.value = null;
       }else {
-        alert('該当する結果がありませんでした：' + status);
+        alert('住所を入力またはマップをクッリクしてマーカーを設置してください');
       }
     });
   }
