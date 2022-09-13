@@ -1,5 +1,7 @@
 - set_meta_tags title: t('.title', item: @user.name), og: { image: "http://127.0.0.1:3000#{@user.fullcourse.fullcourse_image.url}" }
-.container
+.container.my-5
+  - if @user == current_user
+    = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(@user.id), class: 'btn btn-success'
   .img.my-3.text-center
     = image_tag @user.fullcourse.fullcourse_image.url, class: 'd-block mx-auto img-fluid'
     - if @user == current_user
