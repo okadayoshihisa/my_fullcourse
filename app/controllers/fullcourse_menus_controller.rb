@@ -66,7 +66,7 @@ class FullcourseMenusController < ApplicationController
 
   def menu_store_form_params
     params.require(:form_menu_store_form).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
-                                                 stores_attributes: %i[name address latitude longitude])
+                                                  stores_attributes: %i[name address latitude longitude phone_number])
   end
 
   def set_user

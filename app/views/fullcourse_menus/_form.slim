@@ -44,7 +44,7 @@ javascript:
       fields: ['formatted_address', 'geometry', 'place_id']
     };
     service.findPlaceFromQuery(request, function(results, status) {
-      if (status == 'OK') {
+      if (status == 'OK' && address.value) {
         maps[i].setCenter(results[0].geometry.location);
         if (markers[i]) {
           markers[i].setMap(null);
