@@ -16,7 +16,10 @@
               = @fullcourse_menu.store.name
           .card-text
             p.my-2
-                i.fas.fa-map-marked-alt
-                |  #{@fullcourse_menu.store.address}
+              i.fas.fa-map-marked-alt.me-2
+              | #{@fullcourse_menu.store.address}
+            p.my-2
+              i.fas.fa-phone-square-alt.me-2
+              | #{@fullcourse_menu.store.phone_number}
 
 script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap&libraries=places&v=weekly"

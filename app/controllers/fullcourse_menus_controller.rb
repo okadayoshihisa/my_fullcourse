@@ -16,7 +16,7 @@ class FullcourseMenusController < ApplicationController
     if @form.save
       fullcourse = current_user.build_fullcourse
       fullcourse.create_fullcourse_image
-      redirect_to fullcourses_path
+      redirect_to fullcourse_path(current_user)
     else
       gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
       gon.lng = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:longitude].to_f }
@@ -44,7 +44,7 @@ class FullcourseMenusController < ApplicationController
     if @form.update(menu_store_form_params)
       fullcourse = @user.build_fullcourse
       fullcourse.create_fullcourse_image
-      redirect_to fullcourses_path
+      redirect_to fullcourse_path
     else
       gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
       gon.lng = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:longitude].to_f }
@@ -66,7 +66,7 @@ class FullcourseMenusController < ApplicationController
 
   def menu_store_form_params
     params.require(:form_menu_store_form).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
-                                                 stores_attributes: %i[name address latitude longitude])
+                                                 stores_attributes: %i[name address latitude longitude phone_number])
   end
 
   def set_user
