@@ -7,17 +7,17 @@
       .card-body.p-2
         .card-title
           h4
-            = link_to fullcourse_menu_path(fullcourse_menu.id), class: 'link'
-              = fullcourse_menu.genre_i18n
-              br
-              = fullcourse_menu.name
+            = fullcourse_menu.genre_i18n
+            .mt-2
+              = link_to fullcourse_menu_path(fullcourse_menu.id), class: 'link'
+                = fullcourse_menu.name
         .card-text
-          p.mb-1
+          p.mb-2
             = FullcourseMenu.human_attribute_name(:level)
             |  #{fullcourse_menu.level}
-          p.mb-1
-            i.fa.fa-store
-            |  #{fullcourse_menu.store.name}
-          p.mb-1
-            i.fas.fa-map-marked-alt
-            |  #{fullcourse_menu.store.address}
+          p.mb-2
+            i.fa.fa-store.me-2
+            | #{fullcourse_menu.store.name}
+          p.mb-2
+            i.fas.fa-map-marked-alt.me-2
+            | #{fullcourse_menu.store.address}
