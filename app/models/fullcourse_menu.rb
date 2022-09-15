@@ -29,6 +29,7 @@ class FullcourseMenu < ApplicationRecord
         word.score
       end
     end
+    word_score.push(100) unless store.address.include?('日本')
     size_score + word_score.sum
   end
 end
