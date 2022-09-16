@@ -55,8 +55,8 @@ class Form::MenuStoreForm
         stores[i] = Store.find_or_create_by(name: store[:name], address: store[:address], latitude: store[:latitude],
                                             longitude: store[:longitude], phone_number: store[:phone_number])
         menu.store_id = stores[i].id
-        menu.level = menu.calculate_level if menu.name.present?
         menu.update(params[:fullcourse_menus_attributes][:"#{i}"])
+        menu.name.present? ? menu.update(level: menu.calculate_level) : menu.update(level: nil)
         menu.errors.any? || stores[i].errors.any?
       end
       raise ActiveRecord::RecordInvalid if errors.include?(true)

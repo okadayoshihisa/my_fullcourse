@@ -1,4 +1,5 @@
-- set_meta_tags title: t('.title'), og: { image: "http://127.0.0.1:3000#{@user.fullcourse.fullcourse_image.url}" }
+- if @user.fullcourse.present?
+  - set_meta_tags title: t('.title'), og: { image: @user.fullcourse.fullcourse_image.url }
 .container.my-5
   .row
     .col

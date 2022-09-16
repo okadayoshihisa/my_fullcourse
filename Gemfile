@@ -71,3 +71,5 @@ gem 'rails_admin', '~> 3.0'
 gem 'rails-i18n'
 gem 'slim'
 gem 'sorcery'
+gem 'fog-aws'
+gem "aws-sdk-s3", require: false 
