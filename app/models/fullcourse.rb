@@ -82,7 +82,7 @@ class Fullcourse < ApplicationRecord
   def write_lines(config, menus)
     config.font './app/assets/fonts/GenEiAntiqueNv5-M.ttf'
     remaining = menus.map(&:name).count('')
-    word1 = remaining == 0 ? "これで完成だ" : "あと#{remaining}つかな"
+    word1 = remaining.zero? ? 'これで完成だ' : "あと#{remaining}つかな"
     word2 = 'お前は？'
     config.gravity 'NorthEast'
     config.strokewidth 0

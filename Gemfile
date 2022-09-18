@@ -53,11 +53,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'aws-sdk-s3', require: false
 gem 'cancancan'
 gem 'carrierwave', '~> 2.0'
 gem 'config'
 gem 'dotenv-rails'
 gem 'enum_help'
+gem 'fog-aws'
 gem 'geocoder'
 gem 'gon'
 gem 'google_places'
@@ -71,5 +73,3 @@ gem 'rails_admin', '~> 3.0'
 gem 'rails-i18n'
 gem 'slim'
 gem 'sorcery'
-gem 'fog-aws'
-gem "aws-sdk-s3", require: false 
