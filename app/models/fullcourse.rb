@@ -7,7 +7,8 @@ class Fullcourse < ApplicationRecord
   mount_uploader :fullcourse_image, FullcourseImageUploader
 
   def create_fullcourse_image
-    image = MiniMagick::Image.open('./app/assets/images/fullcourse.jpg')
+    n = rand(1..3)
+    image = MiniMagick::Image.open("./app/assets/images/fullcourse#{n}.jpg")
     pos = '10, 10' # 基準点からの変位 '横,縦'
     menus = user.fullcourse_menus.order(id: :asc)
     image.combine_options do |config|
@@ -80,14 +81,15 @@ class Fullcourse < ApplicationRecord
   # セリフ
   def write_lines(config, menus)
     config.font './app/assets/fonts/GenEiAntiqueNv5-M.ttf'
-    word1 = "あと#{menus.map(&:name).count('')}つかな"
+    remaining = menus.map(&:name).count('')
+    word1 = remaining == 0 ? "これで完成だ" : "あと#{remaining}つかな"
     word2 = 'お前は？'
     config.gravity 'NorthEast'
     config.strokewidth 0
     config.pointsize 35
     word1.chars.each.with_index do |c, i|
       # ３文字目の時にx方向の数値を変える
-      x = i == 2 ? 27 : 20
+      x = word1 == "あと#{remaining}つかな" && i == 2 ? 27 : 20
       y = 50 + (35 * i)
       config.draw "text #{x}, #{y} '#{c}'"
     end
