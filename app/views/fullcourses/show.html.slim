@@ -1,4 +1,4 @@
-- set_meta_tags title: t('.title', item: @user.name), og: { image: @user.fullcourse.fullcourse_image.url }
+- set_meta_tags title: t('.title', item: @user.name), og: { image: "https://my-fullcourse.s3.ap-northeast-1.amazonaws.com/#{@user.fullcourse.fullcourse_image.file.path}" }
 .container.my-5
   - if @user == current_user
     = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(@user.id), class: 'btn btn-success'
