@@ -27,13 +27,13 @@ class Form::MenuStoreForm
     # 複数件全て保存できた場合のみ実行したいので、transactionを使用する
     ActiveRecord::Base.transaction do
       errors = fullcourse_menus.map.with_index do |menu, i|
-        # store.saveしてないので、作成失敗時に入力値を返すために＠form.storesに入れる
-        stores[i] = Store.find_or_create_by(name: stores[i].name, address: stores[i].address, latitude: stores[i].latitude,
-                                            longitude: stores[i].longitude, phone_number: stores[i].phone_number)
-        menu.store_id = stores[i].id
+        menu.store = Store.find_or_create_by(name: stores[i].name, address: stores[i].address, latitude: stores[i].latitude,
+                                             longitude: stores[i].longitude, phone_number: stores[i].phone_number)
         # 捕獲レベル算出
-        menu.level = menu.calculate_level if menu.name.present?
+        menu.level = calculate_level(menu.name, menu.store) if menu.name.present?
         menu.save
+        # store.saveしてないので、作成失敗時に入力値を返すために＠form.storesに入れる
+        stores[i] = menu.store
         menu.errors.any? || stores[i].errors.any?
       end
       # エラーを全て出すためsave!は使わずここでエラーを出す
@@ -51,12 +51,13 @@ class Form::MenuStoreForm
         # 緯度経度はfloat型なのでfind_byするために""の時にnilにする
         store[:latitude] = nil if store[:latitude].blank?
         store[:longitude] = nil if store[:longitude].blank?
+        menu.store = Store.find_or_create_by(name: store[:name], address: store[:address], latitude: store[:latitude],
+                                             longitude: store[:longitude], phone_number: store[:phone_number])
+        menu_params = params[:fullcourse_menus_attributes][:"#{i}"]
+        menu.level = (menu_params[:name].present? ? calculate_level(menu_params[:name], menu.store) : nil)
+        menu.update(menu_params)
         # storeはupdateしてないので、更新失敗時に入力値を返すために＠form.storesに入れる
-        stores[i] = Store.find_or_create_by(name: store[:name], address: store[:address], latitude: store[:latitude],
-                                            longitude: store[:longitude], phone_number: store[:phone_number])
-        menu.store_id = stores[i].id
-        menu.update(params[:fullcourse_menus_attributes][:"#{i}"])
-        menu.name.present? ? menu.update(level: menu.calculate_level) : menu.update(level: nil)
+        stores[i] = menu.store
         menu.errors.any? || stores[i].errors.any?
       end
       raise ActiveRecord::RecordInvalid if errors.include?(true)
@@ -64,5 +65,18 @@ class Form::MenuStoreForm
     true
   rescue StandardError
     false
+  end
+
+  def calculate_level(name, store)
+    size_score = name.size * 1.5
+    word_score = Word.all.filter_map do |word|
+      if word.menu?
+        word.score if name.include?(word.name)
+      elsif store.address.include?(word.name)
+        word.score
+      end
+    end
+    word_score.push(100) unless store.address.include?('日本')
+    size_score + word_score.sum
   end
 end

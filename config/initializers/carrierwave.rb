@@ -3,7 +3,6 @@ require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
 
 CarrierWave.configure do |config|
-  config.fog_provider = 'fog/aws'
   config.fog_directory  = 'my-fullcourse'
   config.fog_credentials = {
     provider: 'AWS',
