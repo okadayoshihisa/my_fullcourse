@@ -12,6 +12,7 @@ import '@fortawesome/fontawesome-free/js/all';
 import 'jquery';
 import "./preview_image";
 import "google_map.js";
+import "./hello_vue";
 
 Rails.start()
 ActiveStorage.start()
