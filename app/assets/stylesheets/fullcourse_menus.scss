@@ -44,3 +44,17 @@ $w: 460px;
   height: 200px;
   width: 100%;
 }
+.btn.genre-selecter {
+  color: #76808c;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 12.5%;
+  padding-top: 15px;
+}
+.btn.genre-selecter:hover{
+  background-color:rgba(0,0,0,.12);
+}
+.btn.buttoncolor {
+  color: #212529;
+  border-bottom: thick solid #ef6a37;
+}

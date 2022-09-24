@@ -10,7 +10,7 @@ RSpec.describe Store, type: :model do
 
   it '店名、住所、緯度、軽度、TELの組み合わせが異なる時登録できること' do
     store = create(:store)
-    another_store = build(:store)
+    build(:store)
     expect(store).to be_valid
-  end 
+  end
 end

@@ -10,9 +10,9 @@ import "bootstrap";
 import "../stylesheets/application.scss";
 import '@fortawesome/fontawesome-free/js/all';
 import 'jquery';
-import "./preview_image";
+import "preview_image.js";
 import "google_map.js";
-import "./hello_vue";
+import "form.js";
 
 Rails.start()
 ActiveStorage.start()
