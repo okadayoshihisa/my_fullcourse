@@ -21,6 +21,7 @@ class CreateFullcourseImage
     image
   end
 
+  private
   # 〇〇 フルコースと書き出す
   def self.write_user_name(config, pos, user)
     config.font './app/assets/fonts/GenEiGothicP-Regular.ttf' # フォント指定
