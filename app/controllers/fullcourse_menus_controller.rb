@@ -8,14 +8,13 @@ class FullcourseMenusController < ApplicationController
 
   def new
     redirect_to edit_fullcourse_menu_path(current_user.id) if current_user.fullcourse_menus.present?
-    @form = Form::MenuStoreForm.new
+    @form = MenuStoreForm.new
   end
 
   def create
-    @form = Form::MenuStoreForm.new(user_id_merge_form_params)
+    @form = MenuStoreForm.new(user_id_merge_form_params)
     if @form.save
-      fullcourse = current_user.build_fullcourse
-      fullcourse.create_fullcourse_image
+      current_user.create_fullcourse(fullcourse_image: CreateFullcourseImage.call(current_user))
       redirect_to fullcourse_path(current_user)
     else
       gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
@@ -33,17 +32,17 @@ class FullcourseMenusController < ApplicationController
 
   def edit
     redirect_to fullcourses_path unless @user == current_user
-    @form = Form::MenuStoreForm.new(user: @user)
+    @form = MenuStoreForm.new(user: @user)
     gon.lat = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.latitude }
     gon.lng = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.longitude }
     gon.user_id = @user.id
   end
 
   def update
-    @form = Form::MenuStoreForm.new(user: @user)
+    @form = MenuStoreForm.new(user: @user)
     if @form.update(menu_store_form_params)
-      fullcourse = @user.build_fullcourse
-      fullcourse.create_fullcourse_image
+      fullcourse = @user.fullcourse
+      fullcourse.update(fullcourse_image: CreateFullcourseImage.call(@user))
       redirect_to fullcourse_path
     else
       gon.lat = menu_store_form_params[:stores_attributes].to_h.map { |store| store[1][:latitude].to_f }
@@ -65,8 +64,8 @@ class FullcourseMenusController < ApplicationController
   private
 
   def menu_store_form_params
-    params.require(:form_menu_store_form).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
-                                                 stores_attributes: %i[name address latitude longitude phone_number])
+    params.require(:menu_store_form).permit(fullcourse_menus_attributes: %i[name genre menu_image menu_image_cache],
+                                            stores_attributes: %i[name address latitude longitude phone_number])
   end
 
   def set_user

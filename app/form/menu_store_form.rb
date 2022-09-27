@@ -1,4 +1,4 @@
-class Form::MenuStoreForm
+class MenuStoreForm
   include ActiveModel::Model
   FORM_COUNT = 8
   attr_accessor :fullcourse_menus, :stores

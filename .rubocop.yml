@@ -37,11 +37,14 @@ Style/FrozenStringLiteralComment:
 
 #許可する警告
 Metrics/MethodLength:
-  Enabled: false
+  Max: 18
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:
-  Enabled: false
+  Max: 26
 Naming/MethodParameterName:
   Enabled: false
-
+Layout/LineLength:
+  Max: 125
+Metrics/CyclomaticComplexity:
+  Max: 10
