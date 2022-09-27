@@ -39,6 +39,7 @@ class FullcourseMenusController < ApplicationController
   end
 
   def update
+    debugger
     @form = MenuStoreForm.new(user: @user)
     if @form.update(menu_store_form_params)
       fullcourse = @user.fullcourse
@@ -59,7 +60,13 @@ class FullcourseMenusController < ApplicationController
     gon.menus = menus.as_json(include: { store: { only: [:name] } })
   end
 
-  def destroy; end
+  def image_destroy
+    debugger
+    @index = params[:index]
+    @fullcourse_menu = FullcourseMenu.find(params[:id])
+    @fullcourse_menu.remove_menu_image!
+    @fullcourse_menu.save
+  end
 
   private
 

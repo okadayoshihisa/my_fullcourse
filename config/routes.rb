@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create edit]
   resources :fullcourse_menus do
     get 'map', on: :collection
+    delete 'image_destroy', on: :member
   end
   resources :fullcourses, only: %i[index show]
   resources :stars, only: %i[create destroy]
