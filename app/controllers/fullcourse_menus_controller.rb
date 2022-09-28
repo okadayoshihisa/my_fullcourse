@@ -1,5 +1,5 @@
 class FullcourseMenusController < ApplicationController
-  skip_before_action :require_login, only: %i[index]
+  skip_before_action :require_login, only: %i[index map]
   before_action :set_user, only: %i[edit update]
 
   def index
@@ -39,7 +39,6 @@ class FullcourseMenusController < ApplicationController
   end
 
   def update
-    debugger
     @form = MenuStoreForm.new(user: @user)
     if @form.update(menu_store_form_params)
       fullcourse = @user.fullcourse
@@ -61,9 +60,9 @@ class FullcourseMenusController < ApplicationController
   end
 
   def image_destroy
-    debugger
-    @index = params[:index]
     @fullcourse_menu = FullcourseMenu.find(params[:id])
+    redirect_to edit_fullcourse_menu_path(current_user.id) unless @fullcourse_menu.user_id == current_user.id
+    @index = params[:index]
     @fullcourse_menu.remove_menu_image!
     @fullcourse_menu.save
   end
