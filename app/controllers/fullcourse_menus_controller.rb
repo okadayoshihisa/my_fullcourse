@@ -7,8 +7,11 @@ class FullcourseMenusController < ApplicationController
   end
 
   def new
-    redirect_to edit_fullcourse_menu_path(current_user.id) if current_user.fullcourse_menus.present?
-    @form = MenuStoreForm.new
+    if current_user.fullcourse_menus.present?
+      redirect_to edit_fullcourse_menu_path(current_user.id)
+    else
+      @form = MenuStoreForm.new
+    end
   end
 
   def create
@@ -31,11 +34,14 @@ class FullcourseMenusController < ApplicationController
   end
 
   def edit
-    redirect_to fullcourses_path unless @user == current_user
-    @form = MenuStoreForm.new(user: @user)
-    gon.lat = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.latitude }
-    gon.lng = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.longitude }
-    gon.user_id = @user.id
+    if @user == current_user
+      @form = MenuStoreForm.new(user: @user)
+      gon.lat = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.latitude }
+      gon.lng = @user.fullcourse_menus.order(id: :asc).map { |menu| menu.store.longitude }
+      gon.user_id = @user.id
+    else
+      redirect_to fullcourses_path
+    end
   end
 
   def update
@@ -60,11 +66,14 @@ class FullcourseMenusController < ApplicationController
   end
 
   def image_destroy
-    @fullcourse_menu = FullcourseMenu.find(params[:id])
-    redirect_to edit_fullcourse_menu_path(current_user.id) unless @fullcourse_menu.user_id == current_user.id
     @index = params[:index]
-    @fullcourse_menu.remove_menu_image!
-    @fullcourse_menu.save
+    if current_user.fullcourse_menus.present?
+      @fullcourse_menu = FullcourseMenu.find(params[:id])
+      @fullcourse_menu.remove_menu_image!
+      @fullcourse_menu.save
+    else
+      @fullcourse_menu = FullcourseMenu.new
+    end
   end
 
   private

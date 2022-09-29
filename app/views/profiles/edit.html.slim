@@ -16,7 +16,7 @@
           = f.label :avatar
           = f.file_field :avatar, class: 'form-control', accept: 'image/*', id: 'file_btn_0'
           = f.hidden_field :avatar_cache
-          = link_to '画像を削除', image_destroy_profile_path, method: :delete, remote: true, class: 'btn btn-warning', id: "delete_btn_0"
+          = link_to '画像を削除', image_destroy_profile_path, method: :patch, remote: true, class: 'btn btn-warning', id: "delete_btn_0"
         .mt-3.mb-3
           div id="avatar"
             = image_tag @user.avatar.url,
