@@ -18,12 +18,12 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :fullcourse_menus, only: %i[index new create show edit update] do
     get 'map', on: :collection
-    delete 'image_destroy', on: :member
+    patch 'image_destroy', on: :member
   end
   resources :fullcourses, only: %i[index show]
   resources :stars, only: %i[create destroy]
   resource :profile, only: %i[show edit update destroy] do
-    delete 'image_destroy', on: :member
+    patch 'image_destroy', on: :member
   end
   resources :password_resets, only: %i[new create edit update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
