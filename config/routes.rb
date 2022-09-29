@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   end
   resources :fullcourses, only: %i[index show]
   resources :stars, only: %i[create destroy]
-  resource :profile, only: %i[show edit update]
+  resource :profile, only: %i[show edit update] do
+    delete 'image_destroy', on: :member
+  end
   resources :password_resets, only: %i[new create edit update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

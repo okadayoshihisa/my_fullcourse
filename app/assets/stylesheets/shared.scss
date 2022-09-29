@@ -47,6 +47,9 @@ $warning_text_color_dark_bright: #212529;
 
 .btn.btn-warning:focus, .btn.btn-warning.focus {
   box-shadow: 0 0 0 0.2rem rgba(239, 106, 55, 0.5);
+  color: white;
+  background-color: #ec5115;
+  border-color: #e14b11;
 }
 
 .btn.btn-warning.disabled, .btn.btn-warning:disabled {
