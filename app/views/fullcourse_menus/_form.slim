@@ -16,9 +16,9 @@
                 = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}"
               = i.text_field :name, class: 'form-control', placeholder: FullcourseMenu.human_attribute_name(:name)
               = i.hidden_field :genre, value: FullcourseMenu.genres.keys[index]
-            .form-group
+            .form-group.mt-2
               = i.file_field :menu_image, class: 'form-control', accept: 'image/*', id: "file_btn_#{index}"
-              = link_to '画像を削除', image_destroy_fullcourse_menu_path(id: fullcourse_menu.id, index: index), method: :delete, remote: true, class: 'btn btn-danger' 
+              = link_to '画像を削除', image_destroy_fullcourse_menu_path(id: fullcourse_menu.id, index: index), method: :delete, remote: true, class: 'btn btn-warning', id: "delete_btn_#{index}"
               = i.hidden_field :menu_image_cache
               div id="delete_#{fullcourse_menu.id}_image"              
                 = image_tag fullcourse_menu.menu_image.url, id: "preview_#{index}", size: '460x345', class: 'img-fluid mb-3'
