@@ -15,14 +15,14 @@ Rails.application.routes.draw do
   get 'privacy', to: 'static_pages#privacy'
   get 'terms', to: 'static_pages#terms'
 
-  resources :users, only: %i[new create edit]
-  resources :fullcourse_menus do
+  resources :users, only: %i[new create]
+  resources :fullcourse_menus, only: %i[index new create show edit update] do
     get 'map', on: :collection
     delete 'image_destroy', on: :member
   end
   resources :fullcourses, only: %i[index show]
   resources :stars, only: %i[create destroy]
-  resource :profile, only: %i[show edit update] do
+  resource :profile, only: %i[show edit update destroy] do
     delete 'image_destroy', on: :member
   end
   resources :password_resets, only: %i[new create edit update]

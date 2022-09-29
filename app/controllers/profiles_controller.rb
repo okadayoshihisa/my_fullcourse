@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: %i[show edit update image_destroy]
+  before_action :set_user, only: %i[show edit update image_destroy destroy]
   def show
     @fullcourse_menus = @user.fullcourse_menus.order(id: :asc)
   end
@@ -18,6 +18,11 @@ class ProfilesController < ApplicationController
   def image_destroy
     @user.remove_avatar!
     @user.save
+  end
+
+  def destroy
+    @user.destroy!
+    redirect_to fullcourses_path, success: t('.success')
   end
 
   private
