@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update image_destroy]
   def show
     @fullcourse_menus = @user.fullcourse_menus.order(id: :asc)
   end
@@ -13,6 +13,11 @@ class ProfilesController < ApplicationController
       flash.now[:danger] = t('defaults.message.not_updated', item: User.model_name.human)
       render :edit
     end
+  end
+
+  def image_destroy
+    @user.remove_avatar!
+    @user.save
   end
 
   private
