@@ -1,5 +1,5 @@
 class FullcourseMenusController < ApplicationController
-  skip_before_action :require_login, only: %i[index map]
+  skip_before_action :require_login, only: %i[index map index]
   before_action :set_user, only: %i[edit update]
 
   def index
