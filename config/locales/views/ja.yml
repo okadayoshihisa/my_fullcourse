@@ -47,6 +47,8 @@ ja:
       title: 'マップ'
     show:
       title: 'メニュー詳細'
+    index:
+      title: 'メニュー一覧'
   fullcourses:
     index:
       title: 'フルコース一覧'

@@ -2,6 +2,7 @@
 
 .container.mb-5
   .row
-    .text-center.mt-4
-      h1 = t('.title')
-    = render 'form', form: @form, url: fullcourse_menu_path, method: :patch
+    .col-xl-10.offset-xl-1
+      .text-center.mt-4
+        h1 = t('.title')
+      = render 'form', form: @form, url: fullcourse_menu_path, method: :patch
