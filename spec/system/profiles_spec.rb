@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.fdescribe "Profiles", type: :system do
+RSpec.describe 'Profiles', type: :system do
   describe 'ログイン後' do
     let(:user) { create(:user) }
     before do
@@ -42,6 +42,21 @@ RSpec.fdescribe "Profiles", type: :system do
           expect(current_path).to eq('/profile')
           expect(page).to have_content('ユーザーを更新できませんでした')
         end
+      end
+    end
+    context 'フルコースメニュー作成済みの時' do
+      it '登録したフルコースメニューとフルコース画像が表示されていること' do
+        create_menus
+        visit profile_path
+        expect(page).to have_css('img.d-block.mx-auto.img-fluid')
+        expect(page).to have_content('test_zensai')
+        expect(page).to have_content('test_soup')
+        expect(page).to have_content('test_fish')
+        expect(page).to have_content('test_meat')
+        expect(page).to have_content('test_main')
+        expect(page).to have_content('test_salad')
+        expect(page).to have_content('test_desert')
+        expect(page).to have_content('test_drink')
       end
     end
   end
