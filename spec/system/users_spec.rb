@@ -39,9 +39,9 @@ RSpec.describe "Users", type: :system do
     end
     context '登録済のメールアドレスを使用' do
       it 'ユーザーの新規作成が失敗する' do
-        user = create(:user)
+        another_user = create(:user)
         fill_in 'ユーザー名', with: 'test_name'
-        fill_in 'メールアドレス', with: user.email
+        fill_in 'メールアドレス', with: another_user.email
         fill_in 'パスワード', with: 'test_password'
         fill_in 'パスワード確認', with: 'test_password'
         click_button('登録')
