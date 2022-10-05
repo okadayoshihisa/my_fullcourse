@@ -37,14 +37,16 @@ Style/FrozenStringLiteralComment:
 
 #許可する警告
 Metrics/MethodLength:
-  Max: 18
+  Enabled: false
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:
-  Max: 26
+  Enabled: false
 Naming/MethodParameterName:
   Enabled: false
 Layout/LineLength:
   Max: 125
 Metrics/CyclomaticComplexity:
   Max: 10
+Rails/FilePath:
+  Enabled: false

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'FullcourseMenus', type: :system do
+RSpec.fdescribe 'FullcourseMenus', type: :system do
   let(:user) { create(:user) }
   let(:another_user) { create(:user) }
   let!(:menu) { create(:fullcourse_menu) }
@@ -87,7 +87,7 @@ RSpec.describe 'FullcourseMenus', type: :system do
       end
     end
 
-    fdescribe 'フルコースメニュー編集' do
+    describe 'フルコースメニュー編集' do
       before { create_menus }
       context 'フォームの入力値が正常' do
         it 'フルコースメニュー編集が成功する', js: true do
