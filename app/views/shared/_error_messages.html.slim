@@ -1,5 +1,6 @@
 - if model.errors.any?
   .alert.alert-danger
+    = FullcourseMenu.genres_i18n.values[index] if index ||= nil
     ul.mb-0
       - model.errors.full_messages.each do |msg|
         li
