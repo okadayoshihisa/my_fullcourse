@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.fdescribe 'FullcourseMenus', type: :system do
+RSpec.describe 'FullcourseMenus', type: :system do
   let(:user) { create(:user) }
   let(:another_user) { create(:user) }
   let!(:menu) { create(:fullcourse_menu) }

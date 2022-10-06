@@ -59,6 +59,15 @@ RSpec.describe 'Profiles', type: :system do
         expect(page).to have_content('test_drink')
       end
     end
+    describe '退会機能' do
+      context '退会ボタンを押下時' do
+        it '退会処理が成功する' do
+          click_link('退会')
+          expect(current_path).to eq(fullcourses_path)
+          expect(page).to have_content('退会しました')
+        end
+      end
+    end
   end
   describe 'ログイン前' do
     it 'プロフィールページにアクセスできない' do
