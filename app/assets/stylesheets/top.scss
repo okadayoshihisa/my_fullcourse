@@ -1,9 +1,15 @@
 .top-wrapper {
   background-image: image-url("top.jpg");
-  height: calc(100vh);
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
 }
-.des {
+.description {
   color: #595260;
+}
+.card.how-to-use {
+  background: rgba(255, 255, 255, 0.75);
+}
+.border-bottom-org {
+  border-bottom: thick solid #1189cc;
 }

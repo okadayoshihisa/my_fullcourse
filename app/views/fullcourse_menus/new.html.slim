@@ -1,7 +1,6 @@
 - set_meta_tags title: t('.title')
 
-.container.mb-5
+.container.my-5
   .row
-    .text-center.mt-4
-      h1 = t('.title')
-    = render 'form', form: @form, url: fullcourse_menus_path, method: :post
+    .col-xl-10.offset-xl-1
+      = render 'form', form: @form, url: fullcourse_menus_path, method: :post

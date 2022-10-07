@@ -1,11 +1,11 @@
-.top-wrapper.d-flex.align-items-center
-  .container
-    .row
-      .col-md-9.mx-auto
-        = image_tag 'logo.jpg', class: 'd-block mx-auto w-100'
+.top-wrapper.d-flex.align-items-center.pt-5
+  .container.my-5
+    .row.mt-5
+      .col-md-9.mx-auto.mt-5
+        = image_tag 'logo.jpg', class: 'd-block mx-auto w-100 mt-5'
     .row
       .col.my-3
-        h3.text-center.des
+        h3.text-center.description
           | メニューを登録して
           br
           | 自分だけのフルコースを作成しよう
@@ -19,3 +19,19 @@
               = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'btn btn-warning'
         - else
           = link_to t('fullcourse_menus.new.title'), new_fullcourse_menu_path, class: 'btn btn-warning'
+    .card.rounded.mt-5.p-3.col-lg-10.offset-lg-1.how-to-use
+      .row.mb-3
+        .col-3.mx-auto
+          h1.text-center.border-bottom-org 使い方
+      .row.mt-3
+        .col-md-7
+          h2 フルコースメニューを登録しよう
+          h6 オードブル(前菜)、スープ、魚料理、肉料理、メインディッシュ(主菜)、サラダ、デザート、ドリンクごとにメニュー名、写真、店名、店舗住所が登録できます。
+        .col-md-5
+          = image_tag 'menu_form', class: 'img-fluid'
+      .row.mt-5
+        .col-md-5
+          h2 フルコースを共有しよう
+          h6 フルコースメニューを登録すると、フルコース画像が生成されます。みんなのフルコースを見たり、自分のフルコースをTwitterへ共有できます。
+        .col-md-7
+          = image_tag 'fullcourse_example', class: 'img-fluid w-100'
