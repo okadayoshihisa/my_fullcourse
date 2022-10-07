@@ -4,4 +4,5 @@
       = t('.title')
   .row.mb-5
     = render @fullcourses
-  = paginate @fullcourses, theme: 'bootstrap-5'
+  = paginate @fullcourses, theme: 'bootstrap-5',
+                           pagination_class: "justify-content-center"

@@ -4,7 +4,7 @@ RSpec.describe 'Users', type: :system do
   describe 'ユーザー新規登録' do
     before do
       visit root_path
-      click_link('新規登録')
+      click_link('ユーザー登録')
     end
     context 'フォームの入力値が正常' do
       it 'ユーザーの新規作成が成功する' do
