@@ -25,7 +25,7 @@ User.all.each do |user|
     )
   end
   user.create_fullcourse(
-    fullcourse_image: File.open("./app/assets/images/fullcourse.jpeg")
+    fullcourse_image: File.open("./app/assets/images/fullcourse_example.jpg")
   )
 end
 
