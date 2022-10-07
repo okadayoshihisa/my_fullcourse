@@ -1,4 +1,8 @@
 #form
+  - form.fullcourse_menus.each.with_index do |fullcourse_menu, index|
+    = render 'shared/error_messages', model: fullcourse_menu, index: index
+    = render 'shared/error_messages', model: form.stores[index], index: index
+
   .w-100.d-flex.bg-white.rounded-top.mt-3.shadow-lg
     - 8.times do |i|
         div class='btn genre-selecter' v-on:click="changeDisplay('isDisplay#{i}'); changeButton('buttonState#{i}')" v-bind:class="{ buttoncolor: buttonState#{i} }"
@@ -9,7 +13,6 @@
     - form.fullcourse_menus.each.with_index do |fullcourse_menu, index|
       div v-show="isDisplay#{index}"
         .card.rounded-0.rounded-bottom.shadow-lg.p-2.mb-3.border-top
-          = render 'shared/error_messages', model: fullcourse_menu
           = f.fields_for :fullcourse_menus, fullcourse_menu do |i|
             .form-group
               h2
@@ -26,7 +29,6 @@
               div id="delete_#{index}_image"   
                 = image_tag fullcourse_menu.menu_image.url, id: "preview_#{index}", size: '460x345', class: 'img-fluid mb-3'
 
-          = render 'shared/error_messages', model: form.stores[index]
           = f.fields_for :stores, form.stores[index] do |i|
             .form-group
               = i.label :name

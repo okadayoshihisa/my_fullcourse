@@ -16,9 +16,11 @@
             p.mb-2
               = FullcourseMenu.human_attribute_name(:level)
               |  #{fullcourse_menu.level}
-            p.mb-2
-              i.fa.fa-store.me-2
-              | #{fullcourse_menu.store.name}
-            p.mb-2
-              i.fas.fa-map-marked-alt.me-2
-              | #{fullcourse_menu.store.address}
+            - if fullcourse_menu.store.name.present?
+              p.mb-2
+                i.fa.fa-store.me-2
+                | #{fullcourse_menu.store.name}
+            - if fullcourse_menu.store.address.present?
+              p.mb-2
+                i.fas.fa-map-marked-alt.me-2
+                | #{fullcourse_menu.store.address}
