@@ -3,7 +3,8 @@ class FullcourseMenusController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
   def index
-    @fullcourse_menus = FullcourseMenu.where.not(name: '').order(updated_at: :desc).page(params[:page])
+    @q = FullcourseMenu.where.not(name: '').order(updated_at: :desc).ransack(params[:q])
+    @fullcourse_menus = @q.result(distinct: true).page(params[:page])
   end
 
   def new
