@@ -3,7 +3,8 @@ class FullcourseMenusController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
   def index
-    @fullcourse_menus = FullcourseMenu.where.not(name: '').order(updated_at: :desc).page(params[:page])
+    @q = FullcourseMenu.where.not(name: '').order(updated_at: :desc).ransack(search_params)
+    @fullcourse_menus = @q.result(distinct: true).page(params[:page])
   end
 
   def new
@@ -98,5 +99,9 @@ class FullcourseMenusController < ApplicationController
     user_id_merge_form_params = menu_store_form_params
     user_id_merge_form_params[:fullcourse_menus_attributes].merge!(user_id_hash)
     user_id_merge_form_params
+  end
+
+  def search_params
+    params[:q]&.permit(:name_cont, :store_name_cont, :store_address_cont, :genre_eq)
   end
 end

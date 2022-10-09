@@ -4,7 +4,9 @@
   h1.text-center.mb-3.logo
     = t('.title')
   .col-xl-10.offset-xl-1.mt-4
-    = render @fullcourse_menus
+    = render 'search_form'
+    .fullcourse-menus
+      = render @fullcourse_menus
   .mt-5
     = paginate @fullcourse_menus, theme: 'bootstrap-5',
                                   pagination_class: "justify-content-center"

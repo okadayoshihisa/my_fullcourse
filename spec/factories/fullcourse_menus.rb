@@ -5,4 +5,8 @@ FactoryBot.define do
     association :user
     association :store
   end
+
+  trait :soup do
+    genre { 1 }
+  end
 end
