@@ -5,7 +5,8 @@
     = t('.title')
   .col-xl-10.offset-xl-1.mt-4
     = render 'search_form'
-    = render @fullcourse_menus
+    .fullcourse-menus
+      = render @fullcourse_menus
   .mt-5
     = paginate @fullcourse_menus, theme: 'bootstrap-5',
                                   pagination_class: "justify-content-center"

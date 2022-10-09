@@ -16,7 +16,7 @@
           = f.fields_for :fullcourse_menus, fullcourse_menu do |i|
             .form-group
               h2
-                = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}"
+                = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}(前菜)"
               = i.text_field :name, class: 'form-control', placeholder: FullcourseMenu.human_attribute_name(:name)
               = i.hidden_field :genre, value: FullcourseMenu.genres.keys[index]
             .form-group.mt-2

@@ -3,28 +3,8 @@ require 'rails_helper'
 RSpec.describe 'FullcourseMenus', type: :system do
   let(:user) { create(:user) }
   let(:another_user) { create(:user) }
-  let!(:menu) { create(:fullcourse_menu) }
-  let!(:another_menu) { create(:fullcourse_menu) }
-
-  describe '一覧表示機能' do
-    context 'フルコースメニューが作成済みの時' do
-      it 'すべてのフルコースメニューが表示される' do
-        visit fullcourse_menus_path
-        expect(page).to have_content(menu.name)
-        expect(page).to have_content(another_menu.name)
-      end
-    end
-  end
-
-  describe 'マップ機能' do
-    context 'フルコースメニューが作成済みの時' do
-      it 'フルコースメニューが表示される' do
-        visit map_fullcourse_menus_path
-        expect(page).to have_content(menu.name)
-        expect(page).to have_content(another_menu.name)
-      end
-    end
-  end
+  let(:menu) { create(:fullcourse_menu) }
+  let(:another_menu) { create(:fullcourse_menu, :soup) }
 
   describe 'ログイン前' do
     describe 'ページ遷移確認' do
@@ -38,7 +18,6 @@ RSpec.describe 'FullcourseMenus', type: :system do
 
       context 'フルコースメニュー詳細ページにアクセス' do
         it 'アクセスに失敗する' do
-          menu = create(:fullcourse_menu)
           visit fullcourse_menu_path(menu.id)
           expect(current_path).to eq(login_path)
           expect(page).to have_content('ログインしてください')
@@ -51,6 +30,61 @@ RSpec.describe 'FullcourseMenus', type: :system do
           visit edit_fullcourse_menu_path(user.id)
           expect(current_path).to eq(login_path)
           expect(page).to have_content('ログインしてください')
+        end
+      end
+    end
+
+    describe 'マップ機能' do
+      context 'フルコースメニューが作成済みの時' do
+        it 'フルコースメニューが表示される' do
+          menu
+          another_menu
+          visit map_fullcourse_menus_path
+          expect(page).to have_content(menu.name)
+          expect(page).to have_content(another_menu.name)
+        end
+      end
+    end
+
+    describe '一覧表示機能' do
+      before do
+        menu
+        another_menu
+        visit fullcourse_menus_path
+      end
+
+      context 'フルコースメニューが作成済みの時' do
+        it 'すべてのフルコースメニューが表示される' do
+          visit fullcourse_menus_path
+          expect(page).to have_content(menu.name)
+          expect(page).to have_content(another_menu.name)
+        end
+      end
+
+      describe 'フルコースメニュー検索機能' do
+        it 'メニュー名で絞り込み検索ができる' do
+          fill_in 'メニュー名', with: menu.name
+          click_button '検索'
+          expect(find('div.fullcourse-menus')).to have_content(menu.name)
+          expect(find('div.fullcourse-menus')).to_not have_content(another_menu.name)
+        end
+        it '店名で絞り込み検索ができる' do
+          fill_in '店名', with: menu.store.name
+          click_button '検索'
+          expect(find('div.fullcourse-menus')).to have_content(menu.store.name)
+          expect(find('div.fullcourse-menus')).to_not have_content(another_menu.store.name)
+        end
+        it '住所で絞り込み検索ができる' do
+          fill_in '住所', with: menu.store.address
+          click_button '検索'
+          expect(find('div.fullcourse-menus')).to have_content(menu.store.address)
+          expect(find('div.fullcourse-menus')).to_not have_content(another_menu.store.address)
+        end
+        it 'メニュー種類で絞り込み検索ができる' do
+          select 'オードブル', from: 'q[genre_eq]'
+          click_button '検索'
+          expect(find('div.fullcourse-menus')).to have_content(menu.genre_i18n)
+          expect(find('div.fullcourse-menus')).to_not have_content(another_menu.genre_i18n)
         end
       end
     end
