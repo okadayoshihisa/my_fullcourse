@@ -4,9 +4,8 @@
     = link_to t('fullcourse_menus.edit.title'), edit_fullcourse_menu_path(@user.id), class: 'btn btn-success'
   .img.my-3.text-center
     = image_tag @user.fullcourse.fullcourse_image.url, class: 'd-block mx-auto img-fluid'
-    - if @user == current_user
-      = link_to "https://twitter.com/intent/tweet?text=#{@user.name}がフルコースを作成しました!%0aフルコース完成まであと#{@user.remaining_number}つです!&hashtags=俺のフルコース&size=large",
-                class: "twitter-share-button"     
-                  | tweet
+    = link_to "https://twitter.com/intent/tweet?text=#{@user.name}がフルコースを作成しました!%0aフルコース完成まであと#{@user.remaining_number}つです!&hashtags=俺のフルコース&size=large",
+              class: "twitter-share-button"
+                | tweet
   = render partial: 'fullcourse_menus/fullcourse_menu', collection: @fullcourse_menus
 script async="async" charset="utf-8" src="https://platform.twitter.com/widgets.js" 
