@@ -1,12 +1,12 @@
 .my-4
   = search_form_for @q do |f|
     = f.label :name_cont, class: 'sr-only'
-    = f.search_field :name_cont, placeholder: FullcourseMenu.human_attribute_name(:name)
+    = f.search_field :name_cont, placeholder: FullcourseMenu.human_attribute_name(:name), class: 'mt-1'
     = f.label :store_name_cont, class: 'sr-only'
-    = f.search_field :store_name_cont, placeholder: Store.human_attribute_name(:name), class: 'mx-1'
+    = f.search_field :store_name_cont, placeholder: Store.human_attribute_name(:name), class: 'mx-1 mt-1'
     = f.label :store_address_cont, class: 'sr-only'
-    = f.search_field :store_address_cont, placeholder: Store.human_attribute_name(:address), class: 'mx-1'
+    = f.search_field :store_address_cont, placeholder: Store.human_attribute_name(:address), class: 'me-1 mt-1'
     = f.label :genre_eq, class: 'sr-only'
     = f.select :genre_eq, FullcourseMenu.genres_i18n.invert.map { |key, value| [key, FullcourseMenu.genres[value]]}, include_blank:'メニュー種類'
 
-    = f.submit class: 'ms-1'
+    = f.submit class: 'ms-1 mt-1'

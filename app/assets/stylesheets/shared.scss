@@ -106,8 +106,12 @@ html body {
   font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
 }
 
-.logo {
-  font-family: '玉ねぎ楷書激無料版v6';
+@font-face{
+  font-family: 'TamanegiKaishoGeki';
+  src: font-url('TamanegiKaishoGeki.ttf') format('truetype');
+}
+.logo-font {
+  font-family: 'TamanegiKaishoGeki';
 }
 
 /*ページネーション自体のデザイン*/
