@@ -1,5 +1,5 @@
 - if @user.fullcourse.present?
-  - set_meta_tags title: t('fullcourses.show.title', item: @user.name), og: { image: "https://my-fullcourse.s3.ap-northeast-1.amazonaws.com/#{@user.fullcourse.fullcourse_image.file.path}", url: "http://www.my-fullcourse.com/fullcourses/#{@user.id}" }
+  - set_meta_tags title: t('.title'), og: { image: "https://my-fullcourse.s3.ap-northeast-1.amazonaws.com/#{@user.fullcourse.fullcourse_image.file.path}" }
 .container.my-5
   .row
     .col
@@ -20,7 +20,7 @@
         .img.my-3.text-center
           = image_tag @user.fullcourse.fullcourse_image.url, class: 'd-block mx-auto img-fluid'
           - if @user == current_user
-            = link_to "https://twitter.com/intent/tweet?text=#{@user.name}がフルコースを作成しました!%0aフルコース完成まであと#{@user.remaining_number}つです!&hashtags=俺のフルコース&size=large",
+            = link_to "https://twitter.com/intent/tweet?text=#{@user.name}がフルコースを作成しました!%0aフルコース完成まであと#{@user.remaining_number}つです!&hashtags=俺のフルコース&size=large&url=http://www.my-fullcourse.com/fullcourses/#{@user.id}&lang=ja",
                       class: "twitter-share-button" 
                         | tweet
         = render partial: 'fullcourse_menus/fullcourse_menu', collection: @fullcourse_menus
