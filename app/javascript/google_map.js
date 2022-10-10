@@ -111,11 +111,19 @@ function getClickLatLng(lat_lng, i) {
   if (markers[i]) {
   markers[i].setMap(null);
   }
+  markers[i] = new google.maps.Marker({
+    position: lat_lng,
+    map: maps[i]
+  });
+  maps[i].panTo(lat_lng);
   geocoder.geocode( { latLng: lat_lng}, function(results, status) {
     if (status == 'OK') {
       address = document.getElementById(`address_${i}`);
+      latitude = document.getElementById(`latitude_${i}`);
+      longitude = document.getElementById(`longitude_${i}`);
       address.value = results[0].formatted_address;
-      getLatLng(i);
+      latitude.value = results[0].geometry.location.lat();
+      longitude.value = results[0].geometry.location.lng();
     }
   });
 }
