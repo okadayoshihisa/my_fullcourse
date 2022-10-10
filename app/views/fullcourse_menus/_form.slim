@@ -6,7 +6,7 @@
   .w-100.d-flex.bg-white.rounded-top.mt-3.shadow-lg
     - 8.times do |i|
         div class='btn genre-selecter' v-on:click="changeDisplay('isDisplay#{i}'); changeButton('buttonState#{i}')" v-bind:class="{ buttoncolor: buttonState#{i} }"
-          b 
+          b.exp
             = FullcourseMenu.genres_i18n.values[i]
 
   = form_with model: form, url: url, method: method, local: true do |f|
@@ -16,7 +16,7 @@
           = f.fields_for :fullcourse_menus, fullcourse_menu do |i|
             .form-group
               h2
-                = i.label :name, "#{FullcourseMenu.genres_i18n.values[index]}(前菜)"
+                = i.label :name, FullcourseMenu.genres_i18n.values[index]
               = i.text_field :name, class: 'form-control', placeholder: FullcourseMenu.human_attribute_name(:name)
               = i.hidden_field :genre, value: FullcourseMenu.genres.keys[index]
             .form-group.mt-2
