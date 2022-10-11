@@ -8,8 +8,8 @@ function initMap(){
     //マップページ
     if (path == '/fullcourse_menus/map') {
       map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 10,
-          center: {lat: 35.676192, lng: 139.650311},
+          zoom: 8,
+          center: {lat: 36.204824, lng: 138.252924},
       });
       for (let i = 0; i < gon.menus.length; i++) {
         //メニュー名、緯度経度がある時だけマーカー設置
