@@ -20,7 +20,7 @@
         .img.my-3.text-center
           = image_tag @user.fullcourse.fullcourse_image.url, class: 'd-block mx-auto img-fluid'
           - if @user == current_user
-            = link_to "https://twitter.com/intent/tweet?text=#{@user.name}がフルコースを作成しました!%0aフルコース完成まであと#{@user.remaining_number}つです!&hashtags=俺のフルコース&size=large&url=http://www.my-fullcourse.com/fullcourses/#{@user.id}",
+            = link_to "https://twitter.com/intent/tweet?text=#{@user.name}がフルコースを作成しました!%0aフルコース完成まであと#{@user.remaining_number}つです!&hashtags=俺のフルコース&size=large&url=https://www.my-fullcourse.com/fullcourses/#{@user.id}",
                       class: "twitter-share-button" 
                         | tweet
         = render partial: 'fullcourse_menus/fullcourse_menu', collection: @fullcourse_menus
