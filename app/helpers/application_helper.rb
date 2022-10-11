@@ -13,8 +13,8 @@ module ApplicationHelper
 
   def defalut_og
     {
-      title: :full_title,          # :full_title とすると、サイトに表示される <title> と全く同じものを表示できる
-      description: '俺のフルコースはトリコに登場する美食屋たちのように、自分だけのフルコースを作成するサービスです',
+      title: :full_title, # :full_title とすると、サイトに表示される <title> と同じものを表示できる
+      description: 'トリコに登場する美食屋たちのように、自分だけのフルコースを作成するサービスです',
       url: request.url,
       image: asset_url('ogp.jpg')
     }
