@@ -60,6 +60,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'aws-sdk'
 gem 'aws-sdk-s3', require: false
 gem 'bootstrap5-kaminari-views'
 gem 'cancancan'
@@ -81,8 +82,7 @@ gem 'net-smtp'
 gem 'rails_admin', '~> 3.0'
 gem 'rails-i18n'
 gem 'ransack'
+gem 'sitemap_generator'
 gem 'slim'
 gem 'sorcery'
-gem 'sitemap_generator'
-gem 'aws-sdk'
 gem 'whenever'
