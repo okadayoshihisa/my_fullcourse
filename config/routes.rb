@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'privacy', to: 'static_pages#privacy'
   get 'terms', to: 'static_pages#terms'
 
+  get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/my-fullcourse/sitemaps/sitemap.xml.gz')
+
   resources :users, only: %i[new create]
   resources :fullcourse_menus, only: %i[index new create show edit update] do
     get 'map', on: :collection
