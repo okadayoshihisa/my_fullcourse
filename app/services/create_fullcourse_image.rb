@@ -1,6 +1,6 @@
 class CreateFullcourseImage
   def self.call(user)
-    n = rand(1..3)
+    n = rand(1..8)
     image = MiniMagick::Image.open("./app/assets/images/fullcourse#{n}.jpg")
     pos = '10, 10' # 基準点からの変位 '横,縦'
     menus = user.fullcourse_menus.order(id: :asc)
