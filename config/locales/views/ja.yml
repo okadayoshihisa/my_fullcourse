@@ -9,6 +9,8 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       cancel: "%{item}をキャンセルしました"
       require_login: "ログインしてください"
+      guest_user_limit: 'ゲストユーザーはこの機能をご利用いただけません'
+
     password_reset: 'パスワードリセット'
     twitter_login: 'Twitterアカウントでログイン'
     developer_twitter: '開発者Twitterアカウント'

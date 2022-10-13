@@ -4,7 +4,9 @@ class ProfilesController < ApplicationController
     @fullcourse_menus = @user.fullcourse_menus.order(id: :asc)
   end
 
-  def edit; end
+  def edit
+    redirect_to profile_path, danger: t('defaults.message.guest_user_limit') if @user.guest?
+  end
 
   def update
     if @user.update(user_params)

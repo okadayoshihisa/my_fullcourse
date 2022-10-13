@@ -8,7 +8,7 @@
     .card-body.p-2
       h2 = @user.name
       .mb-3
-        = link_to t('profiles.edit.title'),  edit_profile_path, class: 'btn btn-success'
+        = link_to t('profiles.edit.title'),  edit_profile_path, class: 'btn btn-success' unless @user.guest?
       = link_to t('profiles.destroy.title'), profile_path, class: 'btn btn-warning', method: :delete
 
   .row
