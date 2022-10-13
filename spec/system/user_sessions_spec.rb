@@ -15,6 +15,15 @@ RSpec.describe 'UserSessions', type: :system do
         visit login_path
         click_button('ログイン')
         expect(page).to have_content('ログインに失敗しました')
+        expect(current_path).to eq(login_path)
+      end
+    end
+    describe 'ゲストログイン機能' do
+      it 'ゲストログインが成功すること' do
+        visit login_path
+        click_link('ゲストログイン')
+        expect(page).to have_content('ゲストユーザーとしてログインしました')
+        expect(current_path).to eq(fullcourses_path)
       end
     end
   end

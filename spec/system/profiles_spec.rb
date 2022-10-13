@@ -76,4 +76,20 @@ RSpec.describe 'Profiles', type: :system do
       expect(page).to have_content('ログインしてください')
     end
   end
+  describe 'ゲストログイン後' do
+    before do
+      visit login_path
+      click_link('ゲストログイン')
+    end
+
+    it 'プロフィール編集ボタンが表示されない' do
+      visit profile_path
+      expect(page).to_not have_content('プロフィール編集')
+    end
+    it 'プロフィール編集ページにアクセスできない' do
+      visit edit_profile_path
+      expect(page).to have_content('ゲストユーザーはこの機能をご利用いただけません')
+      expect(current_path).to eq(profile_path)
+    end
+  end
 end
