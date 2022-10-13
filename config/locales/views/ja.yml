@@ -38,6 +38,10 @@ ja:
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトしました'
+    guest_login:
+      title: 'ゲストログイン'
+      success: 'ゲストユーザーとしてログインしました'
+      fail: 'すでにログインしています'
   fullcourse_menus:
     new:
       title: 'フルコースメニュー作成'
