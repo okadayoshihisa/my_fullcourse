@@ -4,7 +4,11 @@ class FullcourseMenu < ApplicationRecord
 
   validates :name, presence: true, if: proc { |f| f.store.name.present? }
   validates :genre, presence: true
-  validates_associated :user, message: 'が登録できるフルコースメニューは8つまでです'
+  validate :menu_limit, on: :create
+
+  def menu_limit
+    errors.add(:base, '登録できるフルコースメニューは8つまでです') if user.fullcourse_menus.count >= 8
+  end
 
   mount_uploader :menu_image, MenuImageUploader
 
