@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :reset_password_token, uniqueness: true, allow_nil: true
   validates :fullcourse_menus, length: { maximum: 8 }
+  validates :guest, inclusion: [true, false]
 
   mount_uploader :avatar, AvatarUploader
 
