@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Store, type: :model do
-  fit '店名、住所、緯度、軽度、TELの組み合わせが重複している時登録できないこと' do
+  it '店名、住所、緯度、軽度、TELの組み合わせが重複している時登録できないこと' do
     store = create(:store)
     duplicated_store = build(:store, name: store.name, address: store.address)
     expect(duplicated_store).to be_invalid
