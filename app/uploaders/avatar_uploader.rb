@@ -18,6 +18,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    'sample.jpg'
+    'avatar.jpg'
   end
 end
