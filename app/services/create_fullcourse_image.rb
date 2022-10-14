@@ -37,6 +37,9 @@ class CreateFullcourseImage
 
   # メニュー、店名を書き出す
   def self.write_menu_store(config, menu, x, y)
+    # 文字合成時に文字列に ' がある時エラーが出るため、 ' を削除する暫定的な処理
+    menu.name = menu.name.delete("'") if menu.name.include?("'")
+    menu.store.name = menu.store.name.delete("'") if menu.store.name.include?("'")
     config.pointsize 30 # フォントのサイズ
     menu_level = "(#{FullcourseMenu.human_attribute_name(:level)}#{menu.level})"
     # 縁取りメニュー
