@@ -24,11 +24,11 @@ RSpec.describe FullcourseMenu, type: :model do
     expect(fullcourse_menu_without_genre).to be_invalid
     expect(fullcourse_menu_without_genre.errors[:genre]).to eq ['を入力してください']
   end
-  # it '一人のユーザーが９個以上登録できないこと' do
-  #   user = create(:user)
-  #   create_list(:fullcourse_menu, 8, user_id: user.id)
-  #   fullcourse_menu = build(:fullcourse_menu, user_id: user.id)
-  #   expect(fullcourse_menu).to be_invalid
-  #   expect(fullcourse_menu.errors.full_messages).to eq ['フルコースメニューを登録できるのは8つまでです']
-  # end
+  it '一人のユーザーが９個以上登録できないこと' do
+    user = create(:user)
+    create_list(:fullcourse_menu, 8, user_id: user.id)
+    fullcourse_menu = build(:fullcourse_menu, user_id: user.id)
+    expect(fullcourse_menu).to be_invalid
+    expect(fullcourse_menu.errors.full_messages).to eq ['登録できるフルコースメニューは8つまでです']
+  end
 end
