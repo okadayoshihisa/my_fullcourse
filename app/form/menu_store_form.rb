@@ -72,11 +72,13 @@ class MenuStoreForm
     word_score = Word.all.filter_map do |word|
       if word.menu?
         word.score if name.include?(word.name)
+      elsif word.store_name?
+        word.score if store.name.include?(word.name)
       elsif store.address.include?(word.name)
         word.score
       end
     end
-    word_score.push(100) unless store.address.include?('日本')
+    word_score.push(100) if store.address.exclude?('日本') && store.name.present?
     size_score + word_score.sum
   end
 end

@@ -50,3 +50,5 @@ Metrics/CyclomaticComplexity:
   Max: 10
 Rails/FilePath:
   Enabled: false
+Metrics/PerceivedComplexity:
+  Max: 10

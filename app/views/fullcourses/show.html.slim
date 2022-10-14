@@ -8,7 +8,7 @@
       = link_to "https://twitter.com/intent/tweet?text=#{@user.name}のフルコースが完成しました!!%0a&hashtags=俺のフルコース,人生のフルコース,トリコ&size=large",
                 class: "twitter-share-button"
                   | tweet
-    - elses
+    - else
       = link_to "https://twitter.com/intent/tweet?text=#{@user.name}がフルコースを作成しました!%0aフルコース完成まであと#{@user.remaining_number}つです!%0a&hashtags=俺のフルコース,人生のフルコース,トリコ&size=large",
                 class: "twitter-share-button"
                   | tweet
