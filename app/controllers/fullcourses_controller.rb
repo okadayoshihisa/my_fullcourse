@@ -6,7 +6,8 @@ class FullcoursesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @fullcourse_menus = FullcourseMenu.where(user_id: params[:id]).order(id: :asc)
+    @fullcourse = Fullcourse.find(params[:id])
+    @user = @fullcourse.user
+    @fullcourse_menus = FullcourseMenu.where(user_id: @user.id).order(id: :asc)
   end
 end

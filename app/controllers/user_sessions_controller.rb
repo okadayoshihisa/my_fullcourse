@@ -29,7 +29,7 @@ class UserSessionsController < ApplicationController
                           password_confirmation: random_value,
                           guest: true)
       auto_login(user)
-      redirect_to fullcourses_path, success: t('.success')
+      redirect_back_or_to fullcourses_path, success: t('.success')
     end
   end
 end

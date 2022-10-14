@@ -97,7 +97,7 @@ RSpec.describe 'FullcourseMenus', type: :system do
       context 'フォームの入力値が正常' do
         it 'フルコースメニュー作成が成功する' do
           create_menus
-          expect(current_path).to eq(fullcourse_path(user.id))
+          expect(current_path).to eq(fullcourse_path(user.fullcourse.id))
           expect(page).to have_css('img.d-block.mx-auto.img-fluid')
           expect(page).to have_content('test_zensai')
           expect(page).to have_content('test_soup')
@@ -126,7 +126,7 @@ RSpec.describe 'FullcourseMenus', type: :system do
       context 'フォームの入力値が正常' do
         it 'フルコースメニュー編集が成功する', js: true do
           update_menus(user.id)
-          expect(current_path).to eq(fullcourse_path(user.id))
+          expect(current_path).to eq(fullcourse_path(user.fullcourse.id))
           expect(page).to have_css('img.d-block.mx-auto.img-fluid')
           expect(page).to have_content('update_zensai')
           expect(page).to have_content('update_soup')
