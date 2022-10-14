@@ -44,7 +44,7 @@ RSpec.describe 'Fullcourses', type: :system do
       end
       context '作成者が他のユーザーの時' do
         it 'フルコースメニュー編集ボタンが表示されない' do
-          visit fullcourse_path(another_user.id)
+          visit fullcourse_path(another_user.fullcourse.id)
           expect(page).to_not have_css('a.btn.btn-success')
         end
       end
