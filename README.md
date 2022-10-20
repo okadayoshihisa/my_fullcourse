@@ -1,5 +1,5 @@
 ## 俺のフルコース
-https://oreno-fullcourse.herokuapp.com/
+https://my-fullcourse.com/
 
 ## ■ サービス概要
 漫画「トリコ」のように自分だけのフルコースを作成するサービスです。
