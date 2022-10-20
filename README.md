@@ -19,19 +19,16 @@ https://oreno-fullcourse.herokuapp.com/
 私にとって漫画は人生の教科書であり、トリコは最も好きな作品の一つです。そのなかの美食屋たちはフルコースを完成させることを人生の目標としており、私も同じようにフルコースを完成させたいと思いました。また、それを共有し、他の人のフルコースを食べてみたいと思いました。
 
 ## ■機能
-- ユーザー登録、ログイン機能
+- ユーザー登録、ログイン機能、Twitterログイン、ゲストログイン
 - フルコースメニューの登録、編集
 - フルコース一覧
+- フルコース詳細
+- フルコースメニュー一覧
+- フルコースメニュー詳細
 - マップ上にフルコースメニューの表示
 - フルコースを他ユーザーが評価できる
-
-追加予定の機能
-- フルコースメニュー一覧
 - 検索機能
 - 退会機能
-- テスト作成
-- OGP画像設定
-- フルコースメニュー作成時に生成される画像のパターンを追加
 
 ## ■使用技術
 バックエンド
@@ -44,20 +41,16 @@ https://oreno-fullcourse.herokuapp.com/
 
 インフラ
 - Heroku
+- PostgreSQL
+- Amazon S3
 
 使用API
 - Maps JavaScript API（マップ検索に使用）
 - Places API（店舗情報の取得に使用）
 - Geocording API (緯度経度の取得に使用)
 
-## ■スケジュール
-~~README〜ER図作成：~ 6/7~~  
-~~メイン機能実装：6/8 ~ 9/14~~   
-~~β版をRUNTEQ内リリース（MVP）：9/15~~  
-本番リリース：10/7
-
 ## ■画面遷移図URL
 https://www.figma.com/file/eHuy3gbolyUTZQK5u3gpKU/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0%3A1
 
 ## ■ER図
-<img width="1135" alt="スクリーンショット 2022-09-22 1 54 24" src="https://user-images.githubusercontent.com/91833517/191565347-5099f054-a4dc-4900-98d8-15c3fcee7633.png">
+<img width="899" alt="スクリーンショット 2022-10-20 23 55 21" src="https://user-images.githubusercontent.com/91833517/196984146-5fc2f606-89c2-4efe-bb22-2ca422143613.png">
