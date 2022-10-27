@@ -49,8 +49,8 @@ class FullcourseMenusController < ApplicationController
   def update
     @form = MenuStoreForm.new(user: @user)
     if @form.update(menu_store_form_params)
-      @user.fullcourse.delete
       fullcourse_image = CreateFullcourseImage.call(@user)
+      @user.fullcourse.delete
       fullcourse = @user.create_fullcourse(fullcourse_image: fullcourse_image)
       redirect_to fullcourse_path(fullcourse.id)
     else
