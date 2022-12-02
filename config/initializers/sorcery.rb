@@ -115,8 +115,8 @@ Rails.application.config.sorcery.configure do |config|
   # Twitter will not accept any requests nor redirect uri containing localhost,
   # Make sure you use 0.0.0.0:3000 to access your app in development
   #
-  config.twitter.key = Rails.application.credentials.twitter[:key]
-  config.twitter.secret = Rails.application.credentials.twitter[:secret]
+  config.twitter.key = ENV['TWITTER_KEY']
+  config.twitter.secret = ENV['TWITTER_SECRET_KEY']
   config.twitter.callback_url = Settings.twitter.callback_url
   config.twitter.user_info_path = "/1.1/account/verify_credentials.json?include_email=true"
   config.twitter.user_info_mapping = { name: 'name', email: 'email', avatar: 'profile_image_url_https'}
