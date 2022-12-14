@@ -1,5 +1,5 @@
 ## 俺のフルコース
-https://my-fullcourse.com/
+https://my-fullcourse.fly.dev/
 
 ## ■ サービス概要
 漫画「トリコ」のように自分だけのフルコースを作成するサービスです。
