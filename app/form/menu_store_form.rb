@@ -4,14 +4,9 @@ class MenuStoreForm
   attr_accessor :fullcourse_menus, :stores
 
   def initialize(attributes = {}, user: nil)
-    if user.present?
-      self.fullcourse_menus = FullcourseMenu.where(user_id: user).order(id: :asc)
-      self.stores = fullcourse_menus.map(&:store)
-    else
-      super attributes
-      self.stores = FORM_COUNT.times.map { Store.new } if stores.blank?
-      self.fullcourse_menus = FORM_COUNT.times.map { FullcourseMenu.new } if fullcourse_menus.blank?
-    end
+    super attributes
+    self.stores = FORM_COUNT.times.map { Store.new } if stores.blank?
+    self.fullcourse_menus = FORM_COUNT.times.map { user.fullcourse_menus.build } if fullcourse_menus.blank?
   end
 
   # 上でsuper attributesとしているので必要
@@ -27,13 +22,12 @@ class MenuStoreForm
     # 複数件全て保存できた場合のみ実行したいので、transactionを使用する
     ActiveRecord::Base.transaction do
       errors = fullcourse_menus.map.with_index do |menu, i|
-        menu.store = Store.find_or_create_by(name: stores[i].name, address: stores[i].address, latitude: stores[i].latitude,
-                                             longitude: stores[i].longitude, phone_number: stores[i].phone_number)
+        stores[i] = Store.find_or_create_by(name: stores[i].name, address: stores[i].address, latitude: stores[i].latitude,
+                                            longitude: stores[i].longitude, phone_number: stores[i].phone_number)
+        menu.store_id = stores[i].id
         # 捕獲レベル算出
         menu.level = calculate_level(menu.name, menu.store) if menu.name.present?
         menu.save
-        # store.saveしてないので、作成失敗時に入力値を返すために＠form.storesに入れる
-        stores[i] = menu.store
         menu.errors.any? || stores[i].errors.any?
       end
       # エラーを全て出すためsave!は使わずここでエラーを出す
