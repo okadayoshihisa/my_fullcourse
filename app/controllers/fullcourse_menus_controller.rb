@@ -17,7 +17,7 @@ class FullcourseMenusController < ApplicationController
   end
 
   def create
-    @form = MenuStoreForm.new(menu_store_form_params)
+    @form = MenuStoreForm.new(menu_store_form_params, user: current_user)
     if @form.save
       fullcourse_image = CreateFullcourseImage.call(current_user)
       fullcourse = current_user.create_fullcourse(fullcourse_image: fullcourse_image)

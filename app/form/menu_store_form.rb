@@ -4,9 +4,14 @@ class MenuStoreForm
   attr_accessor :fullcourse_menus, :stores
 
   def initialize(attributes = {}, user: nil)
-    super attributes
-    self.stores = FORM_COUNT.times.map { Store.new } if stores.blank?
-    self.fullcourse_menus = FORM_COUNT.times.map { user.fullcourse_menus.build } if fullcourse_menus.blank?
+    if user.fullcourse_menus.present?
+      self.fullcourse_menus = user.fullcourse_menus.order(id: :asc)
+      self.stores = fullcourse_menus.map(&:store)
+    else
+      super attributes
+      self.stores = FORM_COUNT.times.map { Store.new } if stores.blank?
+      self.fullcourse_menus = FORM_COUNT.times.map { user.fullcourse_menus.build } if fullcourse_menus.blank?
+    end
   end
 
   # 上でsuper attributesとしているので必要
@@ -45,13 +50,12 @@ class MenuStoreForm
         # 緯度経度はfloat型なのでfind_byするために""の時にnilにする
         store[:latitude] = nil if store[:latitude].blank?
         store[:longitude] = nil if store[:longitude].blank?
-        menu.store = Store.find_or_create_by(name: store[:name], address: store[:address], latitude: store[:latitude],
-                                             longitude: store[:longitude], phone_number: store[:phone_number])
+        stores[i] = Store.find_or_create_by(name: store[:name], address: store[:address], latitude: store[:latitude],
+                                            longitude: store[:longitude], phone_number: store[:phone_number])
+        menu.store_id = stores[i].id
         menu_params = params[:fullcourse_menus_attributes][:"#{i}"]
         menu.level = (menu_params[:name].present? ? calculate_level(menu_params[:name], menu.store) : nil)
         menu.update(menu_params)
-        # storeはupdateしてないので、更新失敗時に入力値を返すために＠form.storesに入れる
-        stores[i] = menu.store
         menu.errors.any? || stores[i].errors.any?
       end
       raise ActiveRecord::RecordInvalid if errors.include?(true)
