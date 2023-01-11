@@ -28,6 +28,7 @@
               = i.hidden_field :menu_image_cache
               div id="delete_#{index}_image"   
                 = image_tag fullcourse_menu.menu_image.url, id: "preview_#{index}", size: '460x345', class: 'img-fluid mb-3'
+              = i.hidden_field :user_id
 
           = f.fields_for :stores, form.stores[index] do |i|
             .form-group
